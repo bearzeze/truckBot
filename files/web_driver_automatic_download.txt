@@ -1,0 +1,9 @@
+    # Checking web driver
+    # chrome_app_utils = ChromeAppUtils()
+    # chrome_app_version = chrome_app_utils.get_chrome_version()
+    # print("Chrome application version: ", chrome_app_version)
+    chromedriver_dir = r"D:\Posao\truckBot\chromedriver.exe"
+    # Create an instance of WebDriverManager
+    # driver_manager = WebDriverManager(chromedriver_dir)
+    # Call the main method to manage chromedriver
+    # driver_manager.main()

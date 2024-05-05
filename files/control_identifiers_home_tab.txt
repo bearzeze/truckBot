@@ -1,0 +1,346 @@
+Control Identifiers:
+
+Dialog - 'Zoom'    (L553, T199, R1592, B997)
+['Zoom', 'Dialog', 'ZoomDialog']
+child_window(title="Zoom", control_type="Window")
+   | 
+   | TitleBar - ''    (L582, T202, R1583, B237)
+   | ['TitleBar']
+   |    | 
+   |    | Menu - 'System'    (L562, T208, R590, B236)
+   |    | ['System', 'Menu', 'SystemMenu', 'System0', 'System1']
+   |    | child_window(title="System", auto_id="MenuBar", control_type="MenuBar")
+   |    |    | 
+   |    |    | MenuItem - 'System'    (L562, T208, R590, B236)
+   |    |    | ['System2', 'MenuItem', 'SystemMenuItem']
+   |    |    | child_window(title="System", control_type="MenuItem")
+   |    | 
+   |    | Button - 'Minimize'    (L1405, T200, R1465, B237)
+   |    | ['Minimize', 'Button', 'MinimizeButton', 'Button0', 'Button1']
+   |    | child_window(title="Minimize", control_type="Button")
+   |    | 
+   |    | Button - 'Maximize'    (L1465, T200, R1524, B237)
+   |    | ['Maximize', 'Button2', 'MaximizeButton']
+   |    | child_window(title="Maximize", control_type="Button")
+   |    | 
+   |    | Button - 'Close'    (L1524, T200, R1584, B237)
+   |    | ['Button3', 'Close', 'CloseButton']
+   |    | child_window(title="Close", control_type="Button")
+   | 
+   | Pane - ''    (L562, T237, R1583, B988)
+   | ['Pane', 'Ctrl+FPane', 'Pane0', 'Pane1', 'Ctrl+FPane0', 'Ctrl+FPane1']
+   |    | 
+   |    | Pane - ''    (L562, T237, R1583, B988)
+   |    | ['Pane', 'Ctrl+FPane', 'Pane0', 'Pane1', 'Ctrl+FPane0', 'Ctrl+FPane1']
+   |    |    | 
+   |    |    | Pane - ''    (L562, T237, R1583, B302)
+   |    |    | ['Pane3', 'Ctrl+FPane3']
+   |    |    |    | 
+   |    |    |    | Pane - ''    (L562, T237, R896, B302)
+   |    |    |    | ['Pane4', 'Ctrl+FPane4']
+   |    |    |    |    | 
+   |    |    |    |    | Pane - ''    (L578, T252, R706, B302)
+   |    |    |    |    | ['Pane5']
+   |    |    |    |    |    | 
+   |    |    |    |    |    | Button - 'Back in Chat (Alt+Left)'    (L578, T252, R613, B287)
+   |    |    |    |    |    | ['Back in Chat (Alt+Left)Button', 'Back in Chat (Alt+Left)', 'Button4']
+   |    |    |    |    |    | child_window(title="Back in Chat (Alt+Left)", control_type="Button")
+   |    |    |    |    |    | 
+   |    |    |    |    |    | Button - 'Forward in Chat (Alt+Right)'    (L617, T252, R652, B287)
+   |    |    |    |    |    | ['Forward in Chat (Alt+Right)', 'Forward in Chat (Alt+Right)Button', 'Button5']
+   |    |    |    |    |    | child_window(title="Forward in Chat (Alt+Right)", control_type="Button")
+   |    |    |    |    |    | 
+   |    |    |    |    |    | SplitButton - 'History'    (L671, T252, R706, B287)
+   |    |    |    |    |    | ['History', 'HistorySplitButton', 'SplitButton', 'SplitButton0', 'SplitButton1']
+   |    |    |    |    |    | child_window(title="History", control_type="SplitButton")
+   |    |    |    |    | 
+   |    |    |    |    | Button - 'Search Ctrl+F'    (L725, T252, R888, B287)
+   |    |    |    |    | ['Search Ctrl+F', 'Search Ctrl+FButton', 'Button6']
+   |    |    |    |    | child_window(title="Search Ctrl+F", control_type="Button")
+   |    |    |    |    | 
+   |    |    |    |    | Static - 'Ctrl+F'    (L725, T252, R888, B287)
+   |    |    |    |    | ['Static', 'Ctrl+FStatic', 'Ctrl+F', 'Static0', 'Static1']
+   |    |    |    |    | child_window(title="Ctrl+F", control_type="Text")
+   |    |    |    | 
+   |    |    |    | Pane - ''    (L896, T237, R1346, B302)
+   |    |    |    | ['Pane6', 'Ctrl+FPane5']
+   |    |    |    |    | 
+   |    |    |    |    | TabControl - 'Main Navigation'    (L896, T242, R1256, B297)
+   |    |    |    |    | ['TabControl', 'Main NavigationTabControl', 'Main Navigation']
+   |    |    |    |    | child_window(title="Main Navigation", control_type="Tab")
+   |    |    |    |    |    | 
+   |    |    |    |    |    | TabItem - 'Home 1 of 4'    (L896, T242, R986, B297)
+   |    |    |    |    |    | ['Home 1 of 4', 'TabItem', 'Home 1 of 4TabItem', 'TabItem0', 'TabItem1']
+   |    |    |    |    |    | child_window(title="Home 1 of 4", control_type="TabItem")
+   |    |    |    |    |    | 
+   |    |    |    |    |    | TabItem - 'Team Chat 2 of 4'    (L986, T242, R1076, B297)
+   |    |    |    |    |    | ['Team Chat 2 of 4', 'TabItem2', 'Team Chat 2 of 4TabItem']
+   |    |    |    |    |    | child_window(title="Team Chat 2 of 4", control_type="TabItem")
+   |    |    |    |    |    | 
+   |    |    |    |    |    | TabItem - 'Meetings 3 of 4'    (L1076, T242, R1166, B297)
+   |    |    |    |    |    | ['Meetings 3 of 4', 'TabItem3', 'Meetings 3 of 4TabItem']
+   |    |    |    |    |    | child_window(title="Meetings 3 of 4", control_type="TabItem")
+   |    |    |    |    |    | 
+   |    |    |    |    |    | TabItem - 'Phone 4 of 4 1 unread SMS message '    (L1166, T242, R1256, B297)
+   |    |    |    |    |    | ['Phone 4 of 4 1 unread SMS message TabItem', 'TabItem4', 'Phone 4 of 4 1 unread SMS message ']
+   |    |    |    |    |    | child_window(title="Phone 4 of 4 1 unread SMS message ", control_type="TabItem")
+   |    |    |    |    | 
+   |    |    |    |    | SplitButton - 'More'    (L1256, T242, R1346, B297)
+   |    |    |    |    | ['MoreSplitButton', 'SplitButton2', 'More']
+   |    |    |    |    | child_window(title="More", control_type="SplitButton")
+   |    |    |    | 
+   |    |    |    | Pane - ''    (L1346, T237, R1583, B302)
+   |    |    |    | ['Pane7', 'Ctrl+FPane6']
+   |    |    |    |    | 
+   |    |    |    |    | Pane - ''    (L1346, T237, R1426, B302)
+   |    |    |    |    | ['Pane8', 'Ctrl+FPane7']
+   |    |    |    |    | 
+   |    |    |    |    | Pane - ''    (L1426, T237, R1521, B302)
+   |    |    |    |    | ['Pane9', 'Ctrl+FPane8']
+   |    |    |    |    |    | 
+   |    |    |    |    |    | SplitButton - 'Help'    (L1436, T252, R1471, B287)
+   |    |    |    |    |    | ['SplitButton3', 'HelpSplitButton', 'Help']
+   |    |    |    |    |    | child_window(title="Help", control_type="SplitButton")
+   |    |    |    |    |    | 
+   |    |    |    |    |    | Button - 'Open Activity Center , new notifications '    (L1481, T250, R1521, B290)
+   |    |    |    |    |    | ['Open Activity Center , new notifications Button', 'Button7', 'Open Activity Center , new notifications ']
+   |    |    |    |    |    | child_window(title="Open Activity Center , new notifications ", control_type="Button")
+   |    |    |    |    | 
+   |    |    |    |    | Pane - ''    (L1529, T237, R1567, B302)
+   |    |    |    |    | ['Pane10', 'Ctrl+FPane9']
+   |    |    |    |    |    | 
+   |    |    |    |    |    | SplitButton - 'Zoom, Alex Volkov, Status, Available, Free account'    (L1529, T252, R1564, B287)
+   |    |    |    |    |    | ['Zoom, Alex Volkov, Status, Available, Free account', 'SplitButton4', 'Zoom, Alex Volkov, Status, Available, Free accountSplitButton']
+   |    |    |    |    |    | child_window(title="Zoom, Alex Volkov, Status, Available, Free account", control_type="SplitButton")
+   |    |    | 
+   |    |    | Pane - ''    (L562, T302, R1583, B303)
+   |    |    | ['Pane11', 'Ctrl+FPane10']
+   |    |    | 
+   |    |    | Pane - ''    (L562, T303, R1583, B987)
+   |    |    | ['Pane12', 'Ctrl+FPane11']
+   |    |    |    | 
+   |    |    |    | Pane - ''    (L562, T303, R1583, B987)
+   |    |    |    | ['Pane12', 'Ctrl+FPane11']
+   |    |    |    |    | 
+   |    |    |    |    | Pane - ''    (L562, T303, R1583, B987)
+   |    |    |    |    | ['Pane12', 'Ctrl+FPane11']
+   |    |    |    |    |    | 
+   |    |    |    |    |    | Pane - ''    (L562, T303, R1583, B987)
+   |    |    |    |    |    | ['Pane12', 'Ctrl+FPane11']
+   |    |    |    |    |    |    | 
+   |    |    |    |    |    |    | Pane - ''    (L562, T303, R1583, B987)
+   |    |    |    |    |    |    | ['Pane12', 'Ctrl+FPane11']
+   |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    | Pane - ''    (L562, T303, R1583, B987)
+   |    |    |    |    |    |    |    | ['Pane12', 'Ctrl+FPane11']
+   |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    | Pane - ''    (L562, T303, R1583, B343)
+   |    |    |    |    |    |    |    |    | ['Pane18', 'Ctrl+FPane17']
+   |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    | Pane - ''    (L562, T303, R1538, B343)
+   |    |    |    |    |    |    |    |    |    | ['Pane19', 'Ctrl+FPane18']
+   |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    | Button - 'Setting'    (L1538, T313, R1568, B343)
+   |    |    |    |    |    |    |    |    |    | ['Setting', 'SettingButton', 'Button8']
+   |    |    |    |    |    |    |    |    |    | child_window(title="Setting", control_type="Button")
+   |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    | Pane - ''    (L562, T343, R1583, B360)
+   |    |    |    |    |    |    |    |    | ['Pane20', 'Ctrl+FPane19']
+   |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    | Pane - ''    (L562, T360, R1583, B930)
+   |    |    |    |    |    |    |    |    | ['Pane21', 'Ctrl+FPane20']
+   |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    | Pane - ''    (L562, T360, R629, B930)
+   |    |    |    |    |    |    |    |    |    | ['Pane22']
+   |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    | Pane - ''    (L629, T360, R997, B930)
+   |    |    |    |    |    |    |    |    |    | ['Pane23', 'Ctrl+FPane21']
+   |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L629, T360, R964, B930)
+   |    |    |    |    |    |    |    |    |    |    | ['Pane24', 'Ctrl+FPane22']
+   |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L629, T462, R779, B645)
+   |    |    |    |    |    |    |    |    |    |    |    | ['Pane25', 'New meetingPane', 'New meetingPane0', 'New meetingPane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Button - 'Start a new meeting with video on'    (L629, T462, R779, B595)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['Button9', 'Start a new meeting with video onButton', 'Start a new meeting with video on']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Start a new meeting with video on", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L629, T595, R779, B645)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane26', 'New meetingPane2']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L629, T595, R657, B645)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane27']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'New meeting'    (L657, T595, R750, B645)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Static2', 'New meeting', 'New meetingStatic']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="New meeting", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L750, T595, R779, B645)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane28', 'New meetingPane3']
+   |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    | SplitButton - 'New meeting option'    (L752, T592, R782, B622)
+   |    |    |    |    |    |    |    |    |    |    |    | ['New meeting optionSplitButton', 'New meeting option', 'SplitButton5']
+   |    |    |    |    |    |    |    |    |    |    |    | child_window(title="New meeting option", control_type="SplitButton")
+   |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L814, T462, R964, B645)
+   |    |    |    |    |    |    |    |    |    |    |    | ['Pane29', 'JoinPane', 'JoinPane0', 'JoinPane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Button - 'Join'    (L814, T462, R964, B595)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['Join', 'Button10', 'JoinButton', 'Join0', 'Join1']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Join", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'Join'    (L814, T595, R964, B645)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['Join2', 'Static3', 'JoinStatic']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Join", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L629, T663, R779, B846)
+   |    |    |    |    |    |    |    |    |    |    |    | ['Pane30', 'New meetingPane4']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Button - 'Schedule'    (L629, T663, R779, B796)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['Schedule', 'ScheduleButton', 'Button11', 'Schedule0', 'Schedule1']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Schedule", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'Schedule'    (L629, T796, R779, B846)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['Schedule2', 'Static4', 'ScheduleStatic']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Schedule", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L814, T663, R964, B846)
+   |    |    |    |    |    |    |    |    |    |    |    | ['Pane31', 'SchedulePane', 'JoinPane2', 'SchedulePane0', 'SchedulePane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Button - 'Share screen'    (L814, T663, R964, B796)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['Share screen', 'Share screenButton', 'Button12', 'Share screen0', 'Share screen1']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Share screen", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L814, T796, R964, B846)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane32', 'SchedulePane2']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L814, T796, R844, B846)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane33', 'SchedulePane3']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'Share screen'    (L844, T796, R933, B846)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Static5', 'Share screen2', 'Share screenStatic']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Share screen", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L933, T796, R964, B846)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane34', 'Share screenPane']
+   |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    | Pane - ''    (L1061, T360, R1506, B930)
+   |    |    |    |    |    |    |    |    |    | ['Pane35', '20:36Pane', '20:36Pane0', '20:36Pane1']
+   |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1061, T360, R1506, B930)
+   |    |    |    |    |    |    |    |    |    |    | ['Pane35', '20:36Pane', '20:36Pane0', '20:36Pane1']
+   |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L0, T0, R0, B0)
+   |    |    |    |    |    |    |    |    |    |    |    | ['Pane37']
+   |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1061, T360, R1506, B930)
+   |    |    |    |    |    |    |    |    |    |    |    | ['Pane35', '20:36Pane', '20:36Pane0', '20:36Pane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1071, T368, R1496, B917)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane39', '20:36Pane4']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - 'Thursday, 2 May, 2024 20:36'    (L1071, T368, R1496, B548)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Thursday, 2 May, 2024 20:36', 'Pane40', 'Thursday, 2 May, 2024 20:36Pane']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Thursday, 2 May, 2024 20:36", control_type="Pane")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1071, T378, R1496, B418)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane41', 'Ctrl+FPane23']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1071, T378, R1496, B418)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane41', 'Ctrl+FPane23']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - '20:36'    (L1071, T418, R1496, B478)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['20:36Static', 'Static6', '20:36']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="20:36", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'Thursday, 2 May, 2024'    (L1071, T478, R1496, B511)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Thursday, 2 May, 2024', 'Static7', 'Thursday, 2 May, 2024Static']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Thursday, 2 May, 2024", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1071, T511, R1496, B548)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Thursday, 2 May, 2024Pane', 'Pane43', 'Thursday, 2 May, 2024Pane0', 'Thursday, 2 May, 2024Pane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1071, T548, R1496, B917)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Thursday, 2 May, 2024Pane2', 'Pane44']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1071, T548, R1496, B917)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Thursday, 2 May, 2024Pane2', 'Pane44']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1071, T548, R1496, B717)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Thursday, 2 May, 2024Pane4', 'Pane46']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1071, T717, R1496, B747)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane47', 'No upcoming meetings todayPane', 'No upcoming meetings todayPane0', 'No upcoming meetings todayPane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'No upcoming meetings today'    (L1071, T717, R1496, B747)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['No upcoming meetings todayStatic', 'Static8', 'No upcoming meetings today', 'No upcoming meetings todayStatic0', 'No upcoming meetings todayStatic1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="No upcoming meetings today", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1071, T747, R1496, B917)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane48', 'No upcoming meetings todayPane2']
+   |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    | Pane - ''    (L1516, T360, R1583, B930)
+   |    |    |    |    |    |    |    |    |    | ['Pane49', '20:36Pane5']
+   |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    | Pane - ''    (L562, T930, R1583, B947)
+   |    |    |    |    |    |    |    |    | ['Pane50', 'SchedulePane4']
+   |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    | Pane - ''    (L562, T947, R1583, B987)
+   |    |    |    |    |    |    |    |    | ['Pane51', 'SchedulePane5']
+   |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    | Pane - ''    (L1217, T826, R1567, B971)
+   |    |    |    |    |    |    |    |    | ['Pane52', 'Get StartedPane', 'Get StartedPane0', 'Get StartedPane1']
+   |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    | Pane - ''    (L1217, T826, R1567, B971)
+   |    |    |    |    |    |    |    |    |    | ['Pane52', 'Get StartedPane', 'Get StartedPane0', 'Get StartedPane1']
+   |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1237, T841, R1547, B956)
+   |    |    |    |    |    |    |    |    |    |    | ['Pane54', 'Get StartedPane3']
+   |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1237, T841, R1547, B871)
+   |    |    |    |    |    |    |    |    |    |    |    | ['Pane55', 'Get StartedPane4']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Static - ''    (L1237, T846, R1257, B866)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['No upcoming meetings todayStatic2', 'Static9']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'Get Started'    (L1262, T841, R1371, B871)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['Static10', 'Get Started', 'Get StartedStatic']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Get Started", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1371, T841, R1527, B871)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane56', 'Get StartedPane5']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Button - 'Expand'    (L1527, T846, R1547, B866)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['ExpandButton', 'Button13', 'Expand']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Expand", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    | Static - 'Kickstart your Zoom experience by completing your profile setup.'    (L1237, T876, R1547, B926)
+   |    |    |    |    |    |    |    |    |    |    |    | ['Static11', 'Kickstart your Zoom experience by completing your profile setup.Static', 'Kickstart your Zoom experience by completing your profile setup.', 'Kickstart your Zoom experience by completing your profile setup.Static0', 'Kickstart your Zoom experience by completing your profile setup.Static1']
+   |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Kickstart your Zoom experience by completing your profile setup.", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    | Pane - 'Steps, 2 Completed of 4,'    (L1237, T936, R1547, B956)
+   |    |    |    |    |    |    |    |    |    |    |    | ['Pane57', 'Steps, 2 Completed of 4,Pane', 'Steps, 2 Completed of 4,']
+   |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Steps, 2 Completed of 4,", control_type="Pane")
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1237, T936, R1515, B956)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane58', 'Kickstart your Zoom experience by completing your profile setup.Pane']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - ''    (L1237, T944, R1375, B948)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Static12', 'Kickstart your Zoom experience by completing your profile setup.Static2']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1375, T944, R1515, B948)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane59', 'Get StartedPane6']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L0, T0, R0, B0)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane60']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Static - '2/4'    (L1525, T936, R1550, B956)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['2/4Static', 'Static13', '2/4']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="2/4", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L0, T0, R0, B0)
+   |    |    |    |    |    |    |    |    |    |    | ['Pane61']
+   |    |    | 
+   |    |    | Pane - ''    (L562, T987, R1583, B988)
+   |    |    | ['Pane62', 'SchedulePane6']

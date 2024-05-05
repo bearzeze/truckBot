@@ -1,0 +1,372 @@
+Control Identifiers:
+
+Dialog - 'Zoom'    (L553, T199, R1776, B1009)
+['Dialog', 'ZoomDialog', 'Zoom', 'Dialog0', 'Dialog1', 'ZoomDialog0', 'ZoomDialog1', 'Zoom0', 'Zoom1']
+child_window(title="Zoom", control_type="Window")
+   | 
+   | Dialog - 'Zoom'    (L562, T303, R1767, B999)
+   | ['Dialog2', 'ZoomDialog2', 'Zoom2']
+   | child_window(title="Zoom", control_type="Window")
+   |    | 
+   |    | Pane - ''    (L562, T303, R1767, B999)
+   |    | ['Pane', 'Ctrl+FPane', 'Pane0', 'Pane1', 'Ctrl+FPane0', 'Ctrl+FPane1']
+   |    |    | 
+   |    |    | Pane - ''    (L562, T303, R1767, B999)
+   |    |    | ['Pane', 'Ctrl+FPane', 'Pane0', 'Pane1', 'Ctrl+FPane0', 'Ctrl+FPane1']
+   |    |    |    | 
+   |    |    |    | Pane - ''    (L562, T303, R1767, B999)
+   |    |    |    | ['Pane', 'Ctrl+FPane', 'Pane0', 'Pane1', 'Ctrl+FPane0', 'Ctrl+FPane1']
+   |    |    |    |    | 
+   |    |    |    |    | Pane - ''    (L562, T303, R1767, B999)
+   |    |    |    |    | ['Pane', 'Ctrl+FPane', 'Pane0', 'Pane1', 'Ctrl+FPane0', 'Ctrl+FPane1']
+   |    |    |    |    |    | 
+   |    |    |    |    |    | Pane - ''    (L562, T303, R1767, B999)
+   |    |    |    |    |    | ['Pane', 'Ctrl+FPane', 'Pane0', 'Pane1', 'Ctrl+FPane0', 'Ctrl+FPane1']
+   |    |    |    |    |    |    | 
+   |    |    |    |    |    |    | Pane - ''    (L562, T303, R1013, B999)
+   |    |    |    |    |    |    | ['Pane6', 'Ctrl+FPane6']
+   |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    | Pane - ''    (L562, T303, R1009, B999)
+   |    |    |    |    |    |    |    | ['Pane7', 'Ctrl+FPane7']
+   |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    | Pane - ''    (L562, T303, R1009, B359)
+   |    |    |    |    |    |    |    |    | ['Pane8', 'Ctrl+FPane8']
+   |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    | Pane - ''    (L575, T303, R996, B319)
+   |    |    |    |    |    |    |    |    |    | ['Pane9', 'Ctrl+FPane9']
+   |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    | TabControl - ''    (L575, T319, R996, B359)
+   |    |    |    |    |    |    |    |    |    | ['Ctrl+FTabControl', 'TabControlLines tab 3 of 4', 'TabControlVoicemail tab 2 of 4', 'TabControl', 'TabControlSMS tab 4 of 4', 'TabControl0', 'TabControl1']
+   |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    | TabItem - 'History tab 1 of 4'    (L575, T319, R680, B359)
+   |    |    |    |    |    |    |    |    |    |    | ['TabItem', 'History tab 1 of 4TabItem', 'History tab 1 of 4', 'TabItem0', 'TabItem1']
+   |    |    |    |    |    |    |    |    |    |    | child_window(title="History tab 1 of 4", control_type="TabItem")
+   |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    | TabItem - 'Voicemail tab 2 of 4'    (L680, T319, R785, B359)
+   |    |    |    |    |    |    |    |    |    |    | ['TabItem2', 'Voicemail tab 2 of 4', 'Voicemail tab 2 of 4TabItem']
+   |    |    |    |    |    |    |    |    |    |    | child_window(title="Voicemail tab 2 of 4", control_type="TabItem")
+   |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    | TabItem - 'Lines tab 3 of 4'    (L785, T319, R890, B359)
+   |    |    |    |    |    |    |    |    |    |    | ['TabItem3', 'Lines tab 3 of 4', 'Lines tab 3 of 4TabItem']
+   |    |    |    |    |    |    |    |    |    |    | child_window(title="Lines tab 3 of 4", control_type="TabItem")
+   |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    | TabItem - 'SMS tab 4 of 4'    (L890, T319, R996, B359)
+   |    |    |    |    |    |    |    |    |    |    | ['TabItem4', 'SMS tab 4 of 4TabItem', 'SMS tab 4 of 4']
+   |    |    |    |    |    |    |    |    |    |    | child_window(title="SMS tab 4 of 4", control_type="TabItem")
+   |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    | Pane - ''    (L562, T359, R1009, B999)
+   |    |    |    |    |    |    |    |    | ['Pane10', 'New SMSPane', 'New SMSPane0', 'New SMSPane1']
+   |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    | Pane - ''    (L563, T372, R1009, B996)
+   |    |    |    |    |    |    |    |    |    | ['Pane11', 'New SMSPane2']
+   |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L563, T372, R1009, B996)
+   |    |    |    |    |    |    |    |    |    |    | ['Pane11', 'New SMSPane2']
+   |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L588, T372, R984, B402)
+   |    |    |    |    |    |    |    |    |    |    |    | ['Pane13', 'Ctrl+FPane10']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Button - 'Keypad'    (L588, T372, R618, B402)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['KeypadButton', 'Button', 'Keypad', 'Button0', 'Button1']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Keypad", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L618, T372, R909, B402)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane14', 'Ctrl+FPane11']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Button - 'Search'    (L909, T372, R939, B402)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['Search', 'Button2', 'SearchButton']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Search", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L939, T372, R954, B402)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane15', 'Ctrl+FPane12']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Button - 'New SMS'    (L954, T372, R984, B402)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['New SMS', 'New SMSButton', 'Button3', 'New SMS0', 'New SMS1', 'New SMSButton0', 'New SMSButton1']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="New SMS", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    | ListBox - 'SMS session'    (L563, T410, R1009, B996)
+   |    |    |    |    |    |    |    |    |    |    |    | ['SMS sessionListBox', 'ListBox', 'SMS session', 'ListBox0', 'ListBox1']
+   |    |    |    |    |    |    |    |    |    |    |    | child_window(title="SMS session", control_type="List")
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | ListItem - 'Activated Item.New SMS, 4:02 PM, You:[[LOAD OFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00'    (L568, T411, R994, B487)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['ListItem', 'Activated Item.New SMS, 4:02 PM, You:[[LOAD OFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00', 'Activated Item.New SMS, 4:02 PM, You:[[LOAD OFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00ListItem', 'ListItem0', 'ListItem1']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Activated Item.New SMS, 4:02 PM, You:[[LOAD OFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00", control_type="ListItem")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L568, T411, R994, B487)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane16', 'New SMSPane4']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Button - 'New SMS'    (L583, T430, R623, B470)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['New SMS2', 'New SMSButton2', 'Button4']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="New SMS", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T412, R984, B487)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane17', 'New SMSPane5']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T412, R984, B437)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane18', 'Ctrl+FPane13']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T437, R984, B462)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane19', 'New SMSPane6']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'New SMS'    (L633, T437, R984, B462)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['New SMS3', 'Static', 'New SMSStatic', 'Static0', 'Static1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="New SMS", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T462, R984, B487)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane20', 'New SMSPane7']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | ListItem - '(915) 449-3117, 4:02 PM, You:[[LOAD OFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00'    (L568, T492, R994, B568)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['ListItem2', '(915) 449-3117, 4:02 PM, You:[[LOAD OFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00', '(915) 449-3117, 4:02 PM, You:[[LOAD OFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00ListItem']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(915) 449-3117, 4:02 PM, You:[[LOAD OFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00", control_type="ListItem")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L568, T492, R994, B568)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane21', 'New SMSPane8']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Button - '(9 1 5 ) 4 4 9 -3 1 1 7 '    (L583, T511, R623, B551)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(9 1 5 ) 4 4 9 -3 1 1 7 Button', 'Button5', '(9 1 5 ) 4 4 9 -3 1 1 7 ']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(9 1 5 ) 4 4 9 -3 1 1 7 ", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T493, R984, B568)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane22', 'New SMSPane9']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T493, R984, B505)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane23', 'New SMSPane10']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T505, R984, B530)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane24', '(915) 449-3117Pane', '(915) 449-3117Pane0', '(915) 449-3117Pane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - '(915) 449-3117'    (L633, T505, R932, B530)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(915) 449-3117', '(915) 449-3117Static', 'Static2']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(915) 449-3117", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - '4:02 PM'    (L932, T505, R984, B530)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Static3', '4:02 PMStatic', '4:02 PM']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="4:02 PM", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T530, R984, B555)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane25', '(915) 449-3117Pane2', '4:02 PMPane']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'You:[[LOAD OFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00'    (L633, T530, R979, B555)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Static4', 'You:[[LOAD OFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00Static', 'You:[[LOAD OFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="You:[[LOAD OFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T555, R984, B568)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane26', 'You:[[LOAD OFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00Pane', 'You:[[LOAD OFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00Pane0', 'You:[[LOAD OFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00Pane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | ListItem - '(915) 920-1016, 3:59 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00'    (L568, T573, R994, B649)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['(915) 920-1016, 3:59 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00ListItem', 'ListItem3', '(915) 920-1016, 3:59 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(915) 920-1016, 3:59 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00", control_type="ListItem")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L568, T573, R994, B649)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane27', 'You:[[LOAD OFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00Pane2']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Button - '(9 1 5 ) 9 2 0 -1 0 1 6 '    (L583, T592, R623, B632)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(9 1 5 ) 9 2 0 -1 0 1 6 ', 'Button6', '(9 1 5 ) 9 2 0 -1 0 1 6 Button']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(9 1 5 ) 9 2 0 -1 0 1 6 ", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T574, R984, B649)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane28', 'You:[[LOAD OFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00Pane3']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T574, R984, B586)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane29', 'You:[[LOAD OFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00Pane4']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T586, R984, B611)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane30', '(915) 920-1016Pane', '(915) 920-1016Pane0', '(915) 920-1016Pane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - '(915) 920-1016'    (L633, T586, R932, B611)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Static5', '(915) 920-1016Static', '(915) 920-1016']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(915) 920-1016", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - '3:59 PM'    (L932, T586, R984, B611)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['3:59 PMStatic', 'Static6', '3:59 PM']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="3:59 PM", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T611, R984, B636)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane31', '3:59 PMPane', '(915) 920-1016Pane2']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00'    (L633, T611, R979, B636)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00Static', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00', 'Static7']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T636, R984, B649)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00Pane', 'Pane32', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00Pane0', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00Pane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | ListItem - '(817) 941-3295, Yesterday, Cobra Tate, he's a fuckin joke'    (L568, T654, R994, B730)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ["(817) 941-3295, Yesterday, Cobra Tate, he's a fuckin jokeListItem", 'ListItem4', "(817) 941-3295, Yesterday, Cobra Tate, he's a fuckin joke"]
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(817) 941-3295, Yesterday, Cobra Tate, he's a fuckin joke", control_type="ListItem")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L568, T654, R994, B730)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00Pane2', 'Pane33']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Button - '(8 1 7 ) 9 4 1 -3 2 9 5 '    (L583, T673, R623, B713)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Button7', '(8 1 7 ) 9 4 1 -3 2 9 5 Button', '(8 1 7 ) 9 4 1 -3 2 9 5 ']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(8 1 7 ) 9 4 1 -3 2 9 5 ", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T655, R984, B730)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00Pane3', 'Pane34']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T655, R984, B667)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: EL PASO, TX 02/05/2024\rDelivery: FIFE, WA 02/08/2024\rMode: 53VN,REFR,VAN\rMiles: 1700\rEst. Weight: 8000 lb\rRATE $4,000.00Pane4', 'Pane35']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T667, R984, B692)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane36', '(817) 941-3295Pane', '(817) 941-3295Pane0', '(817) 941-3295Pane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - '(817) 941-3295'    (L633, T667, R925, B692)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Static8', '(817) 941-3295', '(817) 941-3295Static']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(817) 941-3295", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'Yesterday'    (L925, T667, R984, B692)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['YesterdayStatic', 'Yesterday', 'Static9']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Yesterday", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T692, R984, B717)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane37', '(817) 941-3295Pane2', 'YesterdayPane']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'Cobra Tate, he's a fuckin joke'    (L633, T692, R979, B717)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ["Cobra Tate, he's a fuckin joke", "Cobra Tate, he's a fuckin jokeStatic", 'Static10']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Cobra Tate, he's a fuckin joke", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T717, R984, B730)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ["Cobra Tate, he's a fuckin jokePane", 'Pane38', "Cobra Tate, he's a fuckin jokePane0", "Cobra Tate, he's a fuckin jokePane1"]
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | ListItem - 'Greg Black, Away, May 3, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887'    (L568, T735, R994, B811)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['Greg Black, Away, May 3, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887', 'ListItem5', 'Greg Black, Away, May 3, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887ListItem']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Greg Black, Away, May 3, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887", control_type="ListItem")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L568, T735, R994, B811)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ["Cobra Tate, he's a fuckin jokePane2", 'Pane39']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Button - 'Greg Black'    (L583, T754, R623, B794)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Button8', 'Greg BlackButton', 'Greg Black', 'Greg Black0', 'Greg Black1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Greg Black", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T736, R984, B811)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ["Cobra Tate, he's a fuckin jokePane3", 'Pane40']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T736, R984, B748)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ["Cobra Tate, he's a fuckin jokePane4", 'Pane41']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T748, R984, B773)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane42', 'Greg BlackPane', 'Greg BlackPane0', 'Greg BlackPane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'Greg Black'    (L633, T748, R945, B773)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Static11', 'Greg BlackStatic', 'Greg Black2']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Greg Black", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'May 3'    (L945, T748, R984, B773)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['May 3Static', 'May 3', 'Static12', 'May 3Static0', 'May 3Static1', 'May 30', 'May 31']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="May 3", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T773, R984, B798)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane43', 'Greg BlackPane2', 'May 3Pane', 'May 3Pane0', 'May 3Pane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887'    (L633, T773, R979, B798)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887Static', 'Static13', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887Static0', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887Static1', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-08870', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-08871']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T798, R984, B811)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane44', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887Pane', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887Pane0', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887Pane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | ListItem - 'Steve Bash, Available, May 3, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887'    (L568, T816, R994, B892)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['ListItem6', 'Steve Bash, Available, May 3, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887ListItem', 'Steve Bash, Available, May 3, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Steve Bash, Available, May 3, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887", control_type="ListItem")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L568, T816, R994, B892)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane45', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887Pane2']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Button - 'Steve Bash'    (L583, T835, R623, B875)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Steve Bash', 'Steve BashButton', 'Button9', 'Steve Bash0', 'Steve Bash1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Steve Bash", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T817, R984, B892)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane46', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887Pane3']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T817, R984, B829)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane47', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887Pane4']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T829, R984, B854)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane48', 'Steve BashPane', 'Steve BashPane0', 'Steve BashPane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'Steve Bash'    (L633, T829, R945, B854)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Steve Bash2', 'Steve BashStatic', 'Static14']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Steve Bash", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'May 3'    (L945, T829, R984, B854)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['May 3Static2', 'May 32', 'Static15']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="May 3", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T854, R984, B879)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane49', 'Steve BashPane2', 'May 3Pane2']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887'    (L633, T854, R979, B879)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887Static2', 'Static16', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-08872']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T879, R984, B892)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane50', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887Pane5']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | ListItem - '(386) 262-8164, May 3, Reefer freight out of Indianapolis for Monday'    (L568, T897, R994, B973)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['(386) 262-8164, May 3, Reefer freight out of Indianapolis for MondayListItem', 'ListItem7', '(386) 262-8164, May 3, Reefer freight out of Indianapolis for Monday']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(386) 262-8164, May 3, Reefer freight out of Indianapolis for Monday", control_type="ListItem")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L568, T897, R994, B973)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane51', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887Pane6']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Button - '(3 8 6 ) 2 6 2 -8 1 6 4 '    (L583, T916, R623, B956)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(3 8 6 ) 2 6 2 -8 1 6 4 Button', 'Button10', '(3 8 6 ) 2 6 2 -8 1 6 4 ']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(3 8 6 ) 2 6 2 -8 1 6 4 ", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T898, R984, B973)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane52', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887Pane7']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T898, R984, B910)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane53', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: BUTMIR, RS, BiH 03/05/2024\rDelivery: GRDONJ, AFGH 03/05/2024\rMode: SVERC\rMiles: 13\rEst. Weight: 25 000kg secera, brasna, ulja\rRATE $72200,00 - KURCNY 619-352-0887Pane8']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T910, R984, B935)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane54', '(386) 262-8164Pane', '(386) 262-8164Pane0', '(386) 262-8164Pane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - '(386) 262-8164'    (L633, T910, R945, B935)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(386) 262-8164', 'Static17', '(386) 262-8164Static']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(386) 262-8164", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'May 3'    (L945, T910, R984, B935)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['May 3Static3', 'May 33', 'Static18']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="May 3", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T935, R984, B960)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane55', '(386) 262-8164Pane2', 'May 3Pane3']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'Reefer freight out of Indianapolis for Monday'    (L633, T935, R979, B960)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Reefer freight out of Indianapolis for Monday', 'Static19', 'Reefer freight out of Indianapolis for MondayStatic']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Reefer freight out of Indianapolis for Monday", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T960, R984, B973)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Reefer freight out of Indianapolis for MondayPane', 'Pane56', 'Reefer freight out of Indianapolis for MondayPane0', 'Reefer freight out of Indianapolis for MondayPane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | ListItem - '(817) 789-7081, May 2, That money doesn't mean anything if my brother in law passes and I'm not there. You can replace money, you can't replace a life '    (L568, T978, R994, B1054)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ["(817) 789-7081, May 2, That money doesn't mean anything if my brother in law passes and I'm not there. You can replace money, you can't replace a life ", 'ListItem8', "(817) 789-7081, May 2, That money doesn't mean anything if my brother in law passes and I'm not there. You can replace money, you can't replace a life ListItem"]
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(817) 789-7081, May 2, That money doesn't mean anything if my brother in law passes and I'm not there. You can replace money, you can't replace a life ", control_type="ListItem")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L568, T978, R994, B1054)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Reefer freight out of Indianapolis for MondayPane2', 'Pane57']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Button - '(8 1 7 ) 7 8 9 -7 0 8 1 '    (L583, T997, R623, B1037)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Button11', '(8 1 7 ) 7 8 9 -7 0 8 1 ', '(8 1 7 ) 7 8 9 -7 0 8 1 Button']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(8 1 7 ) 7 8 9 -7 0 8 1 ", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T979, R984, B1054)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Reefer freight out of Indianapolis for MondayPane3', 'Pane58']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T979, R984, B991)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Reefer freight out of Indianapolis for MondayPane4', 'Pane59']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T991, R984, B1016)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane60', '(817) 789-7081Pane', '(817) 789-7081Pane0', '(817) 789-7081Pane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - '(817) 789-7081'    (L633, T991, R945, B1016)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(817) 789-7081Static', '(817) 789-7081', 'Static20']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(817) 789-7081", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'May 2'    (L945, T991, R984, B1016)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['May 2Static', 'May 2', 'Static21']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="May 2", control_type="Text")

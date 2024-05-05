@@ -1,0 +1,620 @@
+Control Identifiers:
+
+Dialog - 'Zoom'    (L553, T199, R1776, B1009)
+['Zoom', 'Dialog', 'ZoomDialog', 'Zoom0', 'Zoom1', 'Dialog0', 'Dialog1', 'ZoomDialog0', 'ZoomDialog1']
+child_window(title="Zoom", control_type="Window")
+   | 
+   | Dialog - 'Zoom'    (L562, T303, R1767, B999)
+   | ['Zoom2', 'Dialog2', 'ZoomDialog2']
+   | child_window(title="Zoom", control_type="Window")
+   |    | 
+   |    | Pane - ''    (L562, T303, R1767, B999)
+   |    | ['Ctrl+FPane', 'Pane', 'Ctrl+FPane0', 'Ctrl+FPane1', 'Pane0', 'Pane1']
+   |    |    | 
+   |    |    | Pane - ''    (L562, T303, R1767, B999)
+   |    |    | ['Ctrl+FPane', 'Pane', 'Ctrl+FPane0', 'Ctrl+FPane1', 'Pane0', 'Pane1']
+   |    |    |    | 
+   |    |    |    | Pane - ''    (L562, T303, R1767, B999)
+   |    |    |    | ['Ctrl+FPane', 'Pane', 'Ctrl+FPane0', 'Ctrl+FPane1', 'Pane0', 'Pane1']
+   |    |    |    |    | 
+   |    |    |    |    | Pane - ''    (L562, T303, R1767, B999)
+   |    |    |    |    | ['Ctrl+FPane', 'Pane', 'Ctrl+FPane0', 'Ctrl+FPane1', 'Pane0', 'Pane1']
+   |    |    |    |    |    | 
+   |    |    |    |    |    | Pane - ''    (L562, T303, R1767, B999)
+   |    |    |    |    |    | ['Ctrl+FPane', 'Pane', 'Ctrl+FPane0', 'Ctrl+FPane1', 'Pane0', 'Pane1']
+   |    |    |    |    |    |    | 
+   |    |    |    |    |    |    | Pane - ''    (L562, T303, R1013, B999)
+   |    |    |    |    |    |    | ['Ctrl+FPane6', 'Pane6']
+   |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    | Pane - ''    (L562, T303, R1009, B999)
+   |    |    |    |    |    |    |    | ['Ctrl+FPane7', 'Pane7']
+   |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    | Pane - ''    (L562, T303, R1009, B359)
+   |    |    |    |    |    |    |    |    | ['Ctrl+FPane8', 'Pane8']
+   |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    | Pane - ''    (L575, T303, R996, B319)
+   |    |    |    |    |    |    |    |    |    | ['Ctrl+FPane9', 'Pane9']
+   |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    | TabControl - ''    (L575, T319, R996, B359)
+   |    |    |    |    |    |    |    |    |    | ['Ctrl+FTabControl', 'TabControlVoicemail tab 2 of 4', 'TabControlLines tab 3 of 4', 'TabControlSMS tab 4 of 4 1 unread', 'TabControl', 'TabControl0', 'TabControl1']
+   |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    | TabItem - 'History tab 1 of 4'    (L575, T319, R680, B359)
+   |    |    |    |    |    |    |    |    |    |    | ['TabItem', 'History tab 1 of 4TabItem', 'History tab 1 of 4', 'TabItem0', 'TabItem1']
+   |    |    |    |    |    |    |    |    |    |    | child_window(title="History tab 1 of 4", control_type="TabItem")
+   |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    | TabItem - 'Voicemail tab 2 of 4'    (L680, T319, R785, B359)
+   |    |    |    |    |    |    |    |    |    |    | ['Voicemail tab 2 of 4', 'TabItem2', 'Voicemail tab 2 of 4TabItem']
+   |    |    |    |    |    |    |    |    |    |    | child_window(title="Voicemail tab 2 of 4", control_type="TabItem")
+   |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    | TabItem - 'Lines tab 3 of 4'    (L785, T319, R890, B359)
+   |    |    |    |    |    |    |    |    |    |    | ['Lines tab 3 of 4TabItem', 'TabItem3', 'Lines tab 3 of 4']
+   |    |    |    |    |    |    |    |    |    |    | child_window(title="Lines tab 3 of 4", control_type="TabItem")
+   |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    | TabItem - 'SMS tab 4 of 4 1 unread'    (L890, T319, R996, B359)
+   |    |    |    |    |    |    |    |    |    |    | ['TabItem4', 'SMS tab 4 of 4 1 unread', 'SMS tab 4 of 4 1 unreadTabItem']
+   |    |    |    |    |    |    |    |    |    |    | child_window(title="SMS tab 4 of 4 1 unread", control_type="TabItem")
+   |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    | Pane - ''    (L562, T359, R1009, B999)
+   |    |    |    |    |    |    |    |    | ['Pane10', 'New SMSPane', 'New SMSPane0', 'New SMSPane1']
+   |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    | Pane - ''    (L563, T372, R1009, B996)
+   |    |    |    |    |    |    |    |    |    | ['Pane11', 'New SMSPane2']
+   |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L563, T372, R1009, B996)
+   |    |    |    |    |    |    |    |    |    |    | ['Pane11', 'New SMSPane2']
+   |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L588, T372, R984, B402)
+   |    |    |    |    |    |    |    |    |    |    |    | ['Ctrl+FPane10', 'Pane13']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Button - 'Keypad'    (L588, T372, R618, B402)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['Keypad', 'Button', 'KeypadButton', 'Button0', 'Button1']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Keypad", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L618, T372, R909, B402)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['Ctrl+FPane11', 'Pane14']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Button - 'Search'    (L909, T372, R939, B402)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['SearchButton', 'Search', 'Button2']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Search", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L939, T372, R954, B402)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['Ctrl+FPane12', 'Pane15']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Button - 'New SMS'    (L954, T372, R984, B402)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['New SMSButton', 'Button3', 'New SMS', 'New SMSButton0', 'New SMSButton1', 'New SMS0', 'New SMS1']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="New SMS", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    | ListBox - 'SMS session'    (L563, T410, R1009, B996)
+   |    |    |    |    |    |    |    |    |    |    |    | ['SMS sessionListBox', 'SMS session', 'ListBox', 'ListBox0', 'ListBox1']
+   |    |    |    |    |    |    |    |    |    |    |    | child_window(title="SMS session", control_type="List")
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | ListItem - 'Activated Item.New SMS, 8:20 PM, You:kurcnyy'    (L568, T411, R994, B487)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['Activated Item.New SMS, 8:20 PM, You:kurcnyy', 'Activated Item.New SMS, 8:20 PM, You:kurcnyyListItem', 'ListItem', 'ListItem0', 'ListItem1']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Activated Item.New SMS, 8:20 PM, You:kurcnyy", control_type="ListItem")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L568, T411, R994, B487)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane16', 'New SMSPane4']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Button - 'New SMS'    (L583, T430, R623, B470)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['New SMSButton2', 'Button4', 'New SMS2']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="New SMS", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T412, R984, B487)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane17', 'New SMSPane5']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T412, R984, B437)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Ctrl+FPane13', 'Pane18']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T437, R984, B462)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane19', 'New SMSPane6']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'New SMS'    (L633, T437, R984, B462)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Static', 'New SMSStatic', 'New SMS3', 'Static0', 'Static1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="New SMS", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T462, R984, B487)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane20', 'New SMSPane7']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | ListItem - '(919) 285-6647, 8:20 PM, You:kurcnyy'    (L568, T492, R994, B568)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['(919) 285-6647, 8:20 PM, You:kurcnyyListItem', '(919) 285-6647, 8:20 PM, You:kurcnyy', 'ListItem2']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(919) 285-6647, 8:20 PM, You:kurcnyy", control_type="ListItem")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L568, T492, R994, B568)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane21', 'New SMSPane8']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Button - '(9 1 9 ) 2 8 5 -6 6 4 7 '    (L583, T511, R623, B551)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(9 1 9 ) 2 8 5 -6 6 4 7 ', '(9 1 9 ) 2 8 5 -6 6 4 7 Button', 'Button5']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(9 1 9 ) 2 8 5 -6 6 4 7 ", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T493, R984, B568)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane22', 'New SMSPane9']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T493, R984, B505)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Pane23', 'New SMSPane10']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T505, R984, B530)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(919) 285-6647Pane', 'Pane24', '(919) 285-6647Pane0', '(919) 285-6647Pane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - '(919) 285-6647'    (L633, T505, R932, B530)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Static2', '(919) 285-6647', '(919) 285-6647Static']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(919) 285-6647", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - '8:20 PM'    (L932, T505, R984, B530)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['8:20 PM', 'Static3', '8:20 PMStatic']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="8:20 PM", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T530, R984, B555)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(919) 285-6647Pane2', '8:20 PMPane', 'Pane25']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'You:kurcnyy'    (L633, T530, R979, B555)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:kurcnyyStatic', 'Static4', 'You:kurcnyy']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="You:kurcnyy", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T555, R984, B568)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:kurcnyyPane', 'Pane26', 'You:kurcnyyPane0', 'You:kurcnyyPane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | ListItem - '(540) 467-6163, 6:26 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887'    (L568, T573, R994, B649)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['(540) 467-6163, 6:26 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887ListItem', '(540) 467-6163, 6:26 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887', 'ListItem3']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(540) 467-6163, 6:26 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887", control_type="ListItem")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L568, T573, R994, B649)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:kurcnyyPane2', 'Pane27']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Button - '(5 4 0 ) 4 6 7 -6 1 6 3 '    (L583, T592, R623, B632)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(5 4 0 ) 4 6 7 -6 1 6 3 Button', '(5 4 0 ) 4 6 7 -6 1 6 3 ', 'Button6']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(5 4 0 ) 4 6 7 -6 1 6 3 ", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T574, R984, B649)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:kurcnyyPane3', 'Pane28']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T574, R984, B586)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:kurcnyyPane4', 'Pane29']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T586, R984, B611)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(540) 467-6163Pane', 'Pane30', '(540) 467-6163Pane0', '(540) 467-6163Pane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - '(540) 467-6163'    (L633, T586, R932, B611)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(540) 467-6163', 'Static5', '(540) 467-6163Static']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(540) 467-6163", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - '6:26 PM'    (L932, T586, R984, B611)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['6:26 PM', '6:26 PMStatic', 'Static6', '6:26 PM0', '6:26 PM1', '6:26 PMStatic0', '6:26 PMStatic1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="6:26 PM", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T611, R984, B636)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(540) 467-6163Pane2', '6:26 PMPane', 'Pane31', '6:26 PMPane0', '6:26 PMPane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887'    (L633, T611, R979, B636)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Static7', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Static', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-08870', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-08871', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Static0', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Static1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T636, R984, B649)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane', 'Pane32', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane0', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | ListItem - '(928) 246-8118, 6:26 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887'    (L568, T654, R994, B730)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['(928) 246-8118, 6:26 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887ListItem', 'ListItem4', '(928) 246-8118, 6:26 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(928) 246-8118, 6:26 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887", control_type="ListItem")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L568, T654, R994, B730)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane2', 'Pane33']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Button - '(9 2 8 ) 2 4 6 -8 1 1 8 '    (L583, T673, R623, B713)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(9 2 8 ) 2 4 6 -8 1 1 8 ', '(9 2 8 ) 2 4 6 -8 1 1 8 Button', 'Button7']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(9 2 8 ) 2 4 6 -8 1 1 8 ", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T655, R984, B730)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane3', 'Pane34']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T655, R984, B667)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane4', 'Pane35']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T667, R984, B692)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(928) 246-8118Pane', 'Pane36', '(928) 246-8118Pane0', '(928) 246-8118Pane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - '(928) 246-8118'    (L633, T667, R932, B692)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(928) 246-8118', 'Static8', '(928) 246-8118Static']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(928) 246-8118", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - '6:26 PM'    (L932, T667, R984, B692)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['6:26 PM2', '6:26 PMStatic2', 'Static9']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="6:26 PM", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T692, R984, B717)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['6:26 PMPane2', '(928) 246-8118Pane2', 'Pane37']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887'    (L633, T692, R979, B717)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Static10', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-08872', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Static2']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T717, R984, B730)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane5', 'Pane38']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | ListItem - '(404) 644-3376, 6:26 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887'    (L568, T735, R994, B811)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['(404) 644-3376, 6:26 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887ListItem', 'ListItem5', '(404) 644-3376, 6:26 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(404) 644-3376, 6:26 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887", control_type="ListItem")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L568, T735, R994, B811)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane6', 'Pane39']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Button - '(4 0 4 ) 6 4 4 -3 3 7 6 '    (L583, T754, R623, B794)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(4 0 4 ) 6 4 4 -3 3 7 6 Button', '(4 0 4 ) 6 4 4 -3 3 7 6 ', 'Button8']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(4 0 4 ) 6 4 4 -3 3 7 6 ", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T736, R984, B811)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane7', 'Pane40']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T736, R984, B748)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane8', 'Pane41']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T748, R984, B773)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(404) 644-3376Pane', 'Pane42', '(404) 644-3376Pane0', '(404) 644-3376Pane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - '(404) 644-3376'    (L633, T748, R932, B773)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(404) 644-3376', 'Static11', '(404) 644-3376Static']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(404) 644-3376", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - '6:26 PM'    (L932, T748, R984, B773)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['6:26 PM3', '6:26 PMStatic3', 'Static12']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="6:26 PM", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T773, R984, B798)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['6:26 PMPane3', '(404) 644-3376Pane2', 'Pane43']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887'    (L633, T773, R979, B798)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Static13', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-08873', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Static3']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T798, R984, B811)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane9', 'Pane44']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | ListItem - '(860) 967-1140, 6:26 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887'    (L568, T816, R994, B892)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['(860) 967-1140, 6:26 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887ListItem', 'ListItem6', '(860) 967-1140, 6:26 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(860) 967-1140, 6:26 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887", control_type="ListItem")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L568, T816, R994, B892)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane10', 'Pane45']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Button - '(8 6 0 ) 9 6 7 -1 1 4 0 '    (L583, T835, R623, B875)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(8 6 0 ) 9 6 7 -1 1 4 0 ', 'Button9', '(8 6 0 ) 9 6 7 -1 1 4 0 Button']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(8 6 0 ) 9 6 7 -1 1 4 0 ", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T817, R984, B892)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane11', 'Pane46']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T817, R984, B829)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane12', 'Pane47']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T829, R984, B854)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(860) 967-1140Pane', 'Pane48', '(860) 967-1140Pane0', '(860) 967-1140Pane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - '(860) 967-1140'    (L633, T829, R932, B854)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(860) 967-1140Static', 'Static14', '(860) 967-1140']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(860) 967-1140", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - '6:26 PM'    (L932, T829, R984, B854)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['6:26 PM4', '6:26 PMStatic4', 'Static15']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="6:26 PM", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T854, R984, B879)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(860) 967-1140Pane2', '6:26 PMPane4', 'Pane49']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887'    (L633, T854, R979, B879)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Static16', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-08874', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Static4']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T879, R984, B892)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane13', 'Pane50']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | ListItem - '(760) 274-7395, 6:26 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887'    (L568, T897, R994, B973)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['(760) 274-7395, 6:26 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887ListItem', 'ListItem7', '(760) 274-7395, 6:26 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(760) 274-7395, 6:26 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887", control_type="ListItem")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L568, T897, R994, B973)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane14', 'Pane51']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Button - '(7 6 0 ) 2 7 4 -7 3 9 5 '    (L583, T916, R623, B956)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(7 6 0 ) 2 7 4 -7 3 9 5 Button', '(7 6 0 ) 2 7 4 -7 3 9 5 ', 'Button10']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(7 6 0 ) 2 7 4 -7 3 9 5 ", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T898, R984, B973)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane15', 'Pane52']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T898, R984, B910)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane16', 'Pane53']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T910, R984, B935)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(760) 274-7395Pane', 'Pane54', '(760) 274-7395Pane0', '(760) 274-7395Pane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - '(760) 274-7395'    (L633, T910, R932, B935)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(760) 274-7395', 'Static17', '(760) 274-7395Static']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(760) 274-7395", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - '6:26 PM'    (L932, T910, R984, B935)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['6:26 PM5', '6:26 PMStatic5', 'Static18']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="6:26 PM", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T935, R984, B960)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['6:26 PMPane5', '(760) 274-7395Pane2', 'Pane55']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887'    (L633, T935, R979, B960)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Static19', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-08875', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Static5']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T960, R984, B973)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane17', 'Pane56']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | ListItem - '(678) 982-7282, 6:25 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887'    (L568, T978, R994, B1054)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['(678) 982-7282, 6:25 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887', '(678) 982-7282, 6:25 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887ListItem', 'ListItem8']
+   |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(678) 982-7282, 6:25 PM, You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887", control_type="ListItem")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L568, T978, R994, B1054)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane18', 'Pane57']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Button - '(6 7 8 ) 9 8 2 -7 2 8 2 '    (L583, T997, R623, B1037)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(6 7 8 ) 9 8 2 -7 2 8 2 ', 'Button11', '(6 7 8 ) 9 8 2 -7 2 8 2 Button']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(6 7 8 ) 9 8 2 -7 2 8 2 ", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T979, R984, B1054)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane19', 'Pane58']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T979, R984, B991)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane20', 'Pane59']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T991, R984, B1016)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(678) 982-7282Pane', 'Pane60', '(678) 982-7282Pane0', '(678) 982-7282Pane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - '(678) 982-7282'    (L633, T991, R932, B1016)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(678) 982-7282', 'Static20', '(678) 982-7282Static']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="(678) 982-7282", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - '6:25 PM'    (L932, T991, R984, B1016)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['6:25 PM', 'Static21', '6:25 PMStatic']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="6:25 PM", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T1016, R984, B1041)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['6:25 PMPane', '(678) 982-7282Pane2', 'Pane61']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887'    (L633, T1016, R979, B1041)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Static22', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-08876', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Static6']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L633, T1041, R984, B1054)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['(678) 982-7282Pane3', 'Pane62']
+   |    |    |    |    |    |    | 
+   |    |    |    |    |    |    | Pane - ''    (L1013, T303, R1767, B999)
+   |    |    |    |    |    |    | ['ToPane', 'Pane63', 'ToPane0', 'ToPane1']
+   |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    | Pane - ''    (L1013, T303, R1767, B999)
+   |    |    |    |    |    |    |    | ['ToPane', 'Pane63', 'ToPane0', 'ToPane1']
+   |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    | Pane - ''    (L1013, T303, R1767, B999)
+   |    |    |    |    |    |    |    |    | ['ToPane', 'Pane63', 'ToPane0', 'ToPane1']
+   |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    | Pane - ''    (L1013, T303, R1767, B999)
+   |    |    |    |    |    |    |    |    |    | ['ToPane', 'Pane63', 'ToPane0', 'ToPane1']
+   |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1013, T303, R1767, B999)
+   |    |    |    |    |    |    |    |    |    |    | ['ToPane', 'Pane63', 'ToPane0', 'ToPane1']
+   |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1013, T303, R1767, B999)
+   |    |    |    |    |    |    |    |    |    |    |    | ['ToPane', 'Pane63', 'ToPane0', 'ToPane1']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1013, T303, R1767, B354)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['ToPane7', 'Pane69']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1013, T303, R1767, B353)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['ToPane8', 'Pane70']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Static - 'To'    (L1013, T303, R1044, B353)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Static23', 'ToStatic', 'To']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="To", control_type="Text")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1044, T303, R1721, B353)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['ToPane9', 'Pane71']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Edit - 'Send to Blank'    (L1059, T309, R1717, B347)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['ToEdit', 'Edit', 'Edit0', 'Edit1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Send to Blank", control_type="Edit")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Button - 'Close'    (L1721, T313, R1751, B343)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Close', 'Button12', 'CloseButton', 'Close0', 'Close1', 'CloseButton0', 'CloseButton1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Close", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1013, T353, R1767, B354)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['ToPane10', 'Pane72']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1013, T354, R1767, B856)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['ToPane11', 'Pane73']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1013, T354, R1767, B856)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['ToPane11', 'Pane73']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ListBox - ''    (L1013, T354, R1767, B856)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['ToListBox', 'ListBox2']
+   |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1013, T856, R1767, B999)
+   |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane21', 'Pane75']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1013, T856, R1767, B999)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane21', 'Pane75']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Toolbar - ''    (L1033, T866, R1767, B906)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Toolbar', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Toolbar', 'ToolbarEMOJI ', 'Toolbar0', 'Toolbar1', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Toolbar0', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Toolbar1']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Button - 'File'    (L1033, T866, R1099, B906)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['FileButton', 'File', 'Button13']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="File", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1118, T866, R1724, B906)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane23', 'Pane77']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Button - 'EMOJI '    (L1727, T866, R1767, B906)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['EMOJI ', 'Button14', 'EMOJI Button']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="EMOJI ", control_type="Button")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1013, T906, R1767, B959)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['6:26 PMPane6', 'Pane78']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1028, T906, R1767, B949)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['6:26 PMPane7', 'Pane79']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Edit - 'Text message...'    (L1028, T906, R1727, B949)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['6:26 PMEdit', 'Edit2']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Text message...", control_type="Edit")
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1727, T906, R1767, B949)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['6:26 PMPane8', 'Pane80']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1727, T906, R1767, B949)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['6:26 PMPane8', 'Pane80']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Toolbar - ''    (L1013, T959, R1767, B999)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Toolbar2', 'You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Toolbar2', 'ToolbarCtrl+Enter to Send']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Pane - ''    (L1013, T959, R1767, B999)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['You:[[LOAD OFFER!!]][[LOAD OFFER!!]]\rPick: ROEBUCK, SC 05/03/2024\rDelivery: SPENCER, MA -- 05/06/2024\rMode: VAN\rMiles: 823\rEst. Weight: 41000\rRATE $2200,00[[2.75 per mile]]- ALEX 619-352-0887Pane24', 'Pane82']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | Button - 'Ctrl+Enter to Send'    (L1732, T964, R1763, B995)
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | ['Ctrl+Enter to Send', 'Ctrl+Enter to SendButton', 'Button15']
+   |    |    |    |    |    |    |    |    |    |    |    |    |    |    |    | child_window(title="Ctrl+Enter to Send", control_type="Button")
+   | 
+   | TitleBar - ''    (L582, T202, R1767, B237)
+   | ['TitleBar']
+   |    | 
+   |    | Menu - 'System'    (L562, T208, R590, B236)
+   |    | ['System', 'Menu', 'SystemMenu', 'System0', 'System1']
+   |    | child_window(title="System", auto_id="MenuBar", control_type="MenuBar")
+   |    |    | 
+   |    |    | MenuItem - 'System'    (L562, T208, R590, B236)
+   |    |    | ['System2', 'SystemMenuItem', 'MenuItem']
+   |    |    | child_window(title="System", control_type="MenuItem")
+   |    | 
+   |    | Button - 'Minimize'    (L1589, T200, R1649, B237)
+   |    | ['Minimize', 'Button16', 'MinimizeButton']
+   |    | child_window(title="Minimize", control_type="Button")
+   |    | 
+   |    | Button - 'Maximize'    (L1649, T200, R1708, B237)
+   |    | ['Maximize', 'MaximizeButton', 'Button17']
+   |    | child_window(title="Maximize", control_type="Button")
+   |    | 
+   |    | Button - 'Close'    (L1708, T200, R1768, B237)
+   |    | ['Close2', 'Button18', 'CloseButton2']
+   |    | child_window(title="Close", control_type="Button")
+   | 
+   | Pane - ''    (L562, T237, R1767, B1000)
+   | ['Ctrl+FPane14', 'Pane83']
+   |    | 
+   |    | Pane - ''    (L562, T237, R1767, B1000)
+   |    | ['Ctrl+FPane14', 'Pane83']
+   |    |    | 
+   |    |    | Pane - ''    (L562, T237, R1767, B302)
+   |    |    | ['Ctrl+FPane16', 'Pane85']
+   |    |    |    | 
+   |    |    |    | Pane - ''    (L562, T237, R896, B302)
+   |    |    |    | ['Ctrl+FPane17', 'Pane86']
+   |    |    |    |    | 
+   |    |    |    |    | Pane - ''    (L578, T252, R706, B302)
+   |    |    |    |    | ['Pane87']
+   |    |    |    |    |    | 
+   |    |    |    |    |    | Button - 'Back in Chat (Alt+Left)'    (L578, T252, R613, B287)
+   |    |    |    |    |    | ['Back in Chat (Alt+Left)Button', 'Back in Chat (Alt+Left)', 'Button19']
+   |    |    |    |    |    | child_window(title="Back in Chat (Alt+Left)", control_type="Button")
+   |    |    |    |    |    | 
+   |    |    |    |    |    | Button - 'Forward in Chat (Alt+Right)'    (L617, T252, R652, B287)
+   |    |    |    |    |    | ['Forward in Chat (Alt+Right)Button', 'Forward in Chat (Alt+Right)', 'Button20']
+   |    |    |    |    |    | child_window(title="Forward in Chat (Alt+Right)", control_type="Button")
+   |    |    |    |    |    | 
+   |    |    |    |    |    | SplitButton - 'History'    (L671, T252, R706, B287)
+   |    |    |    |    |    | ['SplitButton', 'HistorySplitButton', 'History', 'SplitButton0', 'SplitButton1']
+   |    |    |    |    |    | child_window(title="History", control_type="SplitButton")
+   |    |    |    |    | 
+   |    |    |    |    | Button - 'Search Ctrl+F'    (L725, T252, R888, B287)
+   |    |    |    |    | ['Search Ctrl+F', 'Search Ctrl+FButton', 'Button21']
+   |    |    |    |    | child_window(title="Search Ctrl+F", control_type="Button")
+   |    |    |    |    | 
+   |    |    |    |    | Static - 'Ctrl+F'    (L725, T252, R888, B287)
+   |    |    |    |    | ['Ctrl+F', 'Static24', 'Ctrl+FStatic']
+   |    |    |    |    | child_window(title="Ctrl+F", control_type="Text")
+   |    |    |    | 
+   |    |    |    | Pane - ''    (L896, T237, R1526, B302)
+   |    |    |    | ['Ctrl+FPane18', 'Pane88']
+   |    |    |    |    | 
+   |    |    |    |    | TabControl - 'Main Navigation'    (L896, T242, R1436, B297)
+   |    |    |    |    | ['Main Navigation', 'Main NavigationTabControl', 'TabControl2']
+   |    |    |    |    | child_window(title="Main Navigation", control_type="Tab")
+   |    |    |    |    |    | 
+   |    |    |    |    |    | TabItem - 'Home 1 of 6'    (L896, T242, R986, B297)
+   |    |    |    |    |    | ['TabItem5', 'Home 1 of 6TabItem', 'Home 1 of 6']
+   |    |    |    |    |    | child_window(title="Home 1 of 6", control_type="TabItem")
+   |    |    |    |    |    | 
+   |    |    |    |    |    | TabItem - 'Team Chat 2 of 6'    (L986, T242, R1076, B297)
+   |    |    |    |    |    | ['TabItem6', 'Team Chat 2 of 6TabItem', 'Team Chat 2 of 6']
+   |    |    |    |    |    | child_window(title="Team Chat 2 of 6", control_type="TabItem")
+   |    |    |    |    |    | 
+   |    |    |    |    |    | TabItem - 'Meetings 3 of 6'    (L1076, T242, R1166, B297)
+   |    |    |    |    |    | ['Meetings 3 of 6', 'TabItem7', 'Meetings 3 of 6TabItem']
+   |    |    |    |    |    | child_window(title="Meetings 3 of 6", control_type="TabItem")
+   |    |    |    |    |    | 
+   |    |    |    |    |    | TabItem - 'Phone 4 of 6 1 unread SMS message '    (L1166, T242, R1256, B297)
+   |    |    |    |    |    | ['TabItem8', 'Phone 4 of 6 1 unread SMS message ', 'Phone 4 of 6 1 unread SMS message TabItem']
+   |    |    |    |    |    | child_window(title="Phone 4 of 6 1 unread SMS message ", control_type="TabItem")
+   |    |    |    |    |    | 
+   |    |    |    |    |    | TabItem - 'Contacts 5 of 6'    (L1256, T242, R1346, B297)
+   |    |    |    |    |    | ['Contacts 5 of 6TabItem', 'TabItem9', 'Contacts 5 of 6']
+   |    |    |    |    |    | child_window(title="Contacts 5 of 6", control_type="TabItem")
+   |    |    |    |    |    | 
+   |    |    |    |    |    | TabItem - 'Apps 6 of 6'    (L1346, T242, R1436, B297)
+   |    |    |    |    |    | ['Apps 6 of 6TabItem', 'TabItem10', 'Apps 6 of 6']
+   |    |    |    |    |    | child_window(title="Apps 6 of 6", control_type="TabItem")
+   |    |    |    |    | 
+   |    |    |    |    | SplitButton - 'More'    (L1436, T242, R1526, B297)
+   |    |    |    |    | ['SplitButton2', 'More', 'MoreSplitButton']
+   |    |    |    |    | child_window(title="More", control_type="SplitButton")
+   |    |    |    | 
+   |    |    |    | Pane - ''    (L1526, T237, R1767, B302)
+   |    |    |    | ['Ctrl+FPane19', 'Pane89']
+   |    |    |    |    | 
+   |    |    |    |    | Pane - ''    (L1526, T237, R1610, B302)
+   |    |    |    |    | ['Ctrl+FPane20', 'Pane90']
+   |    |    |    |    | 
+   |    |    |    |    | Pane - ''    (L1610, T237, R1705, B302)
+   |    |    |    |    | ['Ctrl+FPane21', 'Pane91']
+   |    |    |    |    |    | 
+   |    |    |    |    |    | SplitButton - 'Help'    (L1620, T252, R1655, B287)
+   |    |    |    |    |    | ['SplitButton3', 'HelpSplitButton', 'Help']
+   |    |    |    |    |    | child_window(title="Help", control_type="SplitButton")
+   |    |    |    |    |    | 
+   |    |    |    |    |    | Button - 'Open Activity Center , new notifications '    (L1665, T250, R1705, B290)
+   |    |    |    |    |    | ['Open Activity Center , new notifications ', 'Button22', 'Open Activity Center , new notifications Button']
+   |    |    |    |    |    | child_window(title="Open Activity Center , new notifications ", control_type="Button")
+   |    |    |    |    | 
+   |    |    |    |    | Pane - ''    (L1713, T237, R1751, B302)
+   |    |    |    |    | ['Ctrl+FPane22', 'Pane92']
+   |    |    |    |    |    | 
+   |    |    |    |    |    | SplitButton - 'Zoom, Alex Volkov, Status, Offline, Free account'    (L1713, T252, R1748, B287)
+   |    |    |    |    |    | ['SplitButton4', 'Zoom, Alex Volkov, Status, Available, Free account', 'Zoom, Alex Volkov, Status, Available, Free accountSplitButton']
+   |    |    |    |    |    | child_window(title="Zoom, Alex Volkov, Status, Offline, Free account", control_type="SplitButton")
+   |    |    | 
+   |    |    | Pane - ''    (L562, T302, R1767, B303)
+   |    |    | ['Ctrl+FPane23', 'Pane93']
+   |    |    | 
+   |    |    | Pane - ''    (L562, T303, R1767, B999)
+   |    |    | ['Ctrl+FPane', 'Pane', 'Ctrl+FPane0', 'Ctrl+FPane1', 'Pane0', 'Pane1']
+   |    |    |    | 
+   |    |    |    | Pane - ''    (L562, T303, R1767, B999)
+   |    |    |    | ['Ctrl+FPane', 'Pane', 'Ctrl+FPane0', 'Ctrl+FPane1', 'Pane0', 'Pane1']
+   |    |    |    |    | 
+   |    |    |    |    | Pane - ''    (L562, T303, R1767, B999)
+   |    |    |    |    | ['Ctrl+FPane', 'Pane', 'Ctrl+FPane0', 'Ctrl+FPane1', 'Pane0', 'Pane1']
+   |    |    |    |    |    | 
+   |    |    |    |    |    | Pane - ''    (L562, T303, R1767, B999)
+   |    |    |    |    |    | ['Ctrl+FPane', 'Pane', 'Ctrl+FPane0', 'Ctrl+FPane1', 'Pane0', 'Pane1']
+   |    |    |    |    |    |    | 
+   |    |    |    |    |    |    | Pane - ''    (L562, T303, R1767, B999)
+   |    |    |    |    |    |    | ['Ctrl+FPane', 'Pane', 'Ctrl+FPane0', 'Ctrl+FPane1', 'Pane0', 'Pane1']
+   |    |    |    |    |    |    |    | 
+   |    |    |    |    |    |    |    | Dialog - ''    (L562, T303, R1767, B999)
+   |    |    |    |    |    |    |    | ['Ctrl+FDialog', 'Dialog3']
+   |    |    | 
+   |    |    | Pane - ''    (L562, T999, R1767, B1000)
+   |    |    | ['(678) 982-7282Pane4', 'Pane99']
