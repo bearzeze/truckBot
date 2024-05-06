@@ -1,11 +1,13 @@
 import time
+import threading
+
 
 from scrape import scrape_trucks, get_message, get_truck_drivers, check_load_scraped
 from zoom import send_sms, check_load_texted
 
 
 def main():
-    load_id = 137409139
+    load_id = 137382785
 
     # Get info about load and truck driver phones
     if check_load_scraped(load_id):
@@ -24,7 +26,10 @@ def main():
         # Send message
         zoom_exe_file_path = r"C:\Users\izejd\AppData\Roaming\Zoom\bin\Zoom.exe"
 
-        send_sms(zoom_exe_file_path, truck_drivers, message, load_id)
+        # Start a thread for the send_sms function
+        proba = True
+        sms_thread = threading.Thread(target=send_sms, args=(zoom_exe_file_path, truck_drivers, message, load_id, proba))
+        sms_thread.start()
 
 
 if __name__ == '__main__':
