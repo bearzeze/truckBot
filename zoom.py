@@ -44,10 +44,9 @@ def send_sms(exe_file_path, truck_drivers, message, load_id):
                     time.sleep(1)
 
                 text.type_keys("^a{BACKSPACE}" + message)
-                time.sleep(1)
 
                 send_message = zoom_app.Zoom.child_window(title_re="Ctrl+.*", control_type="Button", found_index=0).wrapper_object()
-                # send_message.click_input()
+                send_message.click_input()
 
                 contact["sms_sent"] = True
 
@@ -59,7 +58,6 @@ def send_sms(exe_file_path, truck_drivers, message, load_id):
         raise
 
     finally:
-        print(truck_drivers)
         with open(f"./files/truck_infos/info_{load_id}.txt", "w") as file:
             json.dump(truck_drivers, file)
 
@@ -77,7 +75,7 @@ def write_file(zoom_app, name):
 
 def load_texted(id):
     with open("./files/finished.txt", "a+") as file:
-        file.write(f"{id}\n")
+        file.write(f"{id}\t{datetime.datetime.now()}\n")
 
 
 def check_load_texted(id):
@@ -86,6 +84,6 @@ def check_load_texted(id):
     if os.path.exists(filename):
         with open(filename, "r") as file:
             for line in file.readlines():
-                if id == int(line.strip()):
+                if id == int(line.split("\t")[0].strip()):
                     return True
     return False

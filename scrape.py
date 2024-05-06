@@ -1,3 +1,4 @@
+import datetime
 import time
 import selenium
 import json
@@ -158,7 +159,7 @@ def get_truck_drivers(load_id):
 
 def load_scraped(id):
     with open("./files/scraped.txt", "a+") as file:
-        file.write(f"{id}\n")
+        file.write(f"{id}\t{datetime.datetime.now()}\n")
 
 
 def check_load_scraped(id):
@@ -167,7 +168,7 @@ def check_load_scraped(id):
     if os.path.exists(filename):
         with open(filename, "r") as file:
             for line in file.readlines():
-                if id == int(line.strip()):
+                if id == int(line.split('\t')[0].strip()):
                     return True
 
     return False

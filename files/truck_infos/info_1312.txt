@@ -1,1 +1,0 @@
-[{"name": "PEDRO DIAZ", "phone_number": "(915) 920-1016", "sms_sent": true}]

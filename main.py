@@ -1,9 +1,11 @@
+import time
+
 from scrape import scrape_trucks, get_message, get_truck_drivers, check_load_scraped
 from zoom import send_sms, check_load_texted
 
 
 def main():
-    load_id = 1312
+    load_id = 137409139
 
     # Get info about load and truck driver phones
     if check_load_scraped(load_id):
