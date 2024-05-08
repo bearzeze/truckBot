@@ -82,13 +82,12 @@ def scrape_trucks(load_id):
         time.sleep(3)
         soup = BeautifulSoup(driver.page_source, "html.parser")
         data = soup.find(id="ctl00_ctl00_SiteMasterContent_PageContent_dgCommodities_ctl00__0")
-        weight = data.find_all("td")[6].text + " lb"
+        weight = data.find_all("td")[6].text
         create_message(table, weight, load_id)
 
         print("everything went ok!")
 
         load_scraped(load_id)
-
 
     except Exception as e:
         print(f"An error occurred: {e}")
@@ -100,16 +99,17 @@ def scrape_trucks(load_id):
 
 def save_truck_driver_info(table, load_id):
     truck_drivers = list()
-    for row in table.find_all('tr'):
-        cells = row.find_all('td')
+    table = table.find_all('tr')
 
-        # Only not empty phone number, drivers are important
-        if len(cells[5].text) > 7:
-            truck_drivers.append({"name": cells[4].text,
-                                  "phone_number": cells[5].text.strip().strip('\xa0')[:14], # 14 cifara broj
-                                  "sms_sent": False})
+    if table[0].text != "No available trucks found meeting the specified search criteria.":
+        for row in table:
+            cells = row.find_all('td')
 
-    print(f"There are {len(truck_drivers)} truck drivers available...")
+            # Only not empty phone number, drivers are important
+            if len(cells[5].text) > 7:
+                truck_drivers.append({"name": cells[4].text,
+                                      "phone_number": cells[5].text.strip().strip('\xa0')[:14], # 14 cifara broj
+                                      "sms_sent": False})
 
     with open(f"./files/truck_infos/info_{load_id}.txt", "w") as file:
         json.dump(truck_drivers, file)
@@ -125,7 +125,7 @@ def create_message(table, weight, load_id):
         "delivery_date": rows[1].find_all("td")[5].text.strip(),
         "mode": rows[2].find_all("td")[5].text.strip(),
         "miles": rows[2].find_all("td")[3].text.strip(),
-        "weight": weight,
+        "weight": weight + " lb",
         "rate": rows[2].find_all("td")[1].text.strip(),
     }
 

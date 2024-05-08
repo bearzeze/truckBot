@@ -80,6 +80,7 @@ def send_sms(exe_file_path, truck_drivers, message, load_id, proba=False):
 
         # If everything went ok without problem, it will write in texted file which load id is finished
         if not stop_action:
+            print(f"All drivers about load with id = {load_id} have been informed!")
             load_finished(load_id)
 
     except Exception as e:
