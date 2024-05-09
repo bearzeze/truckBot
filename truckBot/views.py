@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse
+from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import make_password, check_password
@@ -16,6 +17,22 @@ from .models import User, Driver, LogHistory, Load
 @login_required
 def index(request):
     return render(request, "truckBot/index.html")
+
+
+@login_required
+def scrape(request):
+    if request.method == "POST" and request.user.is_authenticated:
+        load_ids = request.POST.get("load_ids")
+        try:
+            load_ids = [int(load_id.strip()) for load_id in load_ids.split(",")]
+            print(load_ids)
+        except ValueError:
+            messages.error(request, "Load ids must be integers separated by commas")
+                        
+        
+        
+        return HttpResponseRedirect(reverse("index"))
+
 
 
 def login_page(request):
@@ -39,8 +56,7 @@ def login_page(request):
     elif request.method == "GET":
         return render(request, "truckBot/login.html")
     
-
-
+    
 def logout_page(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
@@ -99,28 +115,43 @@ def profile(request):
                 new_zoom_exe_path = request.POST.get("zoom_exe")
                 new_zoom_number = request.POST.get("zoom_phone_num")
                 
-                new_exe_path = False
-                if new_zoom_exe_path != profile.zoom_exe_path:
-                    new_exe_path = True
-                    content = "zoom.exe path has been changed."
-                    profile.zoom_exe_path = new_zoom_exe_path
+                new_path = False
+                if os.path.exists(new_zoom_exe_path):
                     
+                    if not new_zoom_exe_path.endswith("Zoom.exe"):
+                        message = {
+                        "content": f"Your path needs to end with 'Zoom.exe'!",
+                        "style": "danger"
+                    }
+                        
+                    elif new_zoom_exe_path != profile.zoom_exe_path:
+                        new_path = True
+                        content = "zoom.exe path has been changed."
+                        profile.zoom_exe_path = new_zoom_exe_path
+                        
+ 
+                else:
+                    message = {
+                        "content": f"'{new_zoom_exe_path}' path doesn't exists!",
+                        "style": "danger"
+                    }
+
                 new_numb = False
                 if new_zoom_number != profile.zoom_phone_numb:
                     new_numb = True
                     content = "Zoom phone number has been changed."
                     profile.zoom_phone_numb = new_zoom_number
-                    
-                if new_numb and new_exe_path:
+                        
+                if new_numb and new_path:
                     content = "Zoom exe file and phone number have been changed."
                 
-                if new_numb or new_exe_path:
+                if new_numb or new_path:
                     message = {
                         "content": content,
                         "style": "success"
                     }
                     profile.save()
-
+                        
             elif form_type == "landstar":
                 new_first_name = request.POST.get("landstar_firstname")
                 new_last_name = request.POST.get("landstar_lastname")
@@ -138,12 +169,23 @@ def profile(request):
                     profile.landstar_lastname = new_last_name.title()
                     content = "Landstar name is changed."
                     new_name = True
-                    
-                if new_credentials_path != profile.landstar_credentials_path:
-                    new_path = True
-                    content = "Landstar credentials path has been changed."
-                    profile.landstar_credentials_path = new_credentials_path
-
+                
+                if os.path.exists(new_credentials_path):  
+                    if not new_credentials_path.endswith(".txt"):
+                        message = {
+                        "content": f"You need to specify path of the textual file (.txt) where credentials are!",
+                        "style": "danger"
+                    }
+                    elif new_credentials_path != profile.landstar_credentials_path:
+                        new_path = True
+                        content = "Landstar credentials path has been changed."
+                        profile.landstar_credentials_path = new_credentials_path
+                        
+                else:
+                    message = {
+                        "content": f"'{new_credentials_path}' path doesn't exists!",
+                        "style": "danger"
+                    }
                     
                 if new_path and new_name:
                     content = "Landstar name and credentials path have been changed."
@@ -154,17 +196,13 @@ def profile(request):
                         "style": "success"
                     }
                     profile.save()
-                
-            
+                     
         return render(request, "truckBot/profile.html", context={
                 "profile": profile,
                 "message": message})
             
-
-    
     except User.DoesNotExist:
         return HttpResponseRedirect(reverse("index"))
-
 
 
 @login_required

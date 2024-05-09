@@ -3,20 +3,25 @@ import threading
 
 from scrape import scrape_trucks, get_message, get_truck_drivers, check_load_scraped
 from zoom import send_sms, check_load_texted
+from pynput.keyboard import Key, Listener
+from listener import stop_action
 
 
-def web():
-    pass
+def on_press(key):
+    if key == Key.backspace:
+        print(key)
+        stop_action[0] = True
 
 
-def local():
-    load_id = 137701921
-
+def local(load_id, proba):
     # Get info about load and truck driver phones
     if check_load_scraped(load_id):
         print(f"Info about load with id = {load_id} is already prepared")
     else:
         scrape_trucks(load_id)
+
+    if stop_action[0]:
+        return
 
     # Texting available driver from the load
     if check_load_texted(load_id):
@@ -33,10 +38,22 @@ def local():
         zoom_exe_file_path = r"C:\Users\izejd\AppData\Roaming\Zoom\bin\Zoom.exe"
 
         # Start a thread for the send_sms function
-        proba = False
         sms_thread = threading.Thread(target=send_sms, args=(zoom_exe_file_path, truck_drivers, message, load_id, proba))
         sms_thread.start()
 
+        sms_thread.join()
+
 
 if __name__ == '__main__':
-    local()
+    # Start listener - if esc is pressed
+    listener = Listener(on_press=on_press)
+    listener.start()
+
+    for load_id in [137557459, 136601697]:
+        if stop_action[0]:
+            break
+        proba = True
+        local(load_id, proba)
+
+    listener.stop()
+

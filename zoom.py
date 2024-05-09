@@ -6,22 +6,7 @@ import json
 import os
 
 from pywinauto.application import Application
-from pynput.keyboard import Key, Listener
-
-
-# Flag to control the execution
-stop_action = False
-
-
-def on_press(key):
-    global stop_action
-    if key == Key.esc:
-        stop_action = True
-
-
-# Start the listener
-listener = Listener(on_press=on_press)
-listener.start()
+from listener import stop_action
 
 
 # Method for opening the Zoom and sending the message
@@ -31,8 +16,6 @@ def send_sms(exe_file_path, truck_drivers, message, load_id, proba=False):
     zoom_app = (Application(backend="uia")
                 .start(exe_file_path)
                 .connect(title="Zoom", timeout=100))
-
-    global stop_action
 
     try:
         phone_tab = zoom_app.Zoom.child_window(title_re="Phone.*", control_type="TabItem").wrapper_object()
@@ -47,7 +30,7 @@ def send_sms(exe_file_path, truck_drivers, message, load_id, proba=False):
         first = True
         for contact in truck_drivers:
             # If user press Esc it will stop the action after sending last message
-            if stop_action:
+            if stop_action[0]:
                 zoom_app.kill()
                 break
 
@@ -90,8 +73,6 @@ def send_sms(exe_file_path, truck_drivers, message, load_id, proba=False):
     finally:
         with open(f"./files/truck_infos/info_{load_id}.txt", "w") as file:
             json.dump(truck_drivers, file)
-
-        listener.stop()
 
         if zoom_app.is_process_running():
             zoom_app.kill()

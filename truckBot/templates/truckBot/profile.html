@@ -12,7 +12,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 
-    <h2 class="mt-2 ms-4">Login</h2>
+    <h2 class="mt-2 ms-4">{{profile.username}} </span>Profile Page</h2>
 
     {% else %}
 
@@ -84,8 +84,8 @@
             <h5>Landstar:</h5>
             <div class="show ms-4 profile-view">
                 <span>First name: <b>{{ profile.landstar_firstname}}</b></span>
-                <br> <span>Last name: <b>{{ profile.landstar_lastname}}</b></span>
-                <br> <span>Credentials path: <b>{{ profile.landstar_credentials_path }}</b></span>
+                <br><span>Last name: <b>{{ profile.landstar_lastname}}</b></span>
+                <br><span>Credentials path: <b>{{ profile.landstar_credentials_path }}</b></span>
                 <br><button class="mt-2 btn btn-outline-primary edit-btn">Edit</button>
             </div>
 

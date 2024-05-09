@@ -4,6 +4,82 @@
 
 {% block body %}
 
-<h1>Index Page</h1>
+<div class="container-fluid">
 
+
+    <div class="row mt-3 ms-2">
+        <div class="col-12 col-lg-5">
+            <h1 class="">embrace <span class="text-primary">Automation</span></h1>
+        </div>
+    </div>
+
+    <div class="row ms-2">
+        <div class=" col-0 col-md-1">
+
+        </div>
+
+        <div class="col-12 col-md-6">
+            <h1> <span>empower</span> <span class="text-primary">Innovation</span></h1>
+        </div>
+    </div>
+
+    <hr>
+    <div class="d-grid gap-3 col-10 col-md-8 col-lg-5 col-xxl-4 mt-4 ms-2">
+
+        {% if messages %}
+
+        {% for message in messages %}
+        <div class="alert alert-danger">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+
+        {% endif %}
+
+        <button type="button" class="ms-4 btn btn-outline-primary btn-lg" id="post-load-btn"
+            title="Manually create new load">Post
+            Load</button>
+
+        <button type="button" class="ms-4 btn btn-outline-dark btn-lg" id="scrape-load-btn"
+            title="Automatically get load message and gather data about available truck drivers for the load(s)">Scrape
+            Load(s)</button></a>
+
+        <div id="scrape" class="hide ms-4 mb-4">
+            <form action="{% url 'scrape' %}" method="POST" class="ms-4">
+                {% csrf_token %}
+
+                <label for="load_ids" class="form-label">Input load ids separated by commas:</label>
+                <input type="text" name="load_ids" id="load_ids" class="form-control mb-3" autocomplete="off">
+                <div class="d-grid  col-4 mx-auto">
+                    <button type="submit" class="btn btn-outline-success">Run</button>
+                </div>
+            </form>
+        </div>
+
+        <button type="button" class="ms-4 btn btn-outline-dark btn-lg" id="send-message-btn"
+            title="Automatically send messages to the truck drivers">Send Messages</button></a>
+
+        <div id="send-message" class="hide ms-4">
+            <ul>Scraped Loads:
+                <li>124245353</li>
+                <li>4252352342</li>
+                <li>124245353</li>
+                <li>4252352342</li>
+                <li>124245353</li>
+                <li>4252352342</li>
+                <li>124245353</li>
+                <li>4252352342</li>
+                <li>124245353</li>
+                <li>4252352342</li>
+            </ul>
+        </div>
+
+        <button type="button" class="ms-4 btn btn-outline-info btn-lg" id="log-history-btn"
+            title="Informations about finished loads">Log History</button></a>
+
+    </div>
+
+
+</div>
 {% endblock %}

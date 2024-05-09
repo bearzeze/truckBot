@@ -9,3 +9,11 @@
 .show {
     display: block;
 }
+
+.white {
+    color: white;
+}
+
+#log-history-btn:hover {
+    color: white;
+}
