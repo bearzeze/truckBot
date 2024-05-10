@@ -29,12 +29,12 @@
         {% if messages %}
 
         {% for message in messages %}
-        <div class="alert alert-danger">
+        <div class="alert {{message.tags}} alert-flex my-0" role="alert">
             {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <button type="button" class="me-auto btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         {% endfor %}
-
+        <div></div>
         {% endif %}
 
         <button type="button" class="ms-4 btn btn-outline-primary btn-lg" id="post-load-btn"
@@ -50,9 +50,10 @@
                 {% csrf_token %}
 
                 <label for="load_ids" class="form-label">Input load ids separated by commas:</label>
-                <input type="text" name="load_ids" id="load_ids" class="form-control mb-3" autocomplete="off">
+                <input type="text" name="load_ids" id="load_ids" class="form-control mb-3" autocomplete="off" autofocus required>
                 <div class="d-grid  col-4 mx-auto">
-                    <button type="submit" class="btn btn-outline-success">Run</button>
+                    <button type="submit" class="btn btn-outline-success" id="run-scrape-btn" data-url="{% url 'set_scraping_flag' %}" >Run</button>
+                    <button type="button" class="btn btn-outline-danger mt-2 hide" id="abort-scrape-btn" data-url="{% url 'set_abort_flag' %}">Abort</button>
                 </div>
             </form>
         </div>
@@ -60,19 +61,31 @@
         <button type="button" class="ms-4 btn btn-outline-dark btn-lg" id="send-message-btn"
             title="Automatically send messages to the truck drivers">Send Messages</button></a>
 
-        <div id="send-message" class="hide ms-4">
-            <ul>Scraped Loads:
-                <li>124245353</li>
-                <li>4252352342</li>
-                <li>124245353</li>
-                <li>4252352342</li>
-                <li>124245353</li>
-                <li>4252352342</li>
-                <li>124245353</li>
-                <li>4252352342</li>
-                <li>124245353</li>
-                <li>4252352342</li>
-            </ul>
+        <div id="send-message" class="hide mt-2">
+
+            <form action="{% url 'send_messages' %}" method="POST">
+                {% csrf_token %}
+                <ul class="scraped-ul">Scraped Loads:
+                {% for load in loads %}
+                    <li class="ms-2">
+                        <input type="checkbox" name="scraped_ids" value="{{ load.id }}" class="me-2 ms-2">
+                         {{ load.id }} <a href="javascript:void(0);" class="ms-4 mt-1 mb-1" id="load_message">Message</a>
+                        <a href="javascript:void(0);" class="ms-4">Truck Drivers</a> 
+                    </li>
+                {% empty %}
+                    <li class="ms-2">No loads in the database.</li>
+                {% endfor %}
+
+                {% if loads %}
+                <div class="d-grid col-4 mx-auto">
+                    <button class="btn btn-primary mt-4" type="submit" id="send-zoom-btn">Send via Zoom</button>
+                </div>
+                {% endif %}
+                </ul>
+
+            </form>
+
+
         </div>
 
         <button type="button" class="ms-4 btn btn-outline-info btn-lg" id="log-history-btn"

@@ -10,6 +10,12 @@ const logHistoryButton = document.querySelector("#log-history-btn")
 const scrapeDiv = document.querySelector("#scrape");
 const sendMessageDiv = document.querySelector("#send-message");
 
+const runScrapeButton = document.querySelector("#run-scrape-btn");
+const abortScrapeButton = document.querySelector("#abort-scrape-btn");
+const scrapeForm = document.querySelector("#scrape form");
+
+const sendZoomButton = document.querySelector("#send-zoom-btn");
+
 
 // Home page
 // With Post Load new page is opened
@@ -37,7 +43,7 @@ if (scrapeLoadButton) {
     });
 }
 
-
+// Button for opening tab where loads are visible and message can be sent
 if (sendMessageButton) {
 
     sendMessageButton.addEventListener("click", () => {
@@ -53,6 +59,58 @@ if (sendMessageButton) {
             sendMessageButton.classList.remove("active")
             hideElement(sendMessageDiv);
         }
+    });
+}
+
+if (scrapeForm) {
+
+    scrapeForm.addEventListener("submit", () => {
+
+        runScrapeButton.disabled = true;
+
+        runScrapeButton.innerHTML = "Running..."
+        scrape_url = runScrapeButton.getAttribute("data-url");
+
+
+        fetch(scrape_url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken')  
+            },
+            body: JSON.stringify({
+                is_scraping: true
+            })
+        });
+
+        showElement(abortScrapeButton);
+        abortScrapeButton.addEventListener("click", () => {
+
+            hideElement(runScrapeButton);
+            abortScrapeButton.disabled = true;
+            abortScrapeButton.innerHTML = "Aborting..."
+
+            abort_url = abortScrapeButton.getAttribute("data-url");
+            
+            fetch(abort_url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')  // Assuming you have a function to get the CSRF token
+                },
+                body: JSON.stringify({
+                    abort_scraping: true
+                })
+            });
+        })
+    });
+}
+
+// Button which opens Zoom and send messages
+if (sendZoomButton) {
+    sendZoomButton.addEventListener("click", () => {
+        sendZoomButton.disabled = true;
+
     });
 }
 
@@ -105,4 +163,23 @@ function showElement(element) {
 
 function isHidden(element) {
     return element.classList.contains("hide");
+}
+
+
+function getCookie(name) {
+    var cookieArr = document.cookie.split(";");
+    
+    for(var i = 0; i < cookieArr.length; i++) {
+        var cookiePair = cookieArr[i].split("=");
+        
+        /* Removing whitespace at the beginning of the cookie name
+        and compare it with the given string */
+        if(name == cookiePair[0].trim()) {
+            // Decode the cookie value and return
+            return decodeURIComponent(cookiePair[1]);
+        }
+    }
+    
+    // Return null if not found
+    return null;
 }

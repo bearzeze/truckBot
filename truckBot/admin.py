@@ -10,9 +10,19 @@ class UserAdmin(UserAdmin):
         (('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
         (('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
+      
+      
+class LoadAdmin(admin.ModelAdmin):
+  list_display = ("id", "origin", "pickup", "destination", "delivery", "price")
+      
+class DriverAdmin(admin.ModelAdmin):
+  list_display = ("name", "phone_number", "sms_sent", "load_id")
+  
+  def load_id(self, obj):
+    return obj.load.id
 
 # Register your models here.
 admin.site.register(User, UserAdmin)
-admin.site.register(Load)
-admin.site.register(Driver)
+admin.site.register(Load, LoadAdmin)
+admin.site.register(Driver, DriverAdmin)
 admin.site.register(LogHistory)

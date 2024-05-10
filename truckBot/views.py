@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib import messages
+from django.core.cache import cache
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.hashers import make_password, check_password
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
+
 from datetime import datetime
 import json
 import os
@@ -12,11 +15,17 @@ import os
 from pywinauto.application import Application
 
 from .models import User, Driver, LogHistory, Load
+from .scrape import scrape_trucks
+from .zoom import send_sms
 
 
 @login_required
 def index(request):
-    return render(request, "truckBot/index.html")
+    loads_db = Load.objects.all()
+    
+    return render(request, "truckBot/index.html", context={
+        "loads": loads_db,
+    })
 
 
 @login_required
@@ -24,15 +33,88 @@ def scrape(request):
     if request.method == "POST" and request.user.is_authenticated:
         load_ids = request.POST.get("load_ids")
         try:
+            if len(load_ids) == 0:
+                raise
+            
             load_ids = [int(load_id.strip()) for load_id in load_ids.split(",")]
-            print(load_ids)
         except ValueError:
             messages.error(request, "Load ids must be integers separated by commas")
-                        
-        
-        
-        return HttpResponseRedirect(reverse("index"))
+            return HttpResponseRedirect(reverse("index"))
 
+        for load_id in load_ids:
+            load = Load.objects.filter(id=load_id)
+            
+            if len(load) == 1:
+                messages.warning(request, f"Load with {load_id} id is already in database!")
+                continue
+            
+            # If abort button is clicked
+            if cache.get("abort_scraping"):
+                messages.warning(request, 'Scraping aborted!')
+                break
+
+            try:
+                headless = True
+                
+                if request.user.is_superuser:
+                    headless = False
+                    
+                result = scrape_trucks(request, load_id, headless)
+                                    
+                if result == 0:
+                    messages.error(request, f"Load with {load_id} id doesn't exist!")
+                    
+                elif result == "Aborted":
+                    messages.warning(request, 'Scraping aborted!')
+                    break
+                
+                else:
+                    messages.success(request, f"Load with {load_id} id is successfully saved in database!")
+
+            except Exception as e:
+                messages.error(request, f"Load with {load_id} id had not been scraped!")
+                return HttpResponseRedirect(reverse("index"))
+            
+        cache.set('is_scraping', False, None)
+        cache.set('abort_scraping', False, None)
+
+    return HttpResponseRedirect(reverse("index"))
+
+
+# API's for exiting the scraping process
+@csrf_exempt
+@login_required
+def set_scraping_flag(request):
+    if request.method == 'POST':
+        cache.set('is_scraping', True, None)
+        return JsonResponse({'status': 'success'})
+    else:
+        return JsonResponse({'status': 'error'})
+    
+    
+@csrf_exempt
+@login_required
+def set_abort_flag(request):
+    if request.method == 'POST':
+        cache.set('abort_scraping', True, None)
+        return JsonResponse({'status': 'success'})
+    else:
+        return JsonResponse({'status': 'error'})
+    
+
+@login_required
+def send_messages(request):
+    if request.method == "POST":
+        load_ids = request.POST.getlist('scraped_ids')
+        
+        if (len(load_ids) == 0 ):
+            return HttpResponseRedirect(reverse("index"))
+
+        
+        for load_id in load_ids:
+            send_sms(request, load_id, proba=True)
+    
+    return HttpResponseRedirect(reverse("index"))
 
 
 def login_page(request):
@@ -51,7 +133,13 @@ def login_page(request):
             })
         else:
             login(request, user)
+            
+            load_landstar_credentials(request, user.landstar_credentials_path)
+            request.session["zoom_exe_path"] = user.zoom_exe_path
+            request.session["zoom_phone_num"] = user.zoom_phone_numb
+                
             return HttpResponseRedirect(reverse("index"))
+
 
     elif request.method == "GET":
         return render(request, "truckBot/login.html")
@@ -62,6 +150,7 @@ def logout_page(request):
     return HttpResponseRedirect(reverse("index"))
 
 
+# Profile page
 @login_required
 def profile(request):
     try:
@@ -128,6 +217,7 @@ def profile(request):
                         new_path = True
                         content = "zoom.exe path has been changed."
                         profile.zoom_exe_path = new_zoom_exe_path
+                        request.session["zoom_exe_path"] = profile.zoom_exe_path
                         
  
                 else:
@@ -141,9 +231,11 @@ def profile(request):
                     new_numb = True
                     content = "Zoom phone number has been changed."
                     profile.zoom_phone_numb = new_zoom_number
+                    request.session["zoom_phone_num"] = new_zoom_number
                         
                 if new_numb and new_path:
                     content = "Zoom exe file and phone number have been changed."
+
                 
                 if new_numb or new_path:
                     message = {
@@ -180,7 +272,8 @@ def profile(request):
                         new_path = True
                         content = "Landstar credentials path has been changed."
                         profile.landstar_credentials_path = new_credentials_path
-                        
+                        load_landstar_credentials(request, new_credentials_path)
+
                 else:
                     message = {
                         "content": f"'{new_credentials_path}' path doesn't exists!",
@@ -203,10 +296,9 @@ def profile(request):
             
     except User.DoesNotExist:
         return HttpResponseRedirect(reverse("index"))
-
-
-@login_required
-def profile_info_change(request):
     
-    return HttpResponseRedirect(reverse("index"))
-
+    
+def load_landstar_credentials(request, landstar_credentials_path):
+        with open(landstar_credentials_path, "r") as file:
+            request.session["landstar_acc"] = file.readline().strip()
+            request.session["landstar_pass"] = file.readline().strip()

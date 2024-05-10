@@ -62,7 +62,7 @@ def send_sms(exe_file_path, truck_drivers, message, load_id, proba=False):
                     text.type_keys("^a{BACKSPACE}")
 
         # If everything went ok without problem, it will write in texted file which load id is finished
-        if not stop_action:
+        if not stop_action[0]:
             print(f"All drivers about load with id = {load_id} have been informed!")
             load_finished(load_id)
 
@@ -98,6 +98,7 @@ def check_load_texted(id):
     if os.path.exists(filename):
         with open(filename, "r") as file:
             for line in file.readlines():
-                if id == int(line.split("\t")[0].strip()):
+                id_file = line.split("\t")[0].strip()
+                if id_file != "" and id == int(line.split("\t")[0].strip()):
                     return True
     return False

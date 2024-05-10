@@ -28,7 +28,7 @@ class Load(models.Model):
     finished = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"id={self.id}, {self.origin}->{self.destination}"
+        return f"{self.id}: {self.origin} -> {self.destination}"
 
     def save(self, *args, **kwargs):
         if not self.message:  # This checks if the object is being created for the first time
@@ -48,7 +48,11 @@ class Driver(models.Model):
     name = models.CharField(max_length=150)
     phone_number = models.CharField(max_length=14)
     sms_sent = models.BooleanField(default=False)
-    load = models.ForeignKey(Load, on_delete=models.CASCADE)
+    load = models.ForeignKey(Load, on_delete=models.CASCADE, related_name="drivers")
+    
+    
+    def __str__(self) -> str:
+        return f"{self.name} {self.phone_number} {self.sms_sent} {self.load.id}"
 
 
 class LogHistory(models.Model):

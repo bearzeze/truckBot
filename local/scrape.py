@@ -125,7 +125,7 @@ def create_message(table, weight, load_id):
         "delivery_date": rows[1].find_all("td")[5].text.strip(),
         "mode": rows[2].find_all("td")[5].text.strip(),
         "miles": rows[2].find_all("td")[3].text.strip(),
-        "weight": weight + " lb",
+        "weight": weight,
         "rate": rows[2].find_all("td")[1].text.strip(),
     }
 
@@ -136,7 +136,7 @@ def create_message(table, weight, load_id):
             f"Delivery: {message_info['destination']} -- {message_info['delivery_date']}\n" +
             f"Mode: {message_info['mode']}\n" +
             f"Miles: {message_info['miles']}\n" +
-            f"Est. Weight: {weight}\n" +
+            f"Est. Weight: {weight} lb\n" +
             f"RATE {message_info['rate']}\n" +
             f"Alex  Contact: 619-352-0887")
 
@@ -172,8 +172,3 @@ def check_load_scraped(id):
                     return True
 
     return False
-
-
-if __name__ == '__main__':
-    load_id = 132355167
-    scrape_trucks(load_id)

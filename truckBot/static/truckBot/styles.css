@@ -17,3 +17,12 @@
 #log-history-btn:hover {
     color: white;
 }
+
+.no-margin {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.scraped-ul {
+    list-style-type: none;
+}

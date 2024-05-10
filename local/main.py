@@ -1,5 +1,6 @@
 import time
 import threading
+import os
 
 from scrape import scrape_trucks, get_message, get_truck_drivers, check_load_scraped
 from zoom import send_sms, check_load_texted
@@ -8,12 +9,12 @@ from listener import stop_action
 
 
 def on_press(key):
-    if key == Key.backspace:
+    if key == Key.esc:
         print(key)
         stop_action[0] = True
 
 
-def local(load_id, proba):
+def main(load_id, proba=False):
     # Get info about load and truck driver phones
     if check_load_scraped(load_id):
         print(f"Info about load with id = {load_id} is already prepared")
@@ -49,11 +50,11 @@ if __name__ == '__main__':
     listener = Listener(on_press=on_press)
     listener.start()
 
-    for load_id in [137557459, 136601697]:
+    for load_id in [137901826]:
         if stop_action[0]:
             break
-        proba = True
-        local(load_id, proba)
+        
+        main(load_id)
 
     listener.stop()
 
