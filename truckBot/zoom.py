@@ -7,9 +7,9 @@ import os
 import django
 
 from django.core.cache import cache
+from django.contrib import messages
 
 from pywinauto.application import Application
-from truckBot.listener import stop_action
 
 from .models import Load, Driver, LogHistory
 
@@ -38,14 +38,14 @@ def send_sms(request, load_id, proba=False):
 
         sms_tab = zoom_app.Zoom.child_window(title_re="SMS.*", control_type="TabItem").wrapper_object()
         sms_tab.click_input()
-
-        # message needs to be ready for Zoom:
+        
+        # message needs to be ready for Zoom application:
         message = message.replace("\n", "+{ENTER}").replace(" ", "{SPACE}")
 
         first = True
         for driver in truck_drivers:
             # If user press Esc it will stop the action after sending last message
-            if stop_action[0]:
+            if cache.get("stop_action"):
                 zoom_app.kill()
                 break
 
@@ -64,28 +64,46 @@ def send_sms(request, load_id, proba=False):
 
                 if first:
                     time.sleep(1)
+                
+                if cache.get("stop_action"):
+                    zoom_app.kill()
+                    break
 
                 text.type_keys("^a{BACKSPACE}" + message)
 
                 send_message = zoom_app.Zoom.child_window(title_re="Ctrl+.*", control_type="Button",
                                                           found_index=0).wrapper_object()
-
+                
+                if cache.get("stop_action"):
+                    zoom_app.kill()
+                    break
+            
                 if not proba:
                     send_message.click_input()
                     driver.sms_sent = True
+                    driver.save()
                 else:
                     text.type_keys("^a{BACKSPACE}")
+                    
+                    
+        # If everything went ok without stopping action
+        if not cache.get("stop_action"):
+            # Load is finished, but not deleted
+            load.finished = True
+            load.save()
+            # Log history object is also created
+            LogHistory.objects.create(load_id=load_id, drivers_informed_count=len(truck_drivers))
+            # Every truck_drivers for this load is deleted from db
+            truck_drivers.delete()
+            messages.success(request, f"All drivers about load with id = {load_id} have been informed!")
+        else:
+            messages.warning(request, f"You stopped sending messages!")
 
-        # If everything went ok without problem, it will write in texted file which load id is finished
-        if not stop_action:
-            print(f"All drivers about load with id = {load_id} have been informed!")
 
     except Exception as e:
-        print(f"An error occurred: {e}")
-        raise
+        messages.error(request, f'Error with load id {load_id} -> "{e}"')
 
     finally:
-
         if zoom_app.is_process_running():
             zoom_app.kill()
 

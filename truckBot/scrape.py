@@ -72,7 +72,7 @@ def scrape_trucks(request, load_id, headless=True):
         driver.execute_script("arguments[0].value = 200", distance_radius)
 
         # time for visual checking
-        time.sleep(1)
+        time.sleep(5)
 
         # Search for available trucks
         search_btn = driver.find_element(By.ID, "BtnSearch")
@@ -138,10 +138,10 @@ def scrape_trucks(request, load_id, headless=True):
             for row in driver_table:
                 cells = row.find_all('td')
 
-                # Only not empty phone number, drivers are important
+                # Only drivers with phone numbers are important
                 if len(cells[5].text) > 7:
                     Driver.objects.create(name=cells[4].text,
-                                          phone_number=cells[5].text.strip().strip('\xa0')[:14], # 14 cifara broj
+                                          phone_number=cells[5].text.strip().strip('\xa0')[:14], # 14 digits is the phone number
                                           load=Load.objects.get(id=load_id))
 
         

@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 from cryptography.fernet import Fernet
 
@@ -11,7 +12,7 @@ class User(AbstractUser):
     landstar_credentials_path = models.CharField(max_length=250, blank=True)
 
     def landstar_info(self):
-        return f"{self.landstar_firstname} Contact: {self.zoom_phone_numb}"
+        return f"\n{self.landstar_firstname} Contact: {self.zoom_phone_numb}"
 
 
 class Load(models.Model):
@@ -39,7 +40,7 @@ class Load(models.Model):
                 f"Mode: {self.mode}\n" +
                 f"Miles: {self.miles}\n" +
                 f"Est. Weight: {self.weight} lb\n" +
-                f"RATE {self.price}\n")
+                f"RATE {self.price}")
 
         super().save(*args, **kwargs)
 
@@ -50,14 +51,23 @@ class Driver(models.Model):
     sms_sent = models.BooleanField(default=False)
     load = models.ForeignKey(Load, on_delete=models.CASCADE, related_name="drivers")
     
-    
-    def __str__(self) -> str:
+    def __str__(self):
         return f"{self.name} {self.phone_number} {self.sms_sent} {self.load.id}"
-
+    
 
 class LogHistory(models.Model):
     load_id = models.IntegerField()
-    date = models.DateTimeField(auto_now_add=True)
+    date = models.DateTimeField(editable=False)
+    drivers_informed_count = models.IntegerField(default=0)
+    
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.date = timezone.localtime(timezone.now())
+            
+        super().save(*args, **kwargs)
+        
+    def __str__(self):
+        return f"{self.load_id} -> {self.drivers_informed_count} informed"
 
 
 

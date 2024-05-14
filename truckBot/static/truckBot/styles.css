@@ -26,3 +26,23 @@
 .scraped-ul {
     list-style-type: none;
 }
+
+.footnote {
+    font-size: 13px;
+}
+
+.back-btn {
+    display: inline-block;
+}
+
+.message-paragraph {
+    white-space: pre-wrap;
+}
+
+.drivers-link {
+    text-decoration: none;
+}
+
+.driver-links-text {
+    text-decoration: underline;
+}

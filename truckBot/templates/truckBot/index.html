@@ -24,17 +24,18 @@
     </div>
 
     <hr>
-    <div class="d-grid gap-3 col-10 col-md-8 col-lg-5 col-xxl-4 mt-4 ms-2">
+    <div class="d-grid gap-3 col-10 col-md-8 col-lg-5 mt-4 ms-2 mb-4 ">
 
         {% if messages %}
 
         {% for message in messages %}
-        <div class="alert {{message.tags}} alert-flex my-0" role="alert">
+        <div class="alert {{message.tags}} d-flex justify-content-between align-items-center ms-4 my-0" role="alert">
             {{ message }}
-            <button type="button" class="me-auto btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         {% endfor %}
         <div></div>
+
         {% endif %}
 
         <button type="button" class="ms-4 btn btn-outline-primary btn-lg" id="post-load-btn"
@@ -48,12 +49,14 @@
         <div id="scrape" class="hide ms-4 mb-4">
             <form action="{% url 'scrape' %}" method="POST" class="ms-4">
                 {% csrf_token %}
-
-                <label for="load_ids" class="form-label">Input load ids separated by commas:</label>
-                <input type="text" name="load_ids" id="load_ids" class="form-control mb-3" autocomplete="off" autofocus required>
+                <label for="load_ids" class="form-label">Insert load id (or ids separated by commas):</label>
+                <input type="text" name="load_ids" id="load_ids" class="form-control mb-3" autocomplete="off" autofocus
+                    required>
                 <div class="d-grid  col-4 mx-auto">
-                    <button type="submit" class="btn btn-outline-success" id="run-scrape-btn" data-url="{% url 'set_scraping_flag' %}" >Run</button>
-                    <button type="button" class="btn btn-outline-danger mt-2 hide" id="abort-scrape-btn" data-url="{% url 'set_abort_flag' %}">Abort</button>
+                    <button type="submit" class="btn btn-outline-success" id="run-scrape-btn"
+                        data-url="{% url 'set_scraping_flag' %}">Run</button>
+                    <button type="button" class="btn btn-outline-danger mt-2 hide" id="abort-scrape-btn"
+                        data-url="{% url 'set_abort_flag' %}">Abort</button>
                 </div>
             </form>
         </div>
@@ -61,35 +64,73 @@
         <button type="button" class="ms-4 btn btn-outline-dark btn-lg" id="send-message-btn"
             title="Automatically send messages to the truck drivers">Send Messages</button></a>
 
-        <div id="send-message" class="hide mt-2">
 
+        <div id="send-message" class="hide mt-2">
+            {% if loads %}
             <form action="{% url 'send_messages' %}" method="POST">
                 {% csrf_token %}
                 <ul class="scraped-ul">Scraped Loads:
-                {% for load in loads %}
-                    <li class="ms-2">
-                        <input type="checkbox" name="scraped_ids" value="{{ load.id }}" class="me-2 ms-2">
-                         {{ load.id }} <a href="javascript:void(0);" class="ms-4 mt-1 mb-1" id="load_message">Message</a>
-                        <a href="javascript:void(0);" class="ms-4">Truck Drivers</a> 
+                    {% for load_obj in loads %}
+                    <li class="ms-2 my-2">
+                        <input type="checkbox" name="scraped_ids" value="{{ load_obj.load.id }}"
+                            class="checkbox me-2 ms-2">
+                        <b>{{ load_obj.load.id }}</b>
+                        <a href="javascript:void(0);" class="ms-4 drivers-link"><span class="driver-links-text">Truck drivers</span><span class="driver-links-numbers"> ({{ load_obj.informed_drivers }}/{{ load_obj.total_drivers }})</span>
+                        <a href="javascript:void(0);" class="ms-4 mt-1 mb-1 load-msg-link">Message</a>
+
+                        <div class="hide ms-4 mb-4 mt-3 drivers-info"> So far <b>{{load_obj.informed_drivers}}</b> of
+                            <b>{{load_obj.total_drivers}}</b> drivers have been informed.
+                        </div>
+
+                        <div class="hide ms-4 mb-4 mt-3 load-msg-div">
+
+                            <div class="show load-info">
+                                <p class="message-paragraph">{{ load_obj.load.message }}</p>
+                                <button type="button" class="btn btn-primary edit-load-msg-btn">Edit Message</button>
+                            </div>
+
+                            <div class="hide edit-msg-div">
+                                <form id="load-msg-form">
+                                    <textarea id="load_message" class="form-control" autocomplete="off"
+                                        rows="7">{{load_obj.load.message}} </textarea>
+                                    <button type="submit" class="btn btn-outline-success save-msg-btn me-2 mt-2"
+                                        data-load_id="{{load_obj.load.id}}"
+                                        data-url="{% url 'change_load_message' load_obj.load.id %}">Save</button>
+                                    <button type="button" class="btn btn-outline-danger back-msg-btn mt-2">Back</button>
+                                </form>
+                            </div>
+
+                        </div>
+
                     </li>
-                {% empty %}
-                    <li class="ms-2">No loads in the database.</li>
-                {% endfor %}
+                    {% endfor %}
 
-                {% if loads %}
-                <div class="d-grid col-4 mx-auto">
-                    <button class="btn btn-primary mt-4" type="submit" id="send-zoom-btn">Send via Zoom</button>
-                </div>
-                {% endif %}
+
+                    <input type="checkbox" id="select-all" class="me-2 ms-3 mt-2"><span class="ms-1">Select All</span>
+
+                    <div class="d-grid col-4 mx-auto">
+                        <button class="btn btn-primary mt-2" type="submit" id="send-zoom-btn"
+                            title="You need to be already logged in into Zoom for app to work!" disabled>Send via
+                            Zoom</button>
+                        <span class="fst-italic mt-2 footnote zoom-footnote hide">You need to be logged into Zoom for
+                            app to
+                            work!</span>
+                    </div>
                 </ul>
-
             </form>
 
+            {% else %}
+            <p>No scraped loads in database</p>
+            {% endif %}
 
         </div>
 
-        <button type="button" class="ms-4 btn btn-outline-info btn-lg" id="log-history-btn"
+        <button type="button" class="ms-4 btn btn-outline-secondary btn-lg" id="log-history-btn"
             title="Informations about finished loads">Log History</button></a>
+
+        <div id="log-history" class="hide mt-2">
+
+        </div>
 
     </div>
 

@@ -13,10 +13,11 @@ class UserAdmin(UserAdmin):
       
       
 class LoadAdmin(admin.ModelAdmin):
-  list_display = ("id", "origin", "pickup", "destination", "delivery", "price")
+  list_display = ("id", "origin", "pickup", "destination", "delivery", "price", "finished")
       
 class DriverAdmin(admin.ModelAdmin):
   list_display = ("name", "phone_number", "sms_sent", "load_id")
+  list_filter = ("load_id", )
   
   def load_id(self, obj):
     return obj.load.id

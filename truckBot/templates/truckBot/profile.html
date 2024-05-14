@@ -29,26 +29,26 @@
                 <br><button class="mt-2 btn btn-outline-primary edit-btn">Change Password</button>
             </div>
 
-            <form action="{% url 'profile' %}" method="POST">
-                {% csrf_token %}
-                <div class="hide ms-4 col-5 profile-change">
+            <div class="hide ms-4 col-5 profile-change">
+                <form action="{% url 'profile' %}" method="POST">
+                    {% csrf_token %}
                     <input type="hidden" name="form_type" value="truckBot">
 
                     <label for="truck_current_password" class="form-label">Current Password: </label>
-                    <input type="password" name="truck_current_password" id="truck_current_password" class="form-control"
-                        autocomplete="off"> <br>
+                    <input type="password" name="truck_current_password" id="truck_current_password"
+                        class="form-control" autocomplete="off"> <br>
 
                     <label for="truck_new_password" class="form-label">New Password: </label>
                     <input type="password" name="truck_new_password" id="truck_new_password" class="form-control"
                         autocomplete="off"> <br>
 
                     <label for="truck_confirm_password" class="form-label">Confirm Password: </label>
-                    <input type="password" name="truck_confirm_password" id="truck_confirm_password" class="form-control"
-                        autocomplete="off">
+                    <input type="password" name="truck_confirm_password" id="truck_confirm_password"
+                        class="form-control" autocomplete="off">
                     <br><button type="submit" class="btn btn-outline-success save-btn">Save</button>
-                    <button class="btn btn-outline-danger back-btn">Back</button>
-                </div>
-            </form>
+                    <button type="button" class="btn btn-outline-danger back-btn">Back</button>
+                </form>
+            </div>
 
         </div>
 
@@ -66,14 +66,14 @@
                     <input type="hidden" name="form_type" value="zoom">
 
                     <label for="zoom_exe" class="form-label">Path of zoom.exe file: </label>
-                    <input type="text" name="zoom_exe" id="zoom_exe" class="form-control" autocomplete="off" 
-                    value="{{profile.zoom_exe_path}}"> <br>
+                    <input type="text" name="zoom_exe" id="zoom_exe" class="form-control" autocomplete="off"
+                        value="{{profile.zoom_exe_path}}"> <br>
 
                     <label for="zoom_phone_num" class="form-label">Zoom Phone Number: </label>
-                    <input type="text" name="zoom_phone_num" id="zoom_phone_num" class="form-control"
-                        autocomplete="off" value="{{profile.zoom_phone_numb}}">
-                    <br><button type="submit"  class="btn btn-outline-success save-btn">Save</button>
-                     <button class="btn btn-outline-danger back-btn">Back</button>
+                    <input type="text" name="zoom_phone_num" id="zoom_phone_num" class="form-control" autocomplete="off"
+                        value="{{profile.zoom_phone_numb}}">
+                    <br><button type="submit" class="btn btn-outline-success save-btn">Save</button>
+                    <button class="btn btn-outline-danger back-btn">Back</button>
                 </div>
             </form>
 
@@ -98,15 +98,16 @@
                     <input type="text" name="landstar_firstname" id="landstar_firstname" class="form-control"
                         autocomplete="off" value="{{ profile.landstar_firstname }}""> <br>
 
-                        <label for="landstar_lastname" class="form-label">Last Name: </label>
-                        <input type="text" name="landstar_lastname" id="landstar_lastname" class="form-control"
-                            autocomplete="off" value="{{ profile.landstar_lastname }}""> <br>
+                        <label for=" landstar_lastname" class="form-label">Last Name: </label>
+                    <input type="text" name="landstar_lastname" id="landstar_lastname" class="form-control"
+                        autocomplete="off" value="{{ profile.landstar_lastname }}""> <br>
 
-                    <label for="landstar_credentials" class="form-label">Landstar Credentials path (.txt file): </label>
+                    <label for=" landstar_credentials" class="form-label">Landstar Credentials path (.txt file):
+                    </label>
                     <input type="text" name="landstar_credentials" id="landstar_credentials" class="form-control"
                         autocomplete="off" value="{{ profile.landstar_credentials_path }}""> <br>
 
-                    <br><button type="submit" class="btn btn-outline-success save-btn">Save</button> <button
+                    <br><button type=" submit" class="btn btn-outline-success save-btn">Save</button> <button
                         class="btn btn-outline-danger back-btn">Back</button>
                 </div>
             </form>

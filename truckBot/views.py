@@ -13,6 +13,7 @@ import json
 import os
 
 from pywinauto.application import Application
+from pynput.keyboard import Key, Listener
 
 from .models import User, Driver, LogHistory, Load
 from .scrape import scrape_trucks
@@ -21,13 +22,28 @@ from .zoom import send_sms
 
 @login_required
 def index(request):
-    loads_db = Load.objects.all()
+    loads_db = Load.objects.filter(finished=False)
+    load_data = []
     
+    for load in loads_db:
+        all_drivers = load.drivers.count()
+        informed_drivers = load.drivers.filter(sms_sent=True).count()
+        load_data.append({
+            "load": load,
+            "total_drivers": all_drivers,
+            "informed_drivers": informed_drivers
+        })
+        
+    logs = LogHistory.objects.all()
+    for log in logs:
+        print(log.date)
+        
     return render(request, "truckBot/index.html", context={
-        "loads": loads_db,
+        "loads": load_data,
     })
 
 
+# Method for scraping the website in order to get information about loads and available drivers
 @login_required
 def scrape(request):
     if request.method == "POST" and request.user.is_authenticated:
@@ -81,21 +97,19 @@ def scrape(request):
     return HttpResponseRedirect(reverse("index"))
 
 
-# API's for exiting the scraping process
-@csrf_exempt
+# API for exiting the scraping process
 @login_required
 def set_scraping_flag(request):
-    if request.method == 'POST':
+    if request.method == 'POST' and request.user.is_authenticated:
         cache.set('is_scraping', True, None)
         return JsonResponse({'status': 'success'})
     else:
         return JsonResponse({'status': 'error'})
     
     
-@csrf_exempt
 @login_required
 def set_abort_flag(request):
-    if request.method == 'POST':
+    if request.method == 'POST' and request.user.is_authenticated:
         cache.set('abort_scraping', True, None)
         return JsonResponse({'status': 'success'})
     else:
@@ -104,52 +118,50 @@ def set_abort_flag(request):
 
 @login_required
 def send_messages(request):
-    if request.method == "POST":
+    if request.method == "POST" and request.user.is_authenticated:
+        
+        cache.set("stop_action", False, None)        
+        
         load_ids = request.POST.getlist('scraped_ids')
         
+        # If there are no loads it goes to home page
         if (len(load_ids) == 0 ):
             return HttpResponseRedirect(reverse("index"))
-
         
+        listener = Listener(on_press=on_press)
+        listener.start()
+
         for load_id in load_ids:
-            send_sms(request, load_id, proba=True)
-    
-    return HttpResponseRedirect(reverse("index"))
-
-
-def login_page(request):
-    if request.user.is_authenticated:
-        return HttpResponseRedirect(reverse("index"))
-    
-    if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
-
-        user = authenticate(request, username=username, password=password)
-
-        if user is None:
-            return render(request, "truckBot/login.html", context={
-                "message": "Invalid username/password"
-            })
-        else:
-            login(request, user)
+            if cache.get("stop_action"):
+                break
             
-            load_landstar_credentials(request, user.landstar_credentials_path)
-            request.session["zoom_exe_path"] = user.zoom_exe_path
-            request.session["zoom_phone_num"] = user.zoom_phone_numb
-                
-            return HttpResponseRedirect(reverse("index"))
-
-
-    elif request.method == "GET":
-        return render(request, "truckBot/login.html")
+            send_sms(request, load_id, proba=False)
+        
+        listener.stop()
     
-    
-def logout_page(request):
-    logout(request)
     return HttpResponseRedirect(reverse("index"))
 
 
+# API for changing the load message
+@login_required
+def change_load_message(request, load_id):
+    if request.method == "PUT" and request.user.is_authenticated:
+        try:
+            load = Load.objects.get(id=load_id)
+        except:
+            return JsonResponse({"error": "Load doesn't exists."}, status=404)
+
+        data = json.loads(request.body)
+            
+        new_message = data.get("message")
+        if not new_message in ["", None]:
+            load.message = data.get("message")
+            load.save()
+            return JsonResponse({"success": f"Load with id {load_id} has new message.", "message": new_message}, status=200)
+        else:
+            return JsonResponse({"error": "Message cannot be empty."}, status=400)
+  
+  
 # Profile page
 @login_required
 def profile(request):
@@ -296,9 +308,52 @@ def profile(request):
             
     except User.DoesNotExist:
         return HttpResponseRedirect(reverse("index"))
+              
+
+def login_page(request):
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("index"))
+    
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is None:
+            return render(request, "truckBot/login.html", context={
+                "message": "Invalid username/password"
+            })
+        else:
+            login(request, user)
+            
+            load_landstar_credentials(request, user.landstar_credentials_path)
+            request.session["zoom_exe_path"] = user.zoom_exe_path
+            request.session["zoom_phone_num"] = user.zoom_phone_numb
+                
+            return HttpResponseRedirect(reverse("index"))
+
+
+    elif request.method == "GET":
+        return render(request, "truckBot/login.html")
+    
+    
+def logout_page(request):
+    logout(request)
+    return HttpResponseRedirect(reverse("index"))
+
+
+def no_page(request, everything_else):
+    return JsonResponse({"error": "There are no such a page on this web application"}, status=404)
     
     
 def load_landstar_credentials(request, landstar_credentials_path):
+    if landstar_credentials_path:
         with open(landstar_credentials_path, "r") as file:
             request.session["landstar_acc"] = file.readline().strip()
             request.session["landstar_pass"] = file.readline().strip()
+            
+# Function for listening        
+def on_press(key):
+    if key == Key.esc:
+        cache.set("stop_action", True, None)
