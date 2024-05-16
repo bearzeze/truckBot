@@ -1,7 +1,6 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
-from cryptography.fernet import Fernet
 
 
 class User(AbstractUser):
@@ -56,7 +55,7 @@ class Driver(models.Model):
     
 
 class LogHistory(models.Model):
-    load_id = models.IntegerField()
+    load_id = models.IntegerField(db_index=True)
     date = models.DateTimeField(editable=False)
     drivers_informed_count = models.IntegerField(default=0)
     
@@ -68,6 +67,6 @@ class LogHistory(models.Model):
         
     def __str__(self):
         return f"{self.load_id} -> {self.drivers_informed_count} informed"
-
-
-
+    
+    def formatted_date(self):
+        return self.date.strftime("%d.%m.%Y %H:%M")

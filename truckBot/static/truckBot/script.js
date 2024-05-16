@@ -6,6 +6,7 @@ const postLoadButton = document.querySelector("#post-load-btn")
 const scrapeLoadButton = document.querySelector("#scrape-load-btn")
 const sendMessageButton = document.querySelector("#send-message-btn")
 const logHistoryButton = document.querySelector("#log-history-btn")
+const logHistoryDiv = document.querySelector("#log-history");
 
 const scrapeDiv = document.querySelector("#scrape");
 const sendMessageDiv = document.querySelector("#send-message");
@@ -31,6 +32,8 @@ const editLoadMessagesButtons = document.querySelectorAll(".edit-load-msg-btn")
 const backLoadButtons = document.querySelectorAll(".back-msg-btn");
 const saveMessageButtons = document.querySelectorAll("#send-message li .save-msg-btn");
 
+const tableBody = document.querySelector("#log-history-table-body");
+
 
 // HOME PAGE
 // Pressing Post Load Button - it redirects to the new window for posting the loads
@@ -46,14 +49,17 @@ if (scrapeLoadButton) {
     scrapeLoadButton.addEventListener("click", () => {
 
         if (isHidden(scrapeDiv)) {
-            scrapeLoadButton.classList.add("active")
-            sendMessageButton.classList.remove("active")
+            activeButton(scrapeLoadButton, true);
+            activeButton(sendMessageButton, false);
+            activeButton(logHistoryButton, false);
+
             showElement(scrapeDiv);
             hideElement(sendMessageDiv);
+            hideElement(logHistoryDiv);
         }
 
         else {
-            scrapeLoadButton.classList.remove("active")
+            activeButton(scrapeLoadButton, false);
             hideElement(scrapeDiv);
         }
     });
@@ -65,15 +71,50 @@ if (sendMessageButton) {
     sendMessageButton.addEventListener("click", () => {
 
         if (isHidden(sendMessageDiv)) {
-            sendMessageButton.classList.add("active")
-            scrapeLoadButton.classList.remove("active")
+            activeButton(sendMessageButton, true);
+            activeButton(scrapeLoadButton, false);
+            activeButton(logHistoryButton, false);
+
             showElement(sendMessageDiv);
             hideElement(scrapeDiv);
+            hideElement(logHistoryDiv);
         }
 
         else {
-            sendMessageButton.classList.remove("active")
+            activeButton(sendMessageButton, false);
             hideElement(sendMessageDiv);
+        }
+    });
+}
+
+// Pressing Sending Message Button opens only that div and hide all others
+if (logHistoryButton) {
+
+    logHistoryButton.addEventListener("click", function() {
+
+        if (isHidden(logHistoryDiv)) {
+            activeButton(logHistoryButton, true);
+            activeButton(scrapeLoadButton, false);
+            activeButton(sendMessageButton, false);
+
+            showElement(logHistoryDiv);
+            hideElement(sendMessageDiv);
+            hideElement(scrapeDiv);
+
+            // Fetching data calling API
+            const url = logHistoryDiv.getAttribute("data-url");
+
+            // Each time this button is clicked it needs to clear the data before fetching data
+            tableBody.innerHTML = "";
+
+            getDataAboutLogHistory(url).then(() => {
+                // This code will run after the data has been fetched and the page has been updated
+                window.scrollBy({top: 200, behavior: "smooth"});
+            });
+
+        }
+        else {
+            hideElement(logHistoryDiv);
         }
     });
 }
@@ -128,11 +169,18 @@ if (checkboxes) {
         chck.addEventListener("change", () => {
 
             // If no box is checked, Send Via Zoom Button is disabled
-            var atLeastOneCheckboxIsChecked = false;
+            let atLeastOneCheckboxIsChecked = false;
+            let everyCheckBoxChecked = true;
 
             checkboxes.forEach(checkbox => {
-                if (checkbox.checked)
+                if (checkbox.checked) {
                     atLeastOneCheckboxIsChecked = true;
+                }
+                
+                else {
+                    everyCheckBoxChecked = false;
+                }
+
             });
 
             if (atLeastOneCheckboxIsChecked) {
@@ -145,6 +193,11 @@ if (checkboxes) {
                 selectAll.checked = false;
                 hideElement(zoomFootnote);
             }
+
+            if (everyCheckBoxChecked) 
+                selectAll.checked = true;
+            else
+                selectAll.checked = false;
         });
     })
 }
@@ -299,36 +352,13 @@ if (saveMessageButtons) {
 
             load_url = btn.getAttribute("data-url");
 
-            fetch(load_url, {
-                method: "PUT",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCookie('csrftoken')  // Assuming you have a function to get the CSRF token
-                },
-                body: JSON.stringify({
-                    message: message
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                const editMessageDiv = btn.closest("div");
-                const parentLi = btn.closest("li");
-                const loadInfoDiv = parentLi.querySelector(".load-info");
-                const messageParagraph = parentLi.querySelector(".message-paragraph");
-
-                    
-                if (!isHidden(editMessageDiv)) {
-
-                    hideElement(editMessageDiv);
-                    showElement(loadInfoDiv);
-                    messageParagraph.textContent = message;
-                }
-            });
+            saveLoadMessage(message, load_url, btn);
 
             event.preventDefault();
         });
     });
 }
+
 
 // PROFILE PAGE
 // Edit button in profile page
@@ -398,4 +428,89 @@ function getCookie(name) {
 
     // Return null if not found
     return null;
+}
+
+function activeButton(button, needsToBeActive) {
+    if (needsToBeActive) {
+        button.classList.add("active");
+    }
+    else {
+        button.classList.remove("active");
+    }
+}
+
+
+// Function for getting all logs from database
+function getDataAboutLogHistory(url) {
+
+    return new Promise((resolve, reject) => {
+        fetch(url, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+
+            data.forEach((log, index) => {
+                const row = document.createElement("tr");
+
+                const indexCell = document.createElement("th");
+                indexCell.scope = "row";
+                indexCell.textContent = index + 1;
+                row.appendChild(indexCell);
+
+                const loadIdCell = document.createElement("td");
+                loadIdCell.textContent = log["load_id"];
+                row.appendChild(loadIdCell);
+
+                const driversCountCell = document.createElement("td");
+                driversCountCell.textContent = log["count_drivers"];
+                row.appendChild(driversCountCell);
+
+                const dateCell = document.createElement("td");
+                dateCell.textContent = log["date"];
+                row.appendChild(dateCell);
+
+                tableBody.appendChild(row);
+                resolve();
+            });
+
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            reject(error);
+        });
+    });
+}
+
+// Function for saving the edited load message to the database
+function saveLoadMessage(message, url, saveButton) {
+
+    fetch(url, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken')  // Assuming you have a function to get the CSRF token
+        },
+        body: JSON.stringify({
+            message: message
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        const editMessageDiv = saveButton.closest("div");
+        const parentLi = saveButton.closest("li");
+        const loadInfoDiv = parentLi.querySelector(".load-info");
+        const messageParagraph = parentLi.querySelector(".message-paragraph");
+            
+        if (!isHidden(editMessageDiv)) {
+
+            hideElement(editMessageDiv);
+            showElement(loadInfoDiv);
+            messageParagraph.textContent = message;
+        }
+    });
+
 }

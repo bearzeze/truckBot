@@ -1,21 +1,20 @@
+import json
+import os
+import time
+
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib import messages
 from django.core.cache import cache
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.hashers import make_password, check_password
-from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
+from django.contrib.auth.hashers import check_password
+from django.http import HttpResponseRedirect, JsonResponse
 
-from datetime import datetime
-import json
-import os
-
-from pywinauto.application import Application
 from pynput.keyboard import Key, Listener
 
-from .models import User, Driver, LogHistory, Load
+from .models import User, LogHistory, Load
+from .serializers import LogHistorySerializer
 from .scrape import scrape_trucks
 from .zoom import send_sms
 
@@ -34,10 +33,6 @@ def index(request):
             "informed_drivers": informed_drivers
         })
         
-    logs = LogHistory.objects.all()
-    for log in logs:
-        print(log.date)
-        
     return render(request, "truckBot/index.html", context={
         "loads": load_data,
     })
@@ -53,18 +48,23 @@ def scrape(request):
                 raise
             
             load_ids = [int(load_id.strip()) for load_id in load_ids.split(",")]
+            
         except ValueError:
             messages.error(request, "Load ids must be integers separated by commas")
             return HttpResponseRedirect(reverse("index"))
 
         for load_id in load_ids:
-            load = Load.objects.filter(id=load_id)
-            
-            if len(load) == 1:
-                messages.warning(request, f"Load with {load_id} id is already in database!")
+            # If this load is in Log History you cannot scrape it again
+            if LogHistory.objects.filter(load_id=load_id).exists():
+                messages.warning(request, f"Load with {load_id} id had been already processed (find it in Log history)")
+                continue
+                
+            # If this load is in Loads database you cannot scrape it again
+            if Load.objects.filter(id=load_id).exists():
+                messages.warning(request, f"Load with {load_id} id is already prepared!")
                 continue
             
-            # If abort button is clicked
+            # Checks whether scrape is aborted during the process
             if cache.get("abort_scraping"):
                 messages.warning(request, 'Scraping aborted!')
                 break
@@ -97,7 +97,7 @@ def scrape(request):
     return HttpResponseRedirect(reverse("index"))
 
 
-# API for exiting the scraping process
+# API for aborting the scraping process
 @login_required
 def set_scraping_flag(request):
     if request.method == 'POST' and request.user.is_authenticated:
@@ -116,26 +116,35 @@ def set_abort_flag(request):
         return JsonResponse({'status': 'error'})
     
 
+# Sending messages to the driver using Zoom app
 @login_required
 def send_messages(request):
     if request.method == "POST" and request.user.is_authenticated:
         
-        cache.set("stop_action", False, None)        
-        
         load_ids = request.POST.getlist('scraped_ids')
         
-        # If there are no loads it goes to home page
+        # If there are no loads it redirects to the home page
         if (len(load_ids) == 0 ):
             return HttpResponseRedirect(reverse("index"))
         
+        # If esc is pressed it stops the action 
+        cache.set("stop_action", False, None)        
         listener = Listener(on_press=on_press)
         listener.start()
 
         for load_id in load_ids:
+            
             if cache.get("stop_action"):
                 break
             
-            send_sms(request, load_id, proba=False)
+            # Checking whether load exists in db
+            if not Load.objects.filter(id=load_id).exists():
+                messages.error(request, f"There is no scraped load with id {load_id}")
+            
+            time.sleep(1)
+            
+            # Method for sending sms through the zoom
+            send_sms(request, load_id, proba=False, palci=False)
         
         listener.stop()
     
@@ -161,6 +170,15 @@ def change_load_message(request, load_id):
         else:
             return JsonResponse({"error": "Message cannot be empty."}, status=400)
   
+
+# API for getting all the log through the Serializer
+@login_required
+def log_history(request):
+    if request.method == "GET" and request.user.is_authenticated:
+        logs = LogHistory.objects.all().order_by("-date")
+        serializer = LogHistorySerializer(logs, many=True)
+        return JsonResponse(serializer.data, safe=False)
+        
   
 # Profile page
 @login_required
@@ -327,12 +345,12 @@ def login_page(request):
         else:
             login(request, user)
             
+            # Loading landstar credentials
             load_landstar_credentials(request, user.landstar_credentials_path)
             request.session["zoom_exe_path"] = user.zoom_exe_path
             request.session["zoom_phone_num"] = user.zoom_phone_numb
                 
             return HttpResponseRedirect(reverse("index"))
-
 
     elif request.method == "GET":
         return render(request, "truckBot/login.html")
@@ -344,7 +362,7 @@ def logout_page(request):
 
 
 def no_page(request, everything_else):
-    return JsonResponse({"error": "There are no such a page on this web application"}, status=404)
+    return render(request, "truckBot/noPage.html")
     
     
 def load_landstar_credentials(request, landstar_credentials_path):
@@ -352,8 +370,9 @@ def load_landstar_credentials(request, landstar_credentials_path):
         with open(landstar_credentials_path, "r") as file:
             request.session["landstar_acc"] = file.readline().strip()
             request.session["landstar_pass"] = file.readline().strip()
+  
             
-# Function for listening        
+# Function for listening the keys      
 def on_press(key):
     if key == Key.esc:
         cache.set("stop_action", True, None)

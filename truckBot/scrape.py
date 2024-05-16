@@ -1,19 +1,14 @@
-import datetime
 import time
-import selenium
-import json
 import os
 import re
 import django
+
 from django.core.cache import cache
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.support.ui import WebDriverWait
-from webdriver_auto_update.chrome_app_utils import ChromeAppUtils
-from webdriver_auto_update.webdriver_manager import WebDriverManager
 from selenium.webdriver.support import expected_conditions as EC
 
 from bs4 import BeautifulSoup
@@ -143,9 +138,6 @@ def scrape_trucks(request, load_id, headless=True):
                     Driver.objects.create(name=cells[4].text,
                                           phone_number=cells[5].text.strip().strip('\xa0')[:14], # 14 digits is the phone number
                                           load=Load.objects.get(id=load_id))
-
-        
-        print("everything went ok!")
 
     except Exception as e:
         print(f"An error occurred: {e}")

@@ -1,15 +1,15 @@
-import sys
-import datetime
 import time
 import warnings
-import json
 import os
 import django
+import pyperclip
 
 from django.core.cache import cache
 from django.contrib import messages
 
 from pywinauto.application import Application
+from pywinauto.keyboard import SendKeys
+
 
 from .models import Load, Driver, LogHistory
 
@@ -18,13 +18,14 @@ django.setup()
 
 
 # Method for opening the Zoom and sending the message
-def send_sms(request, load_id, proba=False):
+def send_sms(request, load_id, proba=False, palci=False):
     
     exe_file_path = request.session["zoom_exe_path"]
     load = Load.objects.get(id=load_id)
     truck_drivers = load.drivers.all()
     
     message = load.message + request.user.landstar_info()
+    print(message)
     
     warnings.filterwarnings("ignore", message="The window has not been focused due to")
 
@@ -39,8 +40,9 @@ def send_sms(request, load_id, proba=False):
         sms_tab = zoom_app.Zoom.child_window(title_re="SMS.*", control_type="TabItem").wrapper_object()
         sms_tab.click_input()
         
-        # message needs to be ready for Zoom application:
-        message = message.replace("\n", "+{ENTER}").replace(" ", "{SPACE}")
+        # message needs to be ready for Zoom application if type_keys is hit:
+        if palci:
+            message = message.replace("\n", "+{ENTER}").replace(" ", "{SPACE}")
 
         first = True
         for driver in truck_drivers:
@@ -57,7 +59,16 @@ def send_sms(request, load_id, proba=False):
                 send_to = zoom_app.Zoom.child_window(title_re="Send to.*", control_type="Edit",
                                                      found_index=0).wrapper_object()
                 send_to.click_input()
-                send_to.type_keys("^a{BACKSPACE}" + driver.phone_number + "{ENTER}")
+                
+                send_to.type_keys("^a{BACKSPACE}")
+                
+                if palci:
+                    send_to.type_keys(driver.phone_number)
+                else:
+                    pyperclip.copy(driver.phone_number)
+                    SendKeys("^v")
+                    
+                send_to.type_keys("{ENTER}")
 
                 text = zoom_app.Zoom.child_window(title_re="Text.*", found_index=0).wrapper_object()
                 text.click_input()
@@ -65,11 +76,14 @@ def send_sms(request, load_id, proba=False):
                 if first:
                     time.sleep(1)
                 
-                if cache.get("stop_action"):
-                    zoom_app.kill()
-                    break
-
-                text.type_keys("^a{BACKSPACE}" + message)
+                text.type_keys("^a{BACKSPACE}")
+                
+                if palci:
+                    text.type_keys(message)
+                else:
+                    pyperclip.copy(message)
+                    
+                    SendKeys("^v")
 
                 send_message = zoom_app.Zoom.child_window(title_re="Ctrl+.*", control_type="Button",
                                                           found_index=0).wrapper_object()
@@ -106,4 +120,4 @@ def send_sms(request, load_id, proba=False):
     finally:
         if zoom_app.is_process_running():
             zoom_app.kill()
-
+            

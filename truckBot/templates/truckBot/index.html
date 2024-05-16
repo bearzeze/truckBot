@@ -65,7 +65,7 @@
             title="Automatically send messages to the truck drivers">Send Messages</button></a>
 
 
-        <div id="send-message" class="hide mt-2">
+        <div id="send-message" class="hide ms-3 mt-2">
             {% if loads %}
             <form action="{% url 'send_messages' %}" method="POST">
                 {% csrf_token %}
@@ -113,14 +113,13 @@
                             title="You need to be already logged in into Zoom for app to work!" disabled>Send via
                             Zoom</button>
                         <span class="fst-italic mt-2 footnote zoom-footnote hide">You need to be logged into Zoom for
-                            app to
-                            work!</span>
+                            app to work</span>
                     </div>
                 </ul>
             </form>
 
             {% else %}
-            <p>No scraped loads in database</p>
+            <p class="ms-4">No scraped loads in database</p>
             {% endif %}
 
         </div>
@@ -128,7 +127,22 @@
         <button type="button" class="ms-4 btn btn-outline-secondary btn-lg" id="log-history-btn"
             title="Informations about finished loads">Log History</button></a>
 
-        <div id="log-history" class="hide mt-2">
+        <div id="log-history" class="hide mt-2 ms-4" data-url="{% url 'log_history' %}">
+            <table class="table table-striped table-hover text-center ms-2">
+                <thead>
+                    <tr>
+                        <th scope="col"># <br></th>
+                        <th scope="col">Load Id <br></th>
+                        <th scope="col">Num. of drivers <br>informed</th>
+                        <th scope="col">Log time <br></th>
+                    </tr>
+                </thead>
+                <tbody id="log-history-table-body">
+
+
+                </tbody>
+            </table>
+            
 
         </div>
 
