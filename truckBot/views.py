@@ -42,6 +42,9 @@ def index(request):
 @login_required
 def scrape(request):
     if request.method == "POST" and request.user.is_authenticated:
+        
+        radius_distance = request.POST.get("radius-distance");
+        
         load_ids = request.POST.get("load_ids")
         try:
             if len(load_ids) == 0:
@@ -75,7 +78,7 @@ def scrape(request):
                 if request.user.is_superuser:
                     headless = False
                     
-                result = scrape_trucks(request, load_id, headless)
+                result = scrape_trucks(request, load_id, radius_distance, headless)
                                     
                 if result == 0:
                     messages.error(request, f"Load with {load_id} id doesn't exist!")
@@ -88,7 +91,7 @@ def scrape(request):
                     messages.success(request, f"Load with {load_id} id is successfully saved in database!")
 
             except Exception as e:
-                messages.error(request, f"Load with {load_id} id had not been scraped!")
+                messages.error(request, f"Load with {load_id} id had not been scraped due to the error: {e}!")
                 return HttpResponseRedirect(reverse("index"))
             
         cache.set('is_scraping', False, None)

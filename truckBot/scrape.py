@@ -21,7 +21,7 @@ django.setup()
 
 # Method for scraping
     
-def scrape_trucks(request, load_id, headless=True):
+def scrape_trucks(request, load_id, radius, headless=True):
     chrome_options = Options()
     chrome_options.add_experimental_option("detach", True)
     
@@ -64,7 +64,7 @@ def scrape_trucks(request, load_id, headless=True):
         driver.execute_script("arguments[0].value = 1", capacity_type)
 
         distance_radius = driver.find_element(By.ID, "RadiusDistances")
-        driver.execute_script("arguments[0].value = 200", distance_radius)
+        driver.execute_script(f"arguments[0].value = {radius}", distance_radius)
 
         # time for visual checking
         time.sleep(5)

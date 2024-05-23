@@ -8,8 +8,6 @@ from django.core.cache import cache
 from django.contrib import messages
 
 from pywinauto.application import Application
-from pywinauto.keyboard import SendKeys
-
 
 from .models import Load, Driver, LogHistory
 
@@ -24,14 +22,17 @@ def send_sms(request, load_id, proba=False, palci=False):
     load = Load.objects.get(id=load_id)
     truck_drivers = load.drivers.all()
     
-    message = load.message + request.user.landstar_info()
-    print(message)
+    message1 = load.message + request.user.landstar_info1()
+    message2 = load.message + request.user.landstar_info2()
+    messages_zoom = [message1, message2]
     
     warnings.filterwarnings("ignore", message="The window has not been focused due to")
 
     zoom_app = (Application(backend="uia")
                 .start(exe_file_path)
                 .connect(title="Zoom", timeout=100))
+    
+    time.sleep(2)
 
     try:
         phone_tab = zoom_app.Zoom.child_window(title_re="Phone.*", control_type="TabItem").wrapper_object()
@@ -42,10 +43,10 @@ def send_sms(request, load_id, proba=False, palci=False):
         
         # message needs to be ready for Zoom application if type_keys is hit:
         if palci:
-            message = message.replace("\n", "+{ENTER}").replace(" ", "{SPACE}")
+            messages_zoom = [message.replace("\n", "+{ENTER}").replace(" ", "{SPACE}") for message in messages_zoom] 
 
         first = True
-        for driver in truck_drivers:
+        for idx, driver in enumerate(truck_drivers):
             # If user press Esc it will stop the action after sending last message
             if cache.get("stop_action"):
                 zoom_app.kill()
@@ -66,7 +67,7 @@ def send_sms(request, load_id, proba=False, palci=False):
                     send_to.type_keys(driver.phone_number)
                 else:
                     pyperclip.copy(driver.phone_number)
-                    SendKeys("^v")
+                    send_to.type_keys("^v")
                     
                 send_to.type_keys("{ENTER}")
 
@@ -79,11 +80,10 @@ def send_sms(request, load_id, proba=False, palci=False):
                 text.type_keys("^a{BACKSPACE}")
                 
                 if palci:
-                    text.type_keys(message)
+                    text.type_keys(messages_zoom[idx%2])
                 else:
-                    pyperclip.copy(message)
-                    
-                    SendKeys("^v")
+                    pyperclip.copy(messages_zoom[idx%2])
+                    text.type_keys("^v")
 
                 send_message = zoom_app.Zoom.child_window(title_re="Ctrl+.*", control_type="Button",
                                                           found_index=0).wrapper_object()
@@ -96,6 +96,7 @@ def send_sms(request, load_id, proba=False, palci=False):
                     send_message.click_input()
                     driver.sms_sent = True
                     driver.save()
+                    time.sleep(0.5)
                 else:
                     text.type_keys("^a{BACKSPACE}")
                     

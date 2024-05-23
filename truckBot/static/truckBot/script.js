@@ -10,6 +10,8 @@ const logHistoryDiv = document.querySelector("#log-history");
 
 const scrapeDiv = document.querySelector("#scrape");
 const sendMessageDiv = document.querySelector("#send-message");
+const radiusDistanceLink = document.querySelector("#radius-distance-link");
+const radiusDistance = document.querySelector("#radius-distance");
 
 const runScrapeButton = document.querySelector("#run-scrape-btn");
 const abortScrapeButton = document.querySelector("#abort-scrape-btn");
@@ -56,6 +58,7 @@ if (scrapeLoadButton) {
             showElement(scrapeDiv);
             hideElement(sendMessageDiv);
             hideElement(logHistoryDiv);
+            hideElement(radiusDistance);
         }
 
         else {
@@ -63,6 +66,20 @@ if (scrapeLoadButton) {
             hideElement(scrapeDiv);
         }
     });
+}
+
+if (radiusDistanceLink) {
+    radiusDistanceLink.addEventListener("click", () => {
+
+        if (isHidden(radiusDistance)) {
+            showElement(radiusDistance);
+        }
+        else {
+            hideElement(radiusDistance);
+        }
+        
+
+    })
 }
 
 // Pressing Sending Message Button opens only that div and hide all others
@@ -224,13 +241,22 @@ if (selectAll) {
 }
 
 // When Zoom is fired up button is disabled, and text is different
-if (sendingMessagesForm) {
-    sendingMessagesForm.addEventListener("submit", () => {
+if (sendZoomButton) {
+    sendZoomButton.addEventListener("click", () => {
+
+        sendingMessagesForm.submit();
+
         sendZoomButton.disabled = true;
-        sendZoomButton.innerHTML = "Press Esc to stop";
+        sendZoomButton.innerHTML = "Press Esc to Stop";
         sendZoomButton.classList.remove("btn-primary");
         sendZoomButton.classList.add("btn-danger");
         hideElement(zoomFootnote);
+
+        checkboxes.forEach(chck => {
+            chck.disabled = true;
+        });
+
+        selectAll.disabled = true;
     });
 }
 

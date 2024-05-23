@@ -10,8 +10,11 @@ class User(AbstractUser):
     landstar_lastname = models.CharField(max_length=50)
     landstar_credentials_path = models.CharField(max_length=250, blank=True)
 
-    def landstar_info(self):
+    def landstar_info1(self):
         return f"\n{self.landstar_firstname} Contact: {self.zoom_phone_numb}"
+    
+    def landstar_info2(self):
+        return f"\n{self.landstar_firstname} {self.zoom_phone_numb}"
 
 
 class Load(models.Model):

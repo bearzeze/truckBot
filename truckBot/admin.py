@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
+from django.utils.translation import gettext_lazy as _
 
 from .models import User, Load, Driver, LogHistory
 
@@ -16,10 +17,27 @@ class LoadAdmin(admin.ModelAdmin):
   list_display = ("id", "origin", "pickup", "destination", "delivery", "price", "finished")
   search_fields = ("id", )
   
+  
+class FinishedLoadsListFilter(admin.SimpleListFilter):
+    title = _('load id with finished loads')  # a label for our filter
+    parameter_name = 'load_id'  # you can put here any name
+
+    def lookups(self, request, model_admin):
+        # This method should return a list of tuples. The first element in each
+        # tuple is the coded value for the option that will appear in the URL query.
+        # The second element is the human-readable name for the option that will
+        # appear in the right sidebar.
+        return [(load.id, Load.objects.get(id=load.id)) for load in Load.objects.filter(finished=False)]
+
+    def queryset(self, request, queryset):
+        # Returns the filtered queryset based on the value provided in the query string
+        if self.value():
+            return queryset.filter(load_id=self.value())
+  
       
 class DriverAdmin(admin.ModelAdmin):
   list_display = ("name", "phone_number", "sms_sent", "load_id")
-  list_filter = ("load_id", )
+  list_filter = (FinishedLoadsListFilter, )
   search_fields = ("load_id", )
 
   

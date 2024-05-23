@@ -34,6 +34,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         {% endfor %}
+        
         <div></div>
 
         {% endif %}
@@ -49,7 +50,14 @@
         <div id="scrape" class="hide ms-4 mb-4">
             <form action="{% url 'scrape' %}" method="POST" class="ms-4">
                 {% csrf_token %}
-                <label for="load_ids" class="form-label">Insert load id (or ids separated by commas):</label>
+                <a href="javascript:void(0);" id="radius-distance-link" style="display: block;">Distance Radius</a>
+                <select name="radius-distance" id="radius-distance" class="hide mt-2 mb-2">
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                    <option value="150" selected>150</option>
+                    <option value="200">200</option>
+                </select>
+                <label for="load_ids"  class="form-label mt-2">Insert load id (or ids separated by commas):</label>
                 <input type="text" name="load_ids" id="load_ids" class="form-control mb-3" autocomplete="off" autofocus
                     required>
                 <div class="d-grid  col-4 mx-auto">
