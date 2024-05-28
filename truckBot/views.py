@@ -55,44 +55,36 @@ def scrape(request):
         except ValueError:
             messages.error(request, "Load ids must be integers separated by commas")
             return HttpResponseRedirect(reverse("index"))
-
-        for load_id in load_ids:
+        
+        load_ids_copy = load_ids.copy()
+        
+        # Checking first and if load_id is already processed/scraped it will be removed from the list:
+        for load_id in load_ids_copy:
             # If this load is in Log History you cannot scrape it again
             if LogHistory.objects.filter(load_id=load_id).exists():
                 messages.warning(request, f"Load with {load_id} id had been already processed (find it in Log history)")
+                load_ids.remove(load_id)
                 continue
                 
             # If this load is in Loads database you cannot scrape it again
             if Load.objects.filter(id=load_id).exists():
                 messages.warning(request, f"Load with {load_id} id is already prepared!")
-                continue
+                load_ids.remove(load_id)
+
+        # Checks whether scrape is aborted during the process
+        if cache.get("abort_scraping"):
+            messages.warning(request, 'Scraping aborted!')
             
-            # Checks whether scrape is aborted during the process
-            if cache.get("abort_scraping"):
-                messages.warning(request, 'Scraping aborted!')
-                break
-
-            try:
-                headless = True
+        try:
+            headless = True
+            
+            if request.user.is_superuser:
+                headless = False
                 
-                if request.user.is_superuser:
-                    headless = False
-                    
-                result = scrape_trucks(request, load_id, radius_distance, headless)
-                                    
-                if result == 0:
-                    messages.error(request, f"Load with {load_id} id doesn't exist!")
-                    
-                elif result == "Aborted":
-                    messages.warning(request, 'Scraping aborted!')
-                    break
-                
-                else:
-                    messages.success(request, f"Load with {load_id} id is successfully saved in database!")
-
-            except Exception as e:
-                messages.error(request, f"Load with {load_id} id had not been scraped due to the error: {e}!")
-                return HttpResponseRedirect(reverse("index"))
+            scrape_trucks(request, load_ids, radius_distance, headless)
+                                
+        except Exception as e:
+            return HttpResponseRedirect(reverse("index"))
             
         cache.set('is_scraping', False, None)
         cache.set('abort_scraping', False, None)
@@ -134,21 +126,18 @@ def send_messages(request):
         cache.set("stop_action", False, None)        
         listener = Listener(on_press=on_press)
         listener.start()
-
-        for load_id in load_ids:
-            
-            if cache.get("stop_action"):
-                break
-            
+        
+        # Filtering only ids which will be processed for sending
+        load_ids_copy = load_ids.copy()
+        for load_id in load_ids_copy:
             # Checking whether load exists in db
             if not Load.objects.filter(id=load_id).exists():
                 messages.error(request, f"There is no scraped load with id {load_id}")
+                load_ids.remove(load_id)
             
-            time.sleep(1)
-            
-            # Method for sending sms through the zoom
-            send_sms(request, load_id, proba=False, palci=False)
-        
+        # Method for sending sms through the zoom
+        send_sms(request, load_ids, proba=False, palci=False)
+    
         listener.stop()
     
     return HttpResponseRedirect(reverse("index"))
