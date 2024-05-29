@@ -136,7 +136,7 @@ def send_messages(request):
                 load_ids.remove(load_id)
             
         # Method for sending sms through the zoom
-        send_sms(request, load_ids, proba=False, palci=False)
+        send_sms(request, load_ids, proba=True, palci=False)
     
         listener.stop()
     

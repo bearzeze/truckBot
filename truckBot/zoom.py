@@ -42,7 +42,10 @@ def send_sms(request, load_ids, proba=False, palci=False):
         
         message1 = load.message + request.user.landstar_info1()
         message2 = load.message + request.user.landstar_info2()
-        messages_zoom = [message1, message2]
+        message3 = request.user.load_offer_str() + message1 
+        message4 = request.user.load_offer_str() + message2
+
+        messages_zoom = [message1, message2, message3, message4]
 
         try:
             phone_tab = zoom_app.Zoom.child_window(title_re="Phone.*", control_type="TabItem").wrapper_object()
@@ -91,9 +94,9 @@ def send_sms(request, load_ids, proba=False, palci=False):
                     text.type_keys("^a{BACKSPACE}")
                     
                     if palci:
-                        text.type_keys(messages_zoom[idx%2])
+                        text.type_keys(messages_zoom[idx % len(messages_zoom)])
                     else:
-                        pyperclip.copy(messages_zoom[idx%2])
+                        pyperclip.copy(messages_zoom[idx % len(messages_zoom)])
                         text.type_keys("^v")
 
                     send_message = zoom_app.Zoom.child_window(title_re="Ctrl+.*", control_type="Button",
@@ -113,7 +116,7 @@ def send_sms(request, load_ids, proba=False, palci=False):
                         text.type_keys("^a{BACKSPACE}")
                         
             # If everything went ok without stopping action
-            if not cache.get("stop_action"):
+            if not cache.get("stop_action") and not proba:
                 # Load is finished, but not deleted
                 load.finished = True
                 load.save()

@@ -9,6 +9,9 @@ class User(AbstractUser):
     landstar_firstname = models.CharField(max_length=50)
     landstar_lastname = models.CharField(max_length=50)
     landstar_credentials_path = models.CharField(max_length=250, blank=True)
+    
+    def load_offer_str(self):
+        return "[[LOAD OFFER!!]][[LOAD OFFER!!]]\n"
 
     def landstar_info1(self):
         return f"\n{self.landstar_firstname} Contact: {self.zoom_phone_numb}"
@@ -36,7 +39,6 @@ class Load(models.Model):
     def save(self, *args, **kwargs):
         if not self.message:  # This checks if the object is being created for the first time
             self.message = (
-                f"[[LOAD OFFER!!]][[LOAD OFFER!!]]\n" +
                 f"Pick: {self.origin} -- {self.pickup}\n" +
                 f"Delivery: {self.destination} -- {self.delivery}\n" +
                 f"Mode: {self.mode}\n" +
