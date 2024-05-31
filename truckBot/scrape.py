@@ -21,7 +21,6 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'webapp.settings')
 django.setup()
 
 # Method for scraping
-    
 def scrape_trucks(request, load_ids, radius, headless=True):
     chrome_options = Options()
     chrome_options.add_experimental_option("detach", True)

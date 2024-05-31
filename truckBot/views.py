@@ -1,6 +1,6 @@
 import json
 import os
-import time
+import platform
 
 from django.shortcuts import render
 from django.urls import reverse
@@ -11,12 +11,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.hashers import check_password
 from django.http import HttpResponseRedirect, JsonResponse
 
-from pynput.keyboard import Key, Listener
+if platform.system() == "Windows":
+    from pynput.keyboard import Key, Listener
+    from .zoom import send_sms
 
+from .scrape import scrape_trucks
 from .models import User, LogHistory, Load
 from .serializers import LogHistorySerializer
-from .scrape import scrape_trucks
-from .zoom import send_sms
 
 
 @login_required
@@ -41,7 +42,9 @@ def index(request):
 # Method for scraping the website in order to get information about loads and available drivers
 @login_required
 def scrape(request):
-    if request.method == "POST" and request.user.is_authenticated:
+    print(platform.system())
+
+    if request.method == "POST" and request.user.is_authenticated and platform.system() == "Windows":
         
         radius_distance = request.POST.get("radius-distance");
         
@@ -136,7 +139,7 @@ def send_messages(request):
                 load_ids.remove(load_id)
             
         # Method for sending sms through the zoom
-        send_sms(request, load_ids, proba=True, palci=False)
+        send_sms(request, load_ids, proba=False, palci=False)
     
         listener.stop()
     

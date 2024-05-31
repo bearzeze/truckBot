@@ -14,7 +14,6 @@ from .models import Load, Driver, LogHistory
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'webapp.settings')
 django.setup()
 
-
 # Method for opening the Zoom and sending the message
 def send_sms(request, load_ids, proba=False, palci=False):
     
