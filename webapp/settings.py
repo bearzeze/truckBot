@@ -79,16 +79,20 @@ WSGI_APPLICATION = 'webapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'truckdb',  # Your MySQL database name
-        'USER': 'adminTB',
-        'PASSWORD': 'arvin123',
-        'HOST': '127.0.0.1',  # Use '127.0.0.1' if needed
-        'PORT': '3306',  # Default MySQL port
+with SSHTunnelForwarder(('213.210.20.183', 22),
+                        ssh_username='root',
+                        ssh_password='|uO;t|T#Do@H18B$$nE6',
+                        remote_bind_address=('213.210.20.183', 3306),) as ssh_tunnel:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'truckdb',  # Your MySQL database name
+            'USER': 'adminTB',
+            'PASSWORD': 'arvin123',
+            'HOST': '213.210.20.183',  
+            'PORT': '3306',  # Default MySQL port
+        }
     }
-}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
