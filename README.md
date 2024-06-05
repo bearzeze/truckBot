@@ -1,4 +1,4 @@
-# **TruckBot Automation Web App**
+# **TruckBot Automation App**
 
 ### Fully functional app for the scraping data about loads and informing available drivers through automation
 
