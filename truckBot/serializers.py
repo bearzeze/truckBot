@@ -1,14 +1,15 @@
 from rest_framework import serializers
-from .models import LogHistory
+from .models import LoadHistory
 
 
-class LogHistorySerializer(serializers.ModelSerializer):
+class LoadHistorySerializer(serializers.ModelSerializer):
     date = serializers.SerializerMethodField()
     count_drivers = serializers.IntegerField(source="drivers_informed_count")
+    username = serializers.CharField(source="user.username")
     
     class Meta:
-        model = LogHistory
-        fields = ['load_id', 'date', 'count_drivers']
+        model = LoadHistory
+        fields = ['load_id', 'date', 'count_drivers', 'username']
     
     
     def get_date(self, obj):

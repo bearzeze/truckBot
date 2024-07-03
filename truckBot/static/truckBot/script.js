@@ -5,8 +5,11 @@ const backButtons = document.querySelectorAll(".back-btn");
 const postLoadButton = document.querySelector("#post-load-btn")
 const scrapeLoadButton = document.querySelector("#scrape-load-btn")
 const sendMessageButton = document.querySelector("#send-message-btn")
-const logHistoryButton = document.querySelector("#log-history-btn")
-const logHistoryDiv = document.querySelector("#log-history");
+const loadHistoryButton = document.querySelector("#load-history-btn")
+const loadHistoryDiv = document.querySelector("#load-history");
+
+const postLoadDiv = document.querySelector("#post-load");
+const txtFileLaneButtons = document.querySelectorAll(".txt-lane-info-btn");
 
 const scrapeDiv = document.querySelector("#scrape");
 const sendMessageDiv = document.querySelector("#send-message");
@@ -34,14 +37,35 @@ const editLoadMessagesButtons = document.querySelectorAll(".edit-load-msg-btn")
 const backLoadButtons = document.querySelectorAll(".back-msg-btn");
 const saveMessageButtons = document.querySelectorAll("#send-message li .save-msg-btn");
 
-const tableBody = document.querySelector("#log-history-table-body");
+const tableBody = document.querySelector("#load-history-table-body");
 
 
 // HOME PAGE
 // Pressing Post Load Button - it redirects to the new window for posting the loads
 if (postLoadButton) {
     postLoadButton.addEventListener("click", () => {
-        window.open("https://leads.landstaronline.com/AvailableLoads/NewLoadView.aspx?loadid=-500", "_blank");
+        // PRIJE SAMO OTVARA LANDSTAR GDJE UBACUJE POST LOAD
+        // window.open("https://leads.landstaronline.com/AvailableLoads/NewLoadView.aspx?loadid=-500", "_blank");
+
+        // Probati automatizirati ovaj proces...
+
+        if (isHidden(postLoadDiv)) {
+            activeButton(postLoadButton, true);
+            activeButton(scrapeLoadButton, false);
+            activeButton(sendMessageButton, false);
+            activeButton(loadHistoryButton, false);
+
+            showElement(postLoadDiv);
+
+            hideElement(scrapeDiv);
+            hideElement(sendMessageDiv);
+            hideElement(loadHistoryDiv);
+            hideElement(radiusDistance);
+        }
+        else {
+            hideElement(postLoadDiv);
+            activeButton(postLoadButton, false);
+        }
     });
 }
 
@@ -52,12 +76,15 @@ if (scrapeLoadButton) {
 
         if (isHidden(scrapeDiv)) {
             activeButton(scrapeLoadButton, true);
+            activeButton(postLoadButton, false);
             activeButton(sendMessageButton, false);
-            activeButton(logHistoryButton, false);
+            activeButton(loadHistoryButton, false);
 
             showElement(scrapeDiv);
+
+            hideElement(postLoadDiv);
             hideElement(sendMessageDiv);
-            hideElement(logHistoryDiv);
+            hideElement(loadHistoryDiv);
             hideElement(radiusDistance);
         }
 
@@ -66,20 +93,6 @@ if (scrapeLoadButton) {
             hideElement(scrapeDiv);
         }
     });
-}
-
-if (radiusDistanceLink) {
-    radiusDistanceLink.addEventListener("click", () => {
-
-        if (isHidden(radiusDistance)) {
-            showElement(radiusDistance);
-        }
-        else {
-            hideElement(radiusDistance);
-        }
-        
-
-    })
 }
 
 // Pressing Sending Message Button opens only that div and hide all others
@@ -89,12 +102,14 @@ if (sendMessageButton) {
 
         if (isHidden(sendMessageDiv)) {
             activeButton(sendMessageButton, true);
+            activeButton(postLoadButton, false);
             activeButton(scrapeLoadButton, false);
-            activeButton(logHistoryButton, false);
+            activeButton(loadHistoryButton, false);
 
             showElement(sendMessageDiv);
             hideElement(scrapeDiv);
-            hideElement(logHistoryDiv);
+            hideElement(loadHistoryDiv);
+            hideElement(postLoadDiv);
         }
 
         else {
@@ -105,35 +120,54 @@ if (sendMessageButton) {
 }
 
 // Pressing Sending Message Button opens only that div and hide all others
-if (logHistoryButton) {
+if (loadHistoryButton) {
 
-    logHistoryButton.addEventListener("click", function() {
+    loadHistoryButton.addEventListener("click", function () {
 
-        if (isHidden(logHistoryDiv)) {
-            activeButton(logHistoryButton, true);
+        if (isHidden(loadHistoryDiv)) {
+            activeButton(loadHistoryButton, true);
+            activeButton(postLoadButton, false);
             activeButton(scrapeLoadButton, false);
             activeButton(sendMessageButton, false);
 
-            showElement(logHistoryDiv);
+            showElement(loadHistoryDiv);
+            hideElement(postLoadDiv);
             hideElement(sendMessageDiv);
             hideElement(scrapeDiv);
 
             // Fetching data calling API
-            const url = logHistoryDiv.getAttribute("data-url");
+            const url = loadHistoryDiv.getAttribute("data-url");
+            const userIsAdmin = loadHistoryDiv.getAttribute("data-isadmin") === "True";
 
             // Each time this button is clicked it needs to clear the data before fetching data
             tableBody.innerHTML = "";
 
-            getDataAboutLogHistory(url).then(() => {
+            getDataAboutLoadHistory(url, userIsAdmin).then(() => {
                 // This code will run after the data has been fetched and the page has been updated
-                window.scrollBy({top: 200, behavior: "smooth"});
+                window.scrollBy({ top: 200, behavior: "smooth" });
             });
 
         }
         else {
-            hideElement(logHistoryDiv);
+            hideElement(loadHistoryDiv);
+            activeButton(loadHistoryButton, false);
         }
     });
+}
+
+// Pressing this button will open/clear txt. file in which will Lane info be copied
+if (txtFileLaneButtons) {
+
+    txtFileLaneButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const id = btn.getAttribute("data-id");
+            // opening and inserting or clearing textual content into notepad file
+            const action = btn.getAttribute("data-action");
+
+            callApiAboutTxtFileLaneInfo(action, id); 
+            
+        });
+    })
 }
 
 // Submiting Scrape form and Aborting it while running
@@ -158,6 +192,8 @@ if (scrapeForm) {
         });
 
         showElement(abortScrapeButton);
+
+        // IF user click abort button:
         abortScrapeButton.addEventListener("click", () => {
 
             hideElement(runScrapeButton);
@@ -180,6 +216,20 @@ if (scrapeForm) {
     });
 }
 
+
+if (radiusDistanceLink) {
+    radiusDistanceLink.addEventListener("click", () => {
+
+        if (isHidden(radiusDistance)) {
+            showElement(radiusDistance);
+        }
+        else {
+            hideElement(radiusDistance);
+        }
+    })
+}
+
+
 // Checkboxes for the loads which we want to select for sending sms
 if (checkboxes) {
     checkboxes.forEach(chck => {
@@ -193,7 +243,7 @@ if (checkboxes) {
                 if (checkbox.checked) {
                     atLeastOneCheckboxIsChecked = true;
                 }
-                
+
                 else {
                     everyCheckBoxChecked = false;
                 }
@@ -211,7 +261,7 @@ if (checkboxes) {
                 hideElement(zoomFootnote);
             }
 
-            if (everyCheckBoxChecked) 
+            if (everyCheckBoxChecked)
                 selectAll.checked = true;
             else
                 selectAll.checked = false;
@@ -240,7 +290,7 @@ if (selectAll) {
     });
 }
 
-// When Zoom is fired up button is disabled, and text is different
+// When Zoom is fired up button is disabled, and text will be different
 if (sendZoomButton) {
     sendZoomButton.addEventListener("click", () => {
 
@@ -370,8 +420,8 @@ if (backLoadButtons) {
 if (saveMessageButtons) {
 
     saveMessageButtons.forEach(btn => {
-        
-        btn.addEventListener("click", function(event) {
+
+        btn.addEventListener("click", function (event) {
 
             let message = btn.closest("div").querySelector("textarea").value;
             const load_id = btn.getAttribute("data-load_id");
@@ -457,17 +507,15 @@ function getCookie(name) {
 }
 
 function activeButton(button, needsToBeActive) {
-    if (needsToBeActive) {
+    if (needsToBeActive) 
         button.classList.add("active");
-    }
-    else {
+    else 
         button.classList.remove("active");
-    }
 }
 
 
-// Function for getting all logs from database
-function getDataAboutLogHistory(url) {
+// Function for getting all load history from database
+function getDataAboutLoadHistory(url, userIsAdmin) {
 
     return new Promise((resolve, reject) => {
         fetch(url, {
@@ -476,38 +524,46 @@ function getDataAboutLogHistory(url) {
                 'Content-Type': 'application/json',
             },
         })
-        .then(response => response.json())
-        .then(data => {
+            .then(response => response.json())
+            .then(data => {
 
-            data.forEach((log, index) => {
-                const row = document.createElement("tr");
+                data.forEach((log, index) => {
+                    const row = document.createElement("tr");
 
-                const indexCell = document.createElement("th");
-                indexCell.scope = "row";
-                indexCell.textContent = index + 1;
-                row.appendChild(indexCell);
+                    const indexCell = document.createElement("th");
+                    indexCell.scope = "row";
+                    indexCell.textContent = index + 1;
+                    row.appendChild(indexCell);
 
-                const loadIdCell = document.createElement("td");
-                loadIdCell.textContent = log["load_id"];
-                row.appendChild(loadIdCell);
+                    const loadIdCell = document.createElement("td");
+                    loadIdCell.textContent = log["load_id"];
+                    row.appendChild(loadIdCell);
 
-                const driversCountCell = document.createElement("td");
-                driversCountCell.textContent = log["count_drivers"];
-                row.appendChild(driversCountCell);
+                    const driversCountCell = document.createElement("td");
+                    driversCountCell.textContent = log["count_drivers"];
+                    row.appendChild(driversCountCell);
 
-                const dateCell = document.createElement("td");
-                dateCell.textContent = log["date"];
-                row.appendChild(dateCell);
+                    const dateCell = document.createElement("td");
+                    dateCell.textContent = log["date"];
+                    row.appendChild(dateCell);
 
-                tableBody.appendChild(row);
-                resolve();
+                    if (userIsAdmin) {
+                        const usernameCell = document.createElement("td");
+                        usernameCell.textContent = log["username"];
+                        usernameCell.style.color = "#6c757d";
+                        row.appendChild(usernameCell);
+                    }
+
+
+                    tableBody.appendChild(row);
+                    resolve();
+                });
+
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                reject(error);
             });
-
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            reject(error);
-        });
     });
 }
 
@@ -524,19 +580,47 @@ function saveLoadMessage(message, url, saveButton) {
             message: message
         })
     })
-    .then(response => response.json())
-    .then(data => {
-        const editMessageDiv = saveButton.closest("div");
-        const parentLi = saveButton.closest("li");
-        const loadInfoDiv = parentLi.querySelector(".load-info");
-        const messageParagraph = parentLi.querySelector(".message-paragraph");
-            
-        if (!isHidden(editMessageDiv)) {
+        .then(response => response.json())
+        .then(data => {
+            const editMessageDiv = saveButton.closest("div");
+            const parentLi = saveButton.closest("li");
+            const loadInfoDiv = parentLi.querySelector(".load-info");
+            const messageParagraph = parentLi.querySelector(".message-paragraph");
 
-            hideElement(editMessageDiv);
-            showElement(loadInfoDiv);
-            messageParagraph.textContent = message;
+            if (!isHidden(editMessageDiv)) {
+
+                hideElement(editMessageDiv);
+                showElement(loadInfoDiv);
+                messageParagraph.textContent = message;
+            }
+        });
+}
+
+// asynchronous function for opening or clearing txt file about lane loads
+async function callApiAboutTxtFileLaneInfo(action, id) {
+
+    const url = `api/${action}_txt_file/${id}`;
+
+    try {
+        const response = await fetch(url, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken')  // Assuming you have a function to get the CSRF token
+            },
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            // Handle the data (e.g., update UI, display alert)
+            if (action === "clear") {
+                alert(`Content from lane_info${id}.txt file cleared successfully!`);
+            }
+        } else {
+            console.error('API call failed:', response.status);
         }
-    });
+    } catch (error) {
+        console.error('Fetch error:', error);
+    }
 
 }

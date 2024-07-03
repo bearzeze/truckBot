@@ -1,6 +1,7 @@
 import json
 import os
 import platform
+import subprocess
 
 from django.shortcuts import render
 from django.urls import reverse
@@ -16,13 +17,17 @@ if platform.system() == "Windows":
     from .zoom import send_sms
 
 from .scrape import scrape_trucks
-from .models import User, LogHistory, Load
-from .serializers import LogHistorySerializer
+from .post import posting_load
+from .models import User, LoadHistory, Load
+from .serializers import LoadHistorySerializer
 
 
 @login_required
 def index(request):
-    loads_db = Load.objects.filter(finished=False)
+    if request.user.is_superuser:
+        loads_db = Load.objects.filter(finished=False)
+    else:
+        loads_db = Load.objects.filter(finished=False, user=request.user)
     load_data = []
     
     for load in loads_db:
@@ -36,24 +41,41 @@ def index(request):
         
     return render(request, "truckBot/index.html", context={
         "loads": load_data,
+        "load_ids": cache.get("ids", ""),
+        "isAdmin": request.user.is_superuser,
+        "postAllowed": request.user.posting_allowed or request.user.is_superuser,
+        "user_banned": request.user.banned and not request.user.is_superuser,
     })
 
 
+@login_required
+def prepare_loads(request, company):
+    if request.method == "POST":
+        if request.user.is_superuser:
+            headless = False
+            
+        print(company)
+            
+        # posting_load(request, headless)
+        
+    return HttpResponseRedirect(reverse("index"))
+        
+    
 # Method for scraping the website in order to get information about loads and available drivers
 @login_required
 def scrape(request):
-    print(platform.system())
-
-    if request.method == "POST" and request.user.is_authenticated and platform.system() == "Windows":
+    if request.method == "POST" and request.user.is_authenticated:
         
         radius_distance = request.POST.get("radius-distance");
         
-        load_ids = request.POST.get("load_ids")
+        load_ids_str = request.POST.get("load_ids")
         try:
-            if len(load_ids) == 0:
+            if len(load_ids_str) == 0:
                 raise
             
-            load_ids = [int(load_id.strip()) for load_id in load_ids.split(",")]
+            cache.set("ids", load_ids_str , None)
+            
+            load_ids = [int(load_id.strip()) for load_id in load_ids_str.split(",")]
             
         except ValueError:
             messages.error(request, "Load ids must be integers separated by commas")
@@ -61,10 +83,11 @@ def scrape(request):
         
         load_ids_copy = load_ids.copy()
         
+        
         # Checking first and if load_id is already processed/scraped it will be removed from the list:
         for load_id in load_ids_copy:
             # If this load is in Log History you cannot scrape it again
-            if LogHistory.objects.filter(load_id=load_id).exists():
+            if LoadHistory.objects.filter(load_id=load_id).exists():
                 messages.warning(request, f"Load with {load_id} id had been already processed (find it in Log history)")
                 load_ids.remove(load_id)
                 continue
@@ -74,6 +97,12 @@ def scrape(request):
                 messages.warning(request, f"Load with {load_id} id is already prepared!")
                 load_ids.remove(load_id)
 
+
+        # Saving load_ids_string if something went wrong during process
+        load_ids_str = ", ".join(str(id) for id in load_ids)
+        cache.set("ids", load_ids_str , None)
+        
+        
         # Checks whether scrape is aborted during the process
         if cache.get("abort_scraping"):
             messages.warning(request, 'Scraping aborted!')
@@ -112,7 +141,72 @@ def set_abort_flag(request):
         return JsonResponse({'status': 'success'})
     else:
         return JsonResponse({'status': 'error'})
+
+
+# API call for opening/clearing notepad 
+@login_required
+def open_txt_file(request, id):
+    if request.method == 'GET' and (request.user.is_superuser or (request.user.is_authenticated and request.user.posting_allowed)):
+        
+        if cache.get(f"lane_info{id}_txt_path") is None:
+            cache.set(f"lane_info{id}_txt_path", request.user.landstar_credentials_path.replace("landstar", f"lane_info{id}"), None)
+        
+        subprocess.Popen(["notepad", cache.get(f"lane_info{id}_txt_path")])
+        return JsonResponse({'status': 'Success'}, status=200)
+    else:
+        return JsonResponse({'status': 'You cannot call this API'}, status=401)
     
+    
+@login_required
+def clear_txt_file(request, id):
+    if request.method == 'GET' and (request.user.is_superuser or (request.user.is_authenticated and request.user.posting_allowed)):
+        if cache.get(f"lane_info{id}_txt_path") is not None:
+            try:
+                with open(request.user.landstar_credentials_path.replace("landstar", f"lane_info{id}"), 'w') as file:
+                    file.truncate(0)  # Truncate the file to zero bytes (clears its content)
+            except FileNotFoundError:
+                print(f"File path not found.")
+            except Exception as e:
+                print(f"Error: {e}")
+
+            return JsonResponse({'status': 'Success'}, status=200)
+    else:
+        return JsonResponse({'status': 'You cannot call this API'}, status=401)
+     
+     
+# API for changing the load message
+@login_required
+def change_load_message(request, load_id):
+    if request.method == "PUT" and request.user.is_authenticated:
+        try:
+            load = Load.objects.get(id=load_id)
+        except:
+            return JsonResponse({"error": "Load doesn't exists."}, status=404)
+
+        data = json.loads(request.body)
+            
+        new_message = data.get("message")
+        if not new_message in ["", None]:
+            load.message = data.get("message")
+            load.save()
+            return JsonResponse({"success": f"Load with id {load_id} has new message.", "message": new_message}, status=200)
+        else:
+            return JsonResponse({"error": "Message cannot be empty."}, status=400)
+  
+
+# API for getting all the load history through the Serializer
+@login_required
+def load_history(request):
+    if request.method == "GET" and request.user.is_authenticated:
+        # Only admin can see history from every user
+        if request.user.is_superuser:
+            history = LoadHistory.objects.all().order_by("-date")
+        else:
+            history = LoadHistory.objects.filter(user=request.user).order_by("-date")
+            
+        serializer = LoadHistorySerializer(history, many=True)
+        return JsonResponse(serializer.data, safe=False)
+            
 
 # Sending messages to the driver using Zoom app
 @login_required
@@ -139,42 +233,13 @@ def send_messages(request):
                 load_ids.remove(load_id)
             
         # Method for sending sms through the zoom
-        send_sms(request, load_ids, proba=False, palci=False)
+        send_sms(request, load_ids, proba=True, palci=False)
     
         listener.stop()
     
     return HttpResponseRedirect(reverse("index"))
 
 
-# API for changing the load message
-@login_required
-def change_load_message(request, load_id):
-    if request.method == "PUT" and request.user.is_authenticated:
-        try:
-            load = Load.objects.get(id=load_id)
-        except:
-            return JsonResponse({"error": "Load doesn't exists."}, status=404)
-
-        data = json.loads(request.body)
-            
-        new_message = data.get("message")
-        if not new_message in ["", None]:
-            load.message = data.get("message")
-            load.save()
-            return JsonResponse({"success": f"Load with id {load_id} has new message.", "message": new_message}, status=200)
-        else:
-            return JsonResponse({"error": "Message cannot be empty."}, status=400)
-  
-
-# API for getting all the log through the Serializer
-@login_required
-def log_history(request):
-    if request.method == "GET" and request.user.is_authenticated:
-        logs = LogHistory.objects.all().order_by("-date")
-        serializer = LogHistorySerializer(logs, many=True)
-        return JsonResponse(serializer.data, safe=False)
-        
-  
 # Profile page
 @login_required
 def profile(request):
@@ -360,12 +425,16 @@ def no_page(request, everything_else):
     return render(request, "truckBot/noPage.html")
     
     
+# TRY EXCEPT IZBRISATI KADA SE BUDE APLIKACIJA BUILDALA U exe file
 def load_landstar_credentials(request, landstar_credentials_path):
     if landstar_credentials_path:
-        with open(landstar_credentials_path, "r") as file:
-            request.session["landstar_acc"] = file.readline().strip()
-            request.session["landstar_pass"] = file.readline().strip()
-  
+        try:
+            with open(landstar_credentials_path, "r") as file:
+                request.session["landstar_acc"] = file.readline().strip()
+                request.session["landstar_pass"] = file.readline().strip()
+            
+        except:
+            return HttpResponseRedirect(reverse("index"))
             
 # Function for listening the keys      
 def on_press(key):

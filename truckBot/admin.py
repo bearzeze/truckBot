@@ -2,24 +2,29 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
 
-from .models import User, Load, Driver, LogHistory
+from .models import User, Load, Driver, LoadHistory
 
 class UserAdmin(UserAdmin):
     fieldsets = (
       (None, {'fields': ('username', 'password')}),
-      (('Personal info'), {'fields': ('first_name', 'last_name', 'email', 'zoom_exe_path', 'zoom_phone_numb', 'landstar_firstname', 'landstar_lastname', 'landstar_credentials_path')}),
+      
+      (('Personal info'), {'fields': ('first_name', 'last_name', 'email', 'zoom_exe_path',
+                                      'zoom_phone_numb', 'landstar_firstname', 'landstar_lastname',
+                                      'landstar_credentials_path', 'posting_allowed', 'banned')}),
+      
       (('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
+      
       (('Important dates'), {'fields': ('last_login', 'date_joined')}),
   )
     
       
 class LoadAdmin(admin.ModelAdmin):
-    list_display = ("id", "origin", "pickup", "destination", "delivery", "price", "finished")
+    list_display = ("id", "origin", "pickup", "destination", "delivery", "price", "finished", "user")
     search_fields = ("id", )
   
   
 class FinishedLoadsListFilter(admin.SimpleListFilter):
-    title = _('load id with finished loads')  # a label for our filter
+    title = _('load id with unfinished field')  # a label for our filter
     parameter_name = 'load_id'  # you can put here any name
 
     def lookups(self, request, model_admin):
@@ -44,8 +49,8 @@ class DriverAdmin(admin.ModelAdmin):
     def load_id(self, obj):
       return obj.load.id
   
-class LogHistoryAdmin(admin.ModelAdmin):
-    list_display = ("load_id", "drivers_informed_count", "date")
+class LoadHistoryAdmin(admin.ModelAdmin):
+    list_display = ("load_id", "drivers_informed_count", "date", "user")
     search_fields = ("load_id", )
   
 
@@ -53,4 +58,4 @@ class LogHistoryAdmin(admin.ModelAdmin):
 admin.site.register(User, UserAdmin)
 admin.site.register(Load, LoadAdmin)
 admin.site.register(Driver, DriverAdmin)
-admin.site.register(LogHistory, LogHistoryAdmin)
+admin.site.register(LoadHistory, LoadHistoryAdmin)

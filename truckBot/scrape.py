@@ -140,6 +140,7 @@ def scrape_trucks(request, load_ids, radius, headless=True):
                 return 
             
             Load.objects.create(id=load_id,
+                                user=request.user,
                                 origin=rows[0].find_all("td")[3].text.strip(),
                                 destination=rows[1].find_all("td")[3].text.strip(),
                                 pickup=rows[0].find_all("td")[5].text.strip(),
@@ -147,7 +148,8 @@ def scrape_trucks(request, load_ids, radius, headless=True):
                                 mode=rows[2].find_all("td")[5].text.strip(),
                                 miles=int(rows[2].find_all("td")[3].text.strip()),
                                 weight=int(weight),
-                                price=rows[2].find_all("td")[1].text.strip())
+                                price=rows[2].find_all("td")[1].text.strip()
+                            )
             
             # Creating drivers in the database
             if driver_table[0].text != "No available trucks found meeting the specified search criteria.":
@@ -170,3 +172,6 @@ def scrape_trucks(request, load_ids, radius, headless=True):
         finally:
             if last_iter or cache.get("abort_scraping"):
                 driver.quit()
+    
+    else:
+        cache.set('ids', "", None)

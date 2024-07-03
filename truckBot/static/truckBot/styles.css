@@ -14,7 +14,7 @@
     color: white;
 }
 
-#log-history-btn:hover {
+#load-history-btn:hover {
     color: white;
 }
 
@@ -45,4 +45,8 @@
 
 .driver-links-text {
     text-decoration: underline;
+}
+
+.load-user{
+    color: #6c757d;
 }
