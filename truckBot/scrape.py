@@ -40,10 +40,7 @@ def scrape_trucks(request, load_ids, radius, headless=True):
         if load_id == last_id:
             last_iter = True
             
-        if load_id == first_id:
-            first_iter = True
-        else:
-            first_iter = False
+        first_iter = load_id == first_id
     
         try:
             # Login only at first iteration

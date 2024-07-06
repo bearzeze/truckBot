@@ -38,7 +38,7 @@ class LaneLoad(models.Model):
         return f"{self.origin} -> {self.destination} for {self.price} USD"
     
     class Meta:
-        unique_together = ('origin', 'destination', 'pickup', 'delivery', 'weight', 'price')    
+        unique_together = ('origin', 'destination', 'pickup', 'delivery', 'miles', 'weight')    
     
     
 # Load info which is already existing on Landstar 

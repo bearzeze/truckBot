@@ -15,8 +15,8 @@ urlpatterns = [
     path('api/set_abort_flag', views.set_abort_flag, name="set_abort_flag"),
     path('api/change_message/<int:load_id>', views.change_load_message, name="change_load_message"),
     path('api/load_history', views.load_history, name="load_history"),
-    path('api/open_txt_file/<int:id>', views.open_txt_file, name="open_txt_file"),
-    path('api/clear_txt_file/<int:id>', views.clear_txt_file, name="clear_txt_file"),
+    path('api/open_txt_file/<str:company>', views.open_txt_file, name="open_txt_file"),
+    path('api/clear_txt_file/<str:company>', views.clear_txt_file, name="clear_txt_file"),
 
     
     # Profile page

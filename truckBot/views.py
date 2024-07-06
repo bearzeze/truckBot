@@ -17,7 +17,7 @@ if platform.system() == "Windows":
     from .zoom import send_sms
 
 from .scrape import scrape_trucks
-from .post import posting_load
+from .prepare import preparing_loads
 from .models import User, LoadHistory, Load
 from .serializers import LoadHistorySerializer
 
@@ -28,6 +28,7 @@ def index(request):
         loads_db = Load.objects.filter(finished=False)
     else:
         loads_db = Load.objects.filter(finished=False, user=request.user)
+        
     load_data = []
     
     for load in loads_db:
@@ -38,6 +39,14 @@ def index(request):
             "total_drivers": all_drivers,
             "informed_drivers": informed_drivers
         })
+    
+        
+    companies_for_posting_loads = [ { "title": "Navisphere", 
+                                     "link": "https://www.navispherecarrier.com/find-loads/single" },
+        { "title": "truckBot", 
+         "link": "https://truckbot.me/" },
+        ]
+    
         
     return render(request, "truckBot/index.html", context={
         "loads": load_data,
@@ -45,18 +54,18 @@ def index(request):
         "isAdmin": request.user.is_superuser,
         "postAllowed": request.user.posting_allowed or request.user.is_superuser,
         "user_banned": request.user.banned and not request.user.is_superuser,
+        "companies": companies_for_posting_loads
     })
 
 
 @login_required
 def prepare_loads(request, company):
+    # company_id = 1 -> Navisphere.com ...
     if request.method == "POST":
-        if request.user.is_superuser:
-            headless = False
+        
+        headless = not request.user.is_superuser
             
-        print(company)
-            
-        # posting_load(request, headless)
+        preparing_loads(request, company, headless)
         
     return HttpResponseRedirect(reverse("index"))
         
@@ -108,10 +117,7 @@ def scrape(request):
             messages.warning(request, 'Scraping aborted!')
             
         try:
-            headless = True
-            
-            if request.user.is_superuser:
-                headless = False
+            headless = not request.user.is_superuser
                 
             scrape_trucks(request, load_ids, radius_distance, headless)
                                 
@@ -145,31 +151,35 @@ def set_abort_flag(request):
 
 # API call for opening/clearing notepad 
 @login_required
-def open_txt_file(request, id):
+def open_txt_file(request, company):
     if request.method == 'GET' and (request.user.is_superuser or (request.user.is_authenticated and request.user.posting_allowed)):
         
-        if cache.get(f"lane_info{id}_txt_path") is None:
-            cache.set(f"lane_info{id}_txt_path", request.user.landstar_credentials_path.replace("landstar", f"lane_info{id}"), None)
+        if cache.get(f"lane_info_{company}_txt_path") is None:
+            cache.set(f"lane_info_{company}_txt_path", request.user.landstar_credentials_path.replace("landstar", f"lane_info_{company}"), None)
         
-        subprocess.Popen(["notepad", cache.get(f"lane_info{id}_txt_path")])
+        subprocess.Popen(["notepad", cache.get(f"lane_info_{company}_txt_path")])
         return JsonResponse({'status': 'Success'}, status=200)
     else:
         return JsonResponse({'status': 'You cannot call this API'}, status=401)
     
     
 @login_required
-def clear_txt_file(request, id):
+def clear_txt_file(request, company):
     if request.method == 'GET' and (request.user.is_superuser or (request.user.is_authenticated and request.user.posting_allowed)):
-        if cache.get(f"lane_info{id}_txt_path") is not None:
-            try:
-                with open(request.user.landstar_credentials_path.replace("landstar", f"lane_info{id}"), 'w') as file:
-                    file.truncate(0)  # Truncate the file to zero bytes (clears its content)
-            except FileNotFoundError:
-                print(f"File path not found.")
-            except Exception as e:
-                print(f"Error: {e}")
+        
+        if cache.get(f"lane_info_{company}_txt_path") is None:
+            cache.set(f"lane_info_{company}_txt_path", request.user.landstar_credentials_path.replace("landstar", f"lane_info_{company}"), None)
+            
+        try:
+            with open(cache.get(f"lane_info_{company}_txt_path"), 'w') as file:
+                file.truncate(0)  # Truncate the file to zero bytes (clears its content)
+        except FileNotFoundError:
+            print(f"File path not found.")
+        except Exception as e:
+            print(f"Error: {e}")
 
-            return JsonResponse({'status': 'Success'}, status=200)
+        return JsonResponse({'status': 'Success'}, status=200)
+        
     else:
         return JsonResponse({'status': 'You cannot call this API'}, status=401)
      

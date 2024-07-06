@@ -2,14 +2,18 @@ const editButtons = document.querySelectorAll(".edit-btn");
 const saveButtons = document.querySelectorAll(".save-btn");
 const backButtons = document.querySelectorAll(".back-btn");
 
-const postLoadButton = document.querySelector("#post-load-btn")
+const closeAllAlertMessages = document.querySelector("#close-all-alert-messages-btn");
+
+const prepareLoadsButton = document.querySelector("#prepare-loads-btn");
+const postLoadsButton = document.querySelector("#post-loads-btn");
 const scrapeLoadButton = document.querySelector("#scrape-load-btn")
 const sendMessageButton = document.querySelector("#send-message-btn")
 const loadHistoryButton = document.querySelector("#load-history-btn")
-const loadHistoryDiv = document.querySelector("#load-history");
 
-const postLoadDiv = document.querySelector("#post-load");
+const prepareLoadsDiv = document.querySelector("#prepare-loads");
 const txtFileLaneButtons = document.querySelectorAll(".txt-lane-info-btn");
+
+const postLoadsDiv = document.querySelector("#post-loads");
 
 const scrapeDiv = document.querySelector("#scrape");
 const sendMessageDiv = document.querySelector("#send-message");
@@ -31,6 +35,7 @@ const driversLinks = document.querySelectorAll(".drivers-link");
 const driversInfo = document.querySelector(".drivers-info");
 const driversMessages = document.querySelectorAll(".drivers-info");
 
+const loadHistoryDiv = document.querySelector("#load-history");
 const loadMessageLinks = document.querySelectorAll(".load-msg-link");
 const loadMessageDivs = document.querySelectorAll(".load-msg-div");
 const editLoadMessagesButtons = document.querySelectorAll(".edit-load-msg-btn")
@@ -41,30 +46,75 @@ const tableBody = document.querySelector("#load-history-table-body");
 
 
 // HOME PAGE
-// Pressing Post Load Button - it redirects to the new window for posting the loads
-if (postLoadButton) {
-    postLoadButton.addEventListener("click", () => {
+// Button which close all alert messages currently shown in index page
+if (closeAllAlertMessages) {
+    closeAllAlertMessages.addEventListener("click", () => {
+        alertCloseBtns = document.querySelectorAll(".btn-close");
+
+        alertCloseBtns.forEach(btn => {
+            btn.click();
+        });
+    });
+}
+
+
+// Pressing Preparing Loads Button
+if (prepareLoadsButton) {
+    prepareLoadsButton.addEventListener("click", () => {
         // PRIJE SAMO OTVARA LANDSTAR GDJE UBACUJE POST LOAD
         // window.open("https://leads.landstaronline.com/AvailableLoads/NewLoadView.aspx?loadid=-500", "_blank");
 
         // Probati automatizirati ovaj proces...
 
-        if (isHidden(postLoadDiv)) {
-            activeButton(postLoadButton, true);
+        if (isHidden(prepareLoadsDiv)) {
+            activeButton(prepareLoadsButton, true);
+            activeButton(postLoadsButton, false);
             activeButton(scrapeLoadButton, false);
             activeButton(sendMessageButton, false);
             activeButton(loadHistoryButton, false);
 
-            showElement(postLoadDiv);
-
+            showElement(prepareLoadsDiv);
+            hideElement(postLoadsDiv);
             hideElement(scrapeDiv);
             hideElement(sendMessageDiv);
             hideElement(loadHistoryDiv);
             hideElement(radiusDistance);
         }
+
         else {
-            hideElement(postLoadDiv);
-            activeButton(postLoadButton, false);
+            hideElement(prepareLoadsDiv);
+            activeButton(prepareLoadsButton, false);
+        }
+    });
+}
+
+
+// Pressing Preparing Loads Button
+if (postLoadsButton) {
+    postLoadsButton.addEventListener("click", () => {
+        // PRIJE SAMO OTVARA LANDSTAR GDJE UBACUJE POST LOAD
+        // window.open("https://leads.landstaronline.com/AvailableLoads/NewLoadView.aspx?loadid=-500", "_blank");
+
+        // Probati automatizirati ovaj proces...
+
+        if (isHidden(postLoadsDiv)) {
+            activeButton(postLoadsButton, true);
+            activeButton(prepareLoadsButton, false);
+            activeButton(scrapeLoadButton, false);
+            activeButton(sendMessageButton, false);
+            activeButton(loadHistoryButton, false);
+
+            showElement(postLoadsDiv);
+            hideElement(prepareLoadsDiv);
+            hideElement(scrapeDiv);
+            hideElement(sendMessageDiv);
+            hideElement(loadHistoryDiv);
+            hideElement(radiusDistance);
+        }
+
+        else {
+            hideElement(postLoadsDiv);
+            activeButton(postLoadsButton, false);
         }
     });
 }
@@ -76,13 +126,14 @@ if (scrapeLoadButton) {
 
         if (isHidden(scrapeDiv)) {
             activeButton(scrapeLoadButton, true);
-            activeButton(postLoadButton, false);
+            activeButton(prepareLoadsButton, false);
+            activeButton(postLoadsButton, false);
             activeButton(sendMessageButton, false);
             activeButton(loadHistoryButton, false);
 
             showElement(scrapeDiv);
-
-            hideElement(postLoadDiv);
+            hideElement(prepareLoadsDiv);
+            hideElement(postLoadsDiv);
             hideElement(sendMessageDiv);
             hideElement(loadHistoryDiv);
             hideElement(radiusDistance);
@@ -102,14 +153,16 @@ if (sendMessageButton) {
 
         if (isHidden(sendMessageDiv)) {
             activeButton(sendMessageButton, true);
-            activeButton(postLoadButton, false);
+            activeButton(prepareLoadsButton, false);
+            activeButton(postLoadsButton, false);
             activeButton(scrapeLoadButton, false);
             activeButton(loadHistoryButton, false);
 
             showElement(sendMessageDiv);
+            hideElement(prepareLoadsDiv);
+            hideElement(postLoadsDiv);
             hideElement(scrapeDiv);
             hideElement(loadHistoryDiv);
-            hideElement(postLoadDiv);
         }
 
         else {
@@ -126,12 +179,14 @@ if (loadHistoryButton) {
 
         if (isHidden(loadHistoryDiv)) {
             activeButton(loadHistoryButton, true);
-            activeButton(postLoadButton, false);
+            activeButton(prepareLoadsButton, false);
+            activeButton(prepareLoadsButton, false);
             activeButton(scrapeLoadButton, false);
             activeButton(sendMessageButton, false);
 
             showElement(loadHistoryDiv);
-            hideElement(postLoadDiv);
+            hideElement(prepareLoadsDiv);
+            hideElement(postLoadsDiv);
             hideElement(sendMessageDiv);
             hideElement(scrapeDiv);
 
@@ -160,12 +215,12 @@ if (txtFileLaneButtons) {
 
     txtFileLaneButtons.forEach(btn => {
         btn.addEventListener("click", () => {
-            const id = btn.getAttribute("data-id");
+            const company = btn.getAttribute("data-company");
             // opening and inserting or clearing textual content into notepad file
             const action = btn.getAttribute("data-action");
 
-            callApiAboutTxtFileLaneInfo(action, id); 
-            
+            callApiAboutTxtFileLaneInfo(action, company);
+
         });
     })
 }
@@ -507,9 +562,9 @@ function getCookie(name) {
 }
 
 function activeButton(button, needsToBeActive) {
-    if (needsToBeActive) 
+    if (needsToBeActive)
         button.classList.add("active");
-    else 
+    else
         button.classList.remove("active");
 }
 
@@ -597,9 +652,9 @@ function saveLoadMessage(message, url, saveButton) {
 }
 
 // asynchronous function for opening or clearing txt file about lane loads
-async function callApiAboutTxtFileLaneInfo(action, id) {
+async function callApiAboutTxtFileLaneInfo(action, company) {
 
-    const url = `api/${action}_txt_file/${id}`;
+    const url = `api/${action}_txt_file/${company}`;
 
     try {
         const response = await fetch(url, {
@@ -614,7 +669,7 @@ async function callApiAboutTxtFileLaneInfo(action, id) {
             const data = await response.json();
             // Handle the data (e.g., update UI, display alert)
             if (action === "clear") {
-                alert(`Content from lane_info${id}.txt file cleared successfully!`);
+                alert(`Content from lane_info_${company}.txt file cleared successfully!`);
             }
         } else {
             console.error('API call failed:', response.status);

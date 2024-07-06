@@ -27,6 +27,14 @@
 
         {% if messages %}
 
+        {% if messages|length >= 3 %}
+        <div class="alert alert-secondary d-flex justify-content-between align-items-center ms-4 my-0" role="alert">
+            Close All Messages
+            <button type="button" class="btn-close" id="close-all-alert-messages-btn" data-bs-dismiss="alert"
+                aria-label="Close"></button>
+        </div>
+        {% endif %}
+
         {% for message in messages %}
         <div class="alert {{message.tags}} d-flex justify-content-between align-items-center ms-4 my-0" role="alert">
             {{ message }}
@@ -34,64 +42,61 @@
         </div>
         {% endfor %}
 
-        <div></div>
 
         {% endif %}
 
-        <!-- 1. POSTING LANE LOADS -->
-        <button type="button" class="ms-4 btn btn-outline-primary btn-lg" id="post-load-btn"
-            title="After inserting lane info, it will automatically post the loads on Landstar">Post
-            Load</button>
+        <!-- 1. PREPARING LANE LOADS -->
+        <button type="button" class="ms-4 btn btn-outline-primary btn-lg" id="prepare-loads-btn"
+            title="Preparing loads for posting on Landstar">Prepare
+            Loads</button>
 
-        <div id="post-load" class="hide ms-4 mb-4">
+        <div id="prepare-loads" class="hide ms-4 mb-2">
             {% if postAllowed %}
 
-            <div>
-                <p><strong><a class="icon-link text-decoration-none" href="https://www.navispherecarrier.com/find-loads/single" target="_blank">
-                        Navisphere:
-                    </a></strong></p>
-                <div class="mb-4 d-flex justify-content-center">
-                    <button class="btn btn-outline-primary me-3 txt-lane-info-btn" data-id="1" data-action="open"
-                        title="Insert lanes in txt file from Navisphere.com">Insert Lane Info</button>
+            {% for company in companies %}
 
-                    <button class="btn btn-outline-danger txt-lane-info-btn" data-id="1" data-action="clear"
-                        title="Clear lanes in txt file from Navisphere.com">Clear Lane Info</button>
+            <div id="{{ company.title }}">
+                <p><strong><a class="icon-link text-decoration-none" href="{{ company.link }}" target="_blank">
+                            {{ company.title }}:
+                        </a></strong></p>
+                <div class="mb-3 d-flex justify-content-center">
+                    <button class="btn btn-outline-primary me-3 txt-lane-info-btn" data-company="{{ company.title }}"
+                        data-action="open" title="Insert lanes in txt file from {{ company.link }}">Insert Lane
+                        Info</button>
 
+                    <button class="btn btn-outline-danger txt-lane-info-btn" data-company="{{ company.title }}"
+                        data-action="clear" title="Clear lanes in txt file from {{ company.link }}">Clear Lane
+                        Info</button>
                 </div>
-                <form action="{% url 'prepare_loads' company='Navisphere' %}" method="POST" class="ms-4">
+
+                <form action="{% url 'prepare_loads' company=company.title %}" method="POST" class="ms-2">
                     {% csrf_token %}
                     <div class="d-grid  col-4 mx-auto">
-                        <button type="submit" class="btn btn-outline-success" id="prepare-loads-btn">Prepare Loads</button>
+                        <button type="submit" class="btn btn-outline-success" id="prepare-loads-btn">Prepare
+                            Loads</button>
                     </div>
                 </form>
             </div>
 
             <hr>
-
-            <div>
-                <p>nekidrugi.com:</p>
-                <div class="mb-4 d-flex justify-content-center">
-                    <button class="btn btn-outline-primary me-3 txt-lane-info-btn" data-id="2" data-action="open"
-                        title="Insert lanes in txt file from nekeDruge.com">Insert Lane Info</button>
-                    <button class="btn btn-outline-danger txt-lane-info-btn" data-id="2" data-action="clear"
-                        title="Clear lanes in txt file from nekeDruge.com">Clear Lane Info</button>
-                </div>
-
-                <form action="{% url 'prepare_loads' company='nekaDruga' %}" method="POST" class="ms-4">
-                    {% csrf_token %}
-                    <div class="d-grid  col-4 mx-auto">
-                        <button type="submit" class="btn btn-outline-success" id="prepare-loads-btn">Prepare Loads</button>
-                    </div>
-                </form>
-
-            </div>
-            <hr>
-            <hr>
-
+            {% endfor %}
 
             {% else %}
-            <p>Plati pa se klati</p>
+            <p>Plati pa se klati $$ €€ KM </p>
             {% endif %}
+        </div>
+
+        <!-- 2. POSTING LANE LOADS -->
+        <button type="button" class="ms-4 btn btn-primary btn-lg" id="post-loads-btn"
+            title="After inserting lane info, it will automatically post the loads on Landstar">Post
+            Loads</button>
+
+        <div id="post-loads" class="hide ms-4 mb-4">
+            <p><strong><a class="icon-link text-decoration-none"
+                        href="https://leads.landstaronline.com/AvailableLoads/NewLoadView.aspx?loadid=-500"
+                        target="_blank">
+                        Landstar
+                </a></strong></p>
         </div>
 
 
@@ -124,7 +129,7 @@
 
 
         <!-- 3. SENDING MESSAGES THROUGH THE ZOOM -->
-        <button type="button" class="ms-4 btn btn-outline-dark btn-lg" id="send-message-btn"
+        <button type="button" class="ms-4 btn btn-dark btn-lg" id="send-message-btn"
             title="Automatically send messages to the truck drivers">Send Messages</button></a>
 
         <div id="send-message" class="hide ms-3 mt-2">

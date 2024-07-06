@@ -43,8 +43,7 @@ def send_sms(request, load_ids, proba=False, palci=False):
         messages_zoom = creating_message_versions(request, load)
         
         try:
-            # write_control_identifiers_file(zoom_window, "home")
-            
+           
             phone_tab = zoom_window.child_window(title_re="Phone.*", control_type="TabItem").wrapper_object()
             phone_tab.click_input()
 
