@@ -33,9 +33,10 @@ class LaneLoad(models.Model):
     weight = models.IntegerField()
     equipment = models.CharField(max_length=50)
     price = models.CharField(max_length=50)
+    posted = models.BooleanField(default=False)
     
     def __str__(self):
-        return f"{self.origin} -> {self.destination} for {self.price} USD"
+        return f"{self.origin} -> {self.destination} | Rate: ${self.price}"
     
     class Meta:
         unique_together = ('origin', 'destination', 'pickup', 'delivery', 'miles', 'weight')    

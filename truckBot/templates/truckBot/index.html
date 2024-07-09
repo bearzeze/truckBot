@@ -56,9 +56,11 @@
             {% for company in companies %}
 
             <div id="{{ company.title }}">
-                <p><strong><a class="icon-link text-decoration-none" href="{{ company.link }}" target="_blank">
+                <p>Get loads from <strong><a class="icon-link text-decoration-none" href="{{ company.link }}"
+                            target="_blank">
                             {{ company.title }}:
                         </a></strong></p>
+                <hr>
                 <div class="mb-3 d-flex justify-content-center">
                     <button class="btn btn-outline-primary me-3 txt-lane-info-btn" data-company="{{ company.title }}"
                         data-action="open" title="Insert lanes in txt file from {{ company.link }}">Insert Lane
@@ -91,12 +93,71 @@
             title="After inserting lane info, it will automatically post the loads on Landstar">Post
             Loads</button>
 
-        <div id="post-loads" class="hide ms-4 mb-4">
-            <p><strong><a class="icon-link text-decoration-none"
+        <div id="post-loads" class="hide ms-4 mb-2">
+            {% if postAllowed %}
+
+            {% if prepared_loads %}
+            <form method="POST">
+                {% csrf_token %}
+                <ul class="scraped-ul"> Posting load(s) on <strong><a class="icon-link text-decoration-none"
+                            href="https://leads.landstaronline.com/AvailableLoads/NewLoadView.aspx?loadid=-500"
+                            target="_blank">
+                            Landstar</a></strong>:
+                    {% for load in prepared_loads %}
+
+                    <li class="ms-2 my-2">
+                        <input type="checkbox" name="prepared_load_ids" value="{{ load.id }}"
+                            class="checkbox-posting me-2 ms-2">
+                        <a href="javascript:void(0);" class="text-start prepared-load-link"
+                            title="Click for more details">
+                            {{ load.origin }} -> {{ load.destination }} (${{ load.price }})</a>
+
+
+                        {% if user.is_superuser %}
+                        <span class="text-end mt-1 mb-1 palci"> by {{load.user.username}}</span>
+                        {% endif %}
+
+                        <div class=" ms-4 hide prepared-load-info" data-id="{{load.id}}">
+                            Pick: {{load.origin}} on {{load.pickup}} <br>
+                            Destination: {{load.destination}} on {{load.delivery}} <br>
+                            Miles: {{load.miles}} mi <br>
+                            Weight: {{load.weight}} lb <br>
+                            Equipment: {{load.equipment}} <br>
+                            RATE: {{load.price}} USD <br>
+                        </div>
+
+                    </li>
+                    {% endfor %}
+                    <input type="checkbox" id="select-all-posting" class="me-2 ms-3 mt-2"><span class="ms-1 select-all-txt">Select
+                        All </span> <span class="checkbox-counter hide">&#40;<span id="checkbox-counter-post"></span> selected&#41;</span>
+
+                    <div class="col-6 mx-auto mt-2">
+                        <button class="btn btn-success post-delete-btn ms-auto" type="button" data-action="post"
+                        data-url="{% url 'post_loads' %}" disabled>Post on Landstar</button>
+
+                        <button class="btn btn-danger post-delete-btn me-auto" type="button" data-action="delete"
+                        data-url="{% url 'delete_loads' %}" disabled>Delete</button>
+                    </div>
+
+                    <div class="col-6 mx-auto mt-2 hide">
+                        <button class="btn btn-danger col-5" type="button" id="abort-posting-btn"
+                        data-url="{% url 'set_abort_flag' %}">Abort</button>
+                    </div>
+                </ul>
+            </form>
+
+            {% else %}
+            <p class="ms-4">No prepared loads in database for posting on <strong><a
+                        class="icon-link text-decoration-none"
                         href="https://leads.landstaronline.com/AvailableLoads/NewLoadView.aspx?loadid=-500"
                         target="_blank">
-                        Landstar
-                </a></strong></p>
+                        Landstar</a></strong>!</p>
+            {% endif %}
+
+            {% else %}
+
+            <p>Plati Ramo druže!</p>
+            {% endif %}
         </div>
 
 
@@ -140,14 +201,14 @@
                     {% for load_obj in loads %}
                     <li class="ms-2 my-2">
                         <input type="checkbox" name="scraped_ids" value="{{ load_obj.load.id }}"
-                            class="checkbox me-2 ms-2">
+                            class="checkbox-sending me-2 ms-2">
                         <b>{{ load_obj.load.id }}</b>
                         <a href="javascript:void(0);" class="ms-4 drivers-link"><span class="driver-links-text">Truck
                                 drivers</span><span class="driver-links-numbers">
                                 ({{ load_obj.informed_drivers }}/{{ load_obj.total_drivers }})</span>
                             <a href="javascript:void(0);" class="ms-4 mt-1 mb-1 load-msg-link">Message</a>
                             {% if user.is_superuser %}
-                            <span class="ms-4 mt-1 mb-1 load-user">{{load_obj.load.user.username}}</a>
+                            <span class="ms-4 mt-1 mb-1 load-user"> by {{load_obj.load.user.username}}</a>
                         {% endif %}
                         <div class="hide ms-4 mb-4 mt-3 drivers-info"> So far
                             <b>{{load_obj.informed_drivers}}</b> of
@@ -155,7 +216,6 @@
                         </div>
 
                         <div class="hide ms-4 mb-4 mt-3 load-msg-div">
-
                             <div class="show load-info">
                                 <p class="message-paragraph">{{ load_obj.load.message }}</p>
                                 <button type="button" class="btn btn-primary edit-load-msg-btn">Edit
@@ -178,9 +238,8 @@
                     </li>
                     {% endfor %}
 
-
-                    <input type="checkbox" id="select-all" class="me-2 ms-3 mt-2"><span class="ms-1">Select
-                        All</span>
+                    <input type="checkbox" id="select-all-sending" class="me-2 ms-3 mt-2"><span class="ms-1">Select
+                        All </span> <span class="checkbox-counter hide">&#40;<span id="checkbox-counter-send"></span> selected&#41;</span>
 
                     <div class="d-grid col-4 mx-auto">
                         <button class="btn btn-primary mt-2" type="submit" id="send-zoom-btn"
@@ -218,13 +277,12 @@
                         {% endif %}
                     </tr>
                 </thead>
+
                 <tbody id="load-history-table-body">
 
-
                 </tbody>
+
             </table>
-
-
         </div>
 
     </div>
@@ -233,8 +291,6 @@
 
     <p>AMX BAN 1000</p>
     {% endif %}
-
-
 
 </div>
 {% endblock %}

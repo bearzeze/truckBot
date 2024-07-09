@@ -5,6 +5,7 @@ import django
 
 from django.core.cache import cache
 from django.contrib import messages
+from django.db import IntegrityError
 
 from .models import LaneLoad
 
@@ -97,19 +98,26 @@ def scrape_navisphere(request, soup):
             types = types.replace("VAN", f"{length}VN").replace("FLAT", f"{length}FL")
         
         # Saving load into database, which is prepared for posting on landstar
-        LaneLoad.objects.create(user = request.user,
-                                origin = origin_location,
-                                destination = destination_location,
-                                pickup = pickup_date,
-                                delivery = delivery_date,
-                                miles = miles,
-                                weight = weight,
-                                equipment = types,
-                                price = price)
+        try:
+            load = LaneLoad(user = request.user,
+                                    origin = origin_location.replace(", ", ","),
+                                    destination = destination_location.replace(", ", ","),
+                                    pickup = pickup_date,
+                                    delivery = delivery_date,
+                                    miles = miles,
+                                    weight = weight,
+                                    equipment = types,
+                                    price = price)
+            load.save()
+            
+        except IntegrityError:
+            messages.warning(request, f"Load {load} is already in the database!")
+            
+        else:
+            loads_saved += 1
+
         
-        loads_saved += 1
-        
-    messages.success(request, f"In total {loads_saved} load(s) saved for posting on Landstar!")
+    messages.success(request, f"In total {loads_saved} load(s) saved in database for posting on Landstar!")
          
            
                 

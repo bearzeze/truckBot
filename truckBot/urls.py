@@ -5,10 +5,11 @@ from . import views
 urlpatterns = [
     # Home page
     path('', views.index, name="index"),
+    path('prepare_loads/<str:company>', views.prepare_loads, name="prepare_loads"),
+    path('post_loads', views.post_loads, name="post_loads"),
+    path('delete_loads', views.delete_loads, name="delete_loads"),
     path('scrape', views.scrape, name="scrape"),
     path('send_messages', views.send_messages, name="send_messages"),
-    path('prepare_loads/<str:company>', views.prepare_loads, name="prepare_loads"),
-    
     
     # API 
     path('api/set_scraping_flag', views.set_scraping_flag, name="set_scraping_flag"),

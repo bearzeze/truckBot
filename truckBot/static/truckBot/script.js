@@ -1,51 +1,67 @@
+// VARIABLES
+// Profile
 const editButtons = document.querySelectorAll(".edit-btn");
 const saveButtons = document.querySelectorAll(".save-btn");
 const backButtons = document.querySelectorAll(".back-btn");
 
+// Alert Messages
 const closeAllAlertMessages = document.querySelector("#close-all-alert-messages-btn");
 
-const prepareLoadsButton = document.querySelector("#prepare-loads-btn");
-const postLoadsButton = document.querySelector("#post-loads-btn");
-const scrapeLoadButton = document.querySelector("#scrape-load-btn")
-const sendMessageButton = document.querySelector("#send-message-btn")
-const loadHistoryButton = document.querySelector("#load-history-btn")
+// Big buttons on home page
+const prepareLoadsBigButton = document.querySelector("#prepare-loads-btn");
+const postLoadsBigButton = document.querySelector("#post-loads-btn");
+const scrapeLoadBigButton = document.querySelector("#scrape-load-btn")
+const sendMessageBigButton = document.querySelector("#send-message-btn")
+const loadHistoryBigButton = document.querySelector("#load-history-btn")
 
+// Prepare Loads
 const prepareLoadsDiv = document.querySelector("#prepare-loads");
 const txtFileLaneButtons = document.querySelectorAll(".txt-lane-info-btn");
 
+// Post Loads
 const postLoadsDiv = document.querySelector("#post-loads");
+const preparedLoadLinks = document.querySelectorAll(".prepared-load-link");
+const preparedLoadInfos = document.querySelectorAll(".prepared-load-info");
+const checkboxesPosting = document.querySelectorAll(".checkbox-posting");
+const selectAllForPosting = document.querySelector("#select-all-posting")
+const postOrDeleteLoadsButton = document.querySelectorAll(".post-delete-btn");
+const postingLoadsForm = document.querySelector("#post-loads form")
+const abortPostingButton = document.querySelector("#abort-posting-btn");
+const checkboxCounterPost = document.querySelector("#checkbox-counter-post");
 
+// Scrape Loads
 const scrapeDiv = document.querySelector("#scrape");
 const sendMessageDiv = document.querySelector("#send-message");
 const radiusDistanceLink = document.querySelector("#radius-distance-link");
 const radiusDistance = document.querySelector("#radius-distance");
-
 const runScrapeButton = document.querySelector("#run-scrape-btn");
 const abortScrapeButton = document.querySelector("#abort-scrape-btn");
 const scrapeForm = document.querySelector("#scrape form");
 
+// Send Messages
 const sendZoomButton = document.querySelector("#send-zoom-btn");
 const sendingMessagesForm = document.querySelector("#send-message form");
-const checkboxes = document.querySelectorAll(".checkbox");
+const checkboxesSending = document.querySelectorAll(".checkbox-sending");
 const zoomFootnote = document.querySelector(".zoom-footnote")
-
-const selectAll = document.querySelector("#select-all");
-
+const selectAllForSendingMessages = document.querySelector("#select-all-sending");
 const driversLinks = document.querySelectorAll(".drivers-link");
 const driversInfo = document.querySelector(".drivers-info");
 const driversMessages = document.querySelectorAll(".drivers-info");
-
 const loadHistoryDiv = document.querySelector("#load-history");
 const loadMessageLinks = document.querySelectorAll(".load-msg-link");
 const loadMessageDivs = document.querySelectorAll(".load-msg-div");
 const editLoadMessagesButtons = document.querySelectorAll(".edit-load-msg-btn")
 const backLoadButtons = document.querySelectorAll(".back-msg-btn");
 const saveMessageButtons = document.querySelectorAll("#send-message li .save-msg-btn");
+const checkboxCounterSend = document.querySelector("#checkbox-counter-send");
 
+// Log History
 const tableBody = document.querySelector("#load-history-table-body");
 
 
 // HOME PAGE
+
+// 1) BIG BUTTONS
 // Button which close all alert messages currently shown in index page
 if (closeAllAlertMessages) {
     closeAllAlertMessages.addEventListener("click", () => {
@@ -57,21 +73,20 @@ if (closeAllAlertMessages) {
     });
 }
 
-
 // Pressing Preparing Loads Button
-if (prepareLoadsButton) {
-    prepareLoadsButton.addEventListener("click", () => {
+if (prepareLoadsBigButton) {
+    prepareLoadsBigButton.addEventListener("click", () => {
         // PRIJE SAMO OTVARA LANDSTAR GDJE UBACUJE POST LOAD
         // window.open("https://leads.landstaronline.com/AvailableLoads/NewLoadView.aspx?loadid=-500", "_blank");
 
         // Probati automatizirati ovaj proces...
 
         if (isHidden(prepareLoadsDiv)) {
-            activeButton(prepareLoadsButton, true);
-            activeButton(postLoadsButton, false);
-            activeButton(scrapeLoadButton, false);
-            activeButton(sendMessageButton, false);
-            activeButton(loadHistoryButton, false);
+            activeButton(prepareLoadsBigButton, true);
+            activeButton(postLoadsBigButton, false);
+            activeButton(scrapeLoadBigButton, false);
+            activeButton(sendMessageBigButton, false);
+            activeButton(loadHistoryBigButton, false);
 
             showElement(prepareLoadsDiv);
             hideElement(postLoadsDiv);
@@ -83,26 +98,25 @@ if (prepareLoadsButton) {
 
         else {
             hideElement(prepareLoadsDiv);
-            activeButton(prepareLoadsButton, false);
+            activeButton(prepareLoadsBigButton, false);
         }
     });
 }
 
-
-// Pressing Preparing Loads Button
-if (postLoadsButton) {
-    postLoadsButton.addEventListener("click", () => {
+// Pressing Post Loads Button
+if (postLoadsBigButton) {
+    postLoadsBigButton.addEventListener("click", () => {
         // PRIJE SAMO OTVARA LANDSTAR GDJE UBACUJE POST LOAD
         // window.open("https://leads.landstaronline.com/AvailableLoads/NewLoadView.aspx?loadid=-500", "_blank");
 
         // Probati automatizirati ovaj proces...
 
         if (isHidden(postLoadsDiv)) {
-            activeButton(postLoadsButton, true);
-            activeButton(prepareLoadsButton, false);
-            activeButton(scrapeLoadButton, false);
-            activeButton(sendMessageButton, false);
-            activeButton(loadHistoryButton, false);
+            activeButton(postLoadsBigButton, true);
+            activeButton(prepareLoadsBigButton, false);
+            activeButton(scrapeLoadBigButton, false);
+            activeButton(sendMessageBigButton, false);
+            activeButton(loadHistoryBigButton, false);
 
             showElement(postLoadsDiv);
             hideElement(prepareLoadsDiv);
@@ -114,22 +128,22 @@ if (postLoadsButton) {
 
         else {
             hideElement(postLoadsDiv);
-            activeButton(postLoadsButton, false);
+            activeButton(postLoadsBigButton, false);
         }
     });
 }
 
 // Pressing Scrape Load Button opens only that div and hide all others
-if (scrapeLoadButton) {
+if (scrapeLoadBigButton) {
 
-    scrapeLoadButton.addEventListener("click", () => {
+    scrapeLoadBigButton.addEventListener("click", () => {
 
         if (isHidden(scrapeDiv)) {
-            activeButton(scrapeLoadButton, true);
-            activeButton(prepareLoadsButton, false);
-            activeButton(postLoadsButton, false);
-            activeButton(sendMessageButton, false);
-            activeButton(loadHistoryButton, false);
+            activeButton(scrapeLoadBigButton, true);
+            activeButton(prepareLoadsBigButton, false);
+            activeButton(postLoadsBigButton, false);
+            activeButton(sendMessageBigButton, false);
+            activeButton(loadHistoryBigButton, false);
 
             showElement(scrapeDiv);
             hideElement(prepareLoadsDiv);
@@ -140,23 +154,23 @@ if (scrapeLoadButton) {
         }
 
         else {
-            activeButton(scrapeLoadButton, false);
+            activeButton(scrapeLoadBigButton, false);
             hideElement(scrapeDiv);
         }
     });
 }
 
 // Pressing Sending Message Button opens only that div and hide all others
-if (sendMessageButton) {
+if (sendMessageBigButton) {
 
-    sendMessageButton.addEventListener("click", () => {
+    sendMessageBigButton.addEventListener("click", () => {
 
         if (isHidden(sendMessageDiv)) {
-            activeButton(sendMessageButton, true);
-            activeButton(prepareLoadsButton, false);
-            activeButton(postLoadsButton, false);
-            activeButton(scrapeLoadButton, false);
-            activeButton(loadHistoryButton, false);
+            activeButton(sendMessageBigButton, true);
+            activeButton(prepareLoadsBigButton, false);
+            activeButton(postLoadsBigButton, false);
+            activeButton(scrapeLoadBigButton, false);
+            activeButton(loadHistoryBigButton, false);
 
             showElement(sendMessageDiv);
             hideElement(prepareLoadsDiv);
@@ -166,23 +180,23 @@ if (sendMessageButton) {
         }
 
         else {
-            activeButton(sendMessageButton, false);
+            activeButton(sendMessageBigButton, false);
             hideElement(sendMessageDiv);
         }
     });
 }
 
 // Pressing Sending Message Button opens only that div and hide all others
-if (loadHistoryButton) {
+if (loadHistoryBigButton) {
 
-    loadHistoryButton.addEventListener("click", function () {
+    loadHistoryBigButton.addEventListener("click", function () {
 
         if (isHidden(loadHistoryDiv)) {
-            activeButton(loadHistoryButton, true);
-            activeButton(prepareLoadsButton, false);
-            activeButton(prepareLoadsButton, false);
-            activeButton(scrapeLoadButton, false);
-            activeButton(sendMessageButton, false);
+            activeButton(loadHistoryBigButton, true);
+            activeButton(prepareLoadsBigButton, false);
+            activeButton(prepareLoadsBigButton, false);
+            activeButton(scrapeLoadBigButton, false);
+            activeButton(sendMessageBigButton, false);
 
             showElement(loadHistoryDiv);
             hideElement(prepareLoadsDiv);
@@ -205,11 +219,13 @@ if (loadHistoryButton) {
         }
         else {
             hideElement(loadHistoryDiv);
-            activeButton(loadHistoryButton, false);
+            activeButton(loadHistoryBigButton, false);
         }
     });
 }
 
+
+// 2.1) PREPARING LOADS
 // Pressing this button will open/clear txt. file in which will Lane info be copied
 if (txtFileLaneButtons) {
 
@@ -225,6 +241,85 @@ if (txtFileLaneButtons) {
     })
 }
 
+// 2.2) POSTING LOADS
+// Link for each prepared load with its details
+if (preparedLoadLinks) {
+
+    preparedLoadLinks.forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            const parentLi = link.parentElement;
+            const infoDiv = parentLi.querySelector(".prepared-load-info");
+
+            if (isHidden(infoDiv)) {
+                showElement(infoDiv);
+
+                preparedLoadInfos.forEach(otherInfoDiv => {
+                    if (infoDiv !== otherInfoDiv)
+                        hideElement(otherInfoDiv);
+                });
+            }
+            else {
+                hideElement(infoDiv);
+            }
+        });
+    });
+
+}
+
+// Handling checkboxes for posting loads on Landstar
+if (checkboxesPosting) {
+
+    handleCheckBoxes(checkboxesPosting, selectAllForPosting, checkboxCounterPost ,postOrDeleteLoadsButton);
+
+}
+
+// Select every checkbox for posting load on landstar
+if (selectAllForPosting) {
+
+    selectAllForPosting.addEventListener("change", () => {
+        checkboxesPosting.forEach(element => {
+
+            element.checked = selectAllForPosting.checked;
+            postOrDeleteLoadsButton.forEach(button => {
+                button.disabled = !selectAllForPosting.checked;
+            });
+
+            if (selectAllForPosting.checked) {
+                checkboxCounterPost.innerHTML = checkboxesPosting.length;
+                showElement(checkboxCounterPost.parentElement);
+            }
+            else {
+                hideElement(checkboxCounterPost.parentElement);
+            }
+        });
+    });
+}
+
+// Posting or Deleting loads on landstar 
+if (postOrDeleteLoadsButton) {
+
+    postOrDeleteLoadsButton.forEach(button => {
+
+        button.addEventListener("click", () => {
+            const endpoint = button.getAttribute("data-url");
+
+            postingLoadsForm.action = endpoint;
+
+            // Post button needs to be disabled and delete button needs to be hidden
+            changeButtonBehaviorWhenPostFormSubmit();
+
+            postingLoadsForm.submit();
+
+        });
+
+    });
+}
+
+
+
+// 2.3) SCRAPING LOADS
 // Submiting Scrape form and Aborting it while running
 if (scrapeForm) {
 
@@ -249,28 +344,9 @@ if (scrapeForm) {
         showElement(abortScrapeButton);
 
         // IF user click abort button:
-        abortScrapeButton.addEventListener("click", () => {
-
-            hideElement(runScrapeButton);
-            abortScrapeButton.disabled = true;
-            abortScrapeButton.innerHTML = "Aborting..."
-
-            abort_url = abortScrapeButton.getAttribute("data-url");
-
-            fetch(abort_url, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': getCookie('csrftoken')  // Assuming you have a function to get the CSRF token
-                },
-                body: JSON.stringify({
-                    abort_scraping: true
-                })
-            });
-        })
+        abortProcess("scraping", runScrapeButton);
     });
 }
-
 
 if (radiusDistanceLink) {
     radiusDistanceLink.addEventListener("click", () => {
@@ -281,62 +357,33 @@ if (radiusDistanceLink) {
         else {
             hideElement(radiusDistance);
         }
-    })
+    });
 }
 
-
+// 2.4) SENDING MESSAGES
 // Checkboxes for the loads which we want to select for sending sms
-if (checkboxes) {
-    checkboxes.forEach(chck => {
-        chck.addEventListener("change", () => {
+if (checkboxesSending) {
 
-            // If no box is checked, Send Via Zoom Button is disabled
-            let atLeastOneCheckboxIsChecked = false;
-            let everyCheckBoxChecked = true;
+    handleCheckBoxes(checkboxesSending, selectAllForSendingMessages, checkboxCounterSend, sendZoomButton);
 
-            checkboxes.forEach(checkbox => {
-                if (checkbox.checked) {
-                    atLeastOneCheckboxIsChecked = true;
-                }
-
-                else {
-                    everyCheckBoxChecked = false;
-                }
-
-            });
-
-            if (atLeastOneCheckboxIsChecked) {
-                sendZoomButton.disabled = false;
-                showElement(zoomFootnote);
-            }
-
-            else {
-                sendZoomButton.disabled = true;
-                selectAll.checked = false;
-                hideElement(zoomFootnote);
-            }
-
-            if (everyCheckBoxChecked)
-                selectAll.checked = true;
-            else
-                selectAll.checked = false;
-        });
-    })
 }
 
 // There is one select all check box for (de)selecting all checkboxes
-if (selectAll) {
-    selectAll.addEventListener("change", () => {
+if (selectAllForSendingMessages) {
+    selectAllForSendingMessages.addEventListener("change", () => {
 
-        checkboxes.forEach(element => {
-            element.checked = selectAll.checked
-            sendZoomButton.disabled = !selectAll.checked
+        checkboxesSending.forEach(element => {
+            element.checked = selectAllForSendingMessages.checked
+            sendZoomButton.disabled = !selectAllForSendingMessages.checked
 
-            if (selectAll.checked) {
+            if (selectAllForSendingMessages.checked) {
                 showElement(zoomFootnote);
+                checkboxCounterSend.innerHTML = checkboxesSending.length;
+                showElement(checkboxCounterSend.parentElement);
             }
             else {
                 hideElement(zoomFootnote);
+                hideElement(checkboxCounterSend.parentElement);
             }
 
 
@@ -357,11 +404,11 @@ if (sendZoomButton) {
         sendZoomButton.classList.add("btn-danger");
         hideElement(zoomFootnote);
 
-        checkboxes.forEach(chck => {
+        checkboxesSending.forEach(chck => {
             chck.disabled = true;
         });
 
-        selectAll.disabled = true;
+        selectAllForSendingMessages.disabled = true;
     });
 }
 
@@ -372,15 +419,15 @@ if (driversLinks) {
         link.addEventListener("click", () => {
 
             const parentLi = link.parentElement;
-            const message = parentLi.querySelector(".drivers-info");
+            const driversInfo = parentLi.querySelector(".drivers-info");
 
-            if (message.classList.contains("hide")) {
-                showElement(message);
+            if (driversInfo.classList.contains("hide")) {
+                showElement(driversInfo);
 
                 // All other messages for drivers will be hidden except the clicked one
-                driversMessages.forEach(otherMessageDiv => {
-                    if (message !== otherMessageDiv) {
-                        hideElement(otherMessageDiv);
+                driversMessages.forEach(otherInfoDivs => {
+                    if (driversInfo !== otherInfoDivs) {
+                        hideElement(otherInfoDivs);
                     }
                 });
 
@@ -391,7 +438,7 @@ if (driversLinks) {
 
             }
             else {
-                hideElement(message);
+                hideElement(driversInfo);
             }
 
 
@@ -678,4 +725,132 @@ async function callApiAboutTxtFileLaneInfo(action, company) {
         console.error('Fetch error:', error);
     }
 
+}
+
+// Function for handling multiple checkboxes in the home page 
+function handleCheckBoxes(checkboxes, selectAllCheckbox, checkBoxCounter, submitButton) {
+
+    checkboxes.forEach(chck => {
+        chck.addEventListener("change", () => {
+
+            // If no box is checked, Send Via Zoom Button is disabled
+            let atLeastOneCheckboxIsChecked = false;
+            let everyCheckBoxChecked = true;
+            let counter = 0;
+
+            checkboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    atLeastOneCheckboxIsChecked = true;
+                    counter += 1;
+                }
+
+                else
+                    everyCheckBoxChecked = false;
+
+            });
+
+            if (atLeastOneCheckboxIsChecked) {
+
+                checkBoxCounter.innerHTML = counter;
+                showElement(checkBoxCounter.parentElement)
+
+                // If is for Sending message part
+                if (submitButton === sendZoomButton) {
+                    showElement(zoomFootnote);
+                    submitButton.disabled = false;
+                }
+                // else is for Posting loads part
+                else {
+                    submitButton.forEach(button => {
+                        button.disabled = false;
+                    });
+                }
+            }
+
+            else {
+                selectAllCheckbox.checked = false;
+                counter = 0;
+                hideElement(checkBoxCounter.parentElement)
+
+                // If is for Sending message part
+                if (submitButton === sendZoomButton) {
+                    showElement(zoomFootnote);
+                    submitButton.disabled = true;
+                }
+                // else is for Posting loads part
+                else {
+                    submitButton.forEach(button => {
+                        button.disabled = true;
+                    });
+                }
+            }
+
+            if (everyCheckBoxChecked)
+            {
+                selectAllCheckbox.checked = true;
+            }
+            else {
+                selectAllCheckbox.checked = false;
+            }
+        });
+    });
+
+}
+
+// Function which change button behavior and add abort button when posting on Landstar
+function changeButtonBehaviorWhenPostFormSubmit() {
+    postOrDeleteLoadsButton.forEach(btn => {
+        const action = btn.getAttribute("data-action");
+
+        if (action === "delete") {
+            hideElement(btn);
+        }
+
+        else {
+            btn.innerHTML = "Running..."
+            btn.disabled = true;
+
+            // Revealing Abort button
+            const parentDiv = abortPostingButton.parentNode;
+            showElement(parentDiv)
+
+            // IF user click abort button:
+            abortProcess("posting", btn);
+        }
+    });
+
+}
+
+// Function for aborting processes
+function abortProcess(action, buttonToHide) {
+    if (action === "posting")
+        abortButton = abortPostingButton;
+
+    else if (action === "scraping")
+        abortButton = abortScrapeButton;
+
+    abortButton.addEventListener("click", () => {
+
+        if (action === "posting") {
+            abortButton.classList.remove("col-5");
+            abortButton.classList.add("col-6");
+        }
+
+        hideElement(buttonToHide);
+        abortButton.disabled = true;
+        abortButton.innerHTML = "Aborting..."
+
+        abort_url = abortButton.getAttribute("data-url");
+
+        fetch(abort_url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken')  // Assuming you have a function to get the CSRF token
+            },
+            body: JSON.stringify({
+                abort_scraping: true
+            })
+        });
+    });
 }

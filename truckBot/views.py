@@ -16,9 +16,9 @@ if platform.system() == "Windows":
     from pynput.keyboard import Key, Listener
     from .zoom import send_sms
 
-from .scrape import scrape_trucks
+from .web_automation import scrape_trucks, posting_loads_landstar
 from .prepare import preparing_loads
-from .models import User, LoadHistory, Load
+from .models import User, LoadHistory, Load, LaneLoad
 from .serializers import LoadHistorySerializer
 
 
@@ -26,9 +26,11 @@ from .serializers import LoadHistorySerializer
 def index(request):
     if request.user.is_superuser:
         loads_db = Load.objects.filter(finished=False)
+        prepared_loads = LaneLoad.objects.filter(posted=False)
     else:
         loads_db = Load.objects.filter(finished=False, user=request.user)
-        
+        prepared_loads = LaneLoad.objects.filter(posted=False, user=request.user)
+
     load_data = []
     
     for load in loads_db:
@@ -39,14 +41,10 @@ def index(request):
             "total_drivers": all_drivers,
             "informed_drivers": informed_drivers
         })
-    
-        
-    companies_for_posting_loads = [ { "title": "Navisphere", 
-                                     "link": "https://www.navispherecarrier.com/find-loads/single" },
-        { "title": "truckBot", 
-         "link": "https://truckbot.me/" },
-        ]
-    
+          
+    companies_where_loads_are_posted = [{"title": "Navisphere",
+                                         "link": "https://www.navispherecarrier.com/find-loads/single" },
+                                        ]
         
     return render(request, "truckBot/index.html", context={
         "loads": load_data,
@@ -54,10 +52,12 @@ def index(request):
         "isAdmin": request.user.is_superuser,
         "postAllowed": request.user.posting_allowed or request.user.is_superuser,
         "user_banned": request.user.banned and not request.user.is_superuser,
-        "companies": companies_for_posting_loads
+        "companies": companies_where_loads_are_posted,
+        "prepared_loads": prepared_loads
     })
 
 
+# Method for preparing loads for posting on Landstar
 @login_required
 def prepare_loads(request, company):
     # company_id = 1 -> Navisphere.com ...
@@ -68,8 +68,38 @@ def prepare_loads(request, company):
         preparing_loads(request, company, headless)
         
     return HttpResponseRedirect(reverse("index"))
+  
+
+# Method for posting loads
+@login_required
+def post_loads(request):
+    if request.method == "POST" and request.user.is_authenticated:
+        load_ids = request.POST.getlist("prepared_load_ids")
         
-    
+        headless = not request.user.is_superuser
+        posting_loads_landstar(request, load_ids, headless)
+        
+        cache.set('is_scraping', False, None)
+        cache.set('abort_scraping', False, None)
+        
+    return HttpResponseRedirect(reverse("index"))
+
+
+# Method for deleting loads
+@login_required
+def delete_loads(request):
+    if request.method == "POST" and request.user.is_authenticated:
+        load_ids = request.POST.getlist("prepared_load_ids")
+        
+        loads = LaneLoad.objects.filter(id__in=load_ids) 
+               
+        for load in loads:
+            messages.info(request, f"Deleted Load: {load} ")
+        
+        loads.delete()
+        
+    return HttpResponseRedirect(reverse("index"))
+
 # Method for scraping the website in order to get information about loads and available drivers
 @login_required
 def scrape(request):
@@ -96,21 +126,21 @@ def scrape(request):
         # Checking first and if load_id is already processed/scraped it will be removed from the list:
         for load_id in load_ids_copy:
             # If this load is in Log History you cannot scrape it again
-            if LoadHistory.objects.filter(load_id=load_id).exists():
-                messages.warning(request, f"Load with {load_id} id had been already processed (find it in Log history)")
+            load = LoadHistory.objects.filter(load_id=load_id)
+            if load.exists():
+                messages.warning(request, f"Load with {load_id} id had been already processed by user '{load[0].user.username}'")
                 load_ids.remove(load_id)
                 continue
                 
             # If this load is in Loads database you cannot scrape it again
-            if Load.objects.filter(id=load_id).exists():
-                messages.warning(request, f"Load with {load_id} id is already prepared!")
+            load = Load.objects.filter(id=load_id)
+            if load.exists():
+                messages.warning(request, f"Load with {load_id} id is already prepared by user '{load[0].user.username}'!")
                 load_ids.remove(load_id)
 
-
-        # Saving load_ids_string if something went wrong during process
+        # Saving load_ids_string if something went wrong during process to be in the input field
         load_ids_str = ", ".join(str(id) for id in load_ids)
         cache.set("ids", load_ids_str , None)
-        
         
         # Checks whether scrape is aborted during the process
         if cache.get("abort_scraping"):
@@ -118,7 +148,6 @@ def scrape(request):
             
         try:
             headless = not request.user.is_superuser
-                
             scrape_trucks(request, load_ids, radius_distance, headless)
                                 
         except Exception as e:
@@ -130,7 +159,42 @@ def scrape(request):
     return HttpResponseRedirect(reverse("index"))
 
 
-# API for aborting the scraping process
+
+# Sending messages to the driver using Zoom app
+@login_required
+def send_messages(request):
+    if request.method == "POST" and request.user.is_authenticated:
+        
+        load_ids = request.POST.getlist('scraped_ids')
+        
+        # If there are no loads it redirects to the home page
+        if (len(load_ids) == 0 ):
+            return HttpResponseRedirect(reverse("index"))
+        
+        # If esc is pressed it stops the action 
+        cache.set("stop_action", False, None)        
+        listener = Listener(on_press=on_press)
+        listener.start()
+        
+        # Filtering only ids which will be processed for sending
+        load_ids_copy = load_ids.copy()
+        for load_id in load_ids_copy:
+            # Checking whether load exists in db
+            if not Load.objects.filter(id=load_id).exists():
+                messages.error(request, f"There is no scraped load with id {load_id}")
+                load_ids.remove(load_id)
+            
+        # Method for sending sms through the zoom
+        send_sms(request, load_ids, proba=False, palci=False)
+    
+        listener.stop()
+    
+    return HttpResponseRedirect(reverse("index"))
+
+
+
+# API methods
+# Aborting the scraping process by user
 @login_required
 def set_scraping_flag(request):
     if request.method == 'POST' and request.user.is_authenticated:
@@ -149,7 +213,7 @@ def set_abort_flag(request):
         return JsonResponse({'status': 'error'})
 
 
-# API call for opening/clearing notepad 
+# opening/clearing notepad textual file
 @login_required
 def open_txt_file(request, company):
     if request.method == 'GET' and (request.user.is_superuser or (request.user.is_authenticated and request.user.posting_allowed)):
@@ -184,7 +248,7 @@ def clear_txt_file(request, company):
         return JsonResponse({'status': 'You cannot call this API'}, status=401)
      
      
-# API for changing the load message
+# Changing the load message
 @login_required
 def change_load_message(request, load_id):
     if request.method == "PUT" and request.user.is_authenticated:
@@ -204,7 +268,7 @@ def change_load_message(request, load_id):
             return JsonResponse({"error": "Message cannot be empty."}, status=400)
   
 
-# API for getting all the load history through the Serializer
+# Geting all the load history through the Serializer
 @login_required
 def load_history(request):
     if request.method == "GET" and request.user.is_authenticated:
@@ -218,38 +282,13 @@ def load_history(request):
         return JsonResponse(serializer.data, safe=False)
             
 
-# Sending messages to the driver using Zoom app
+# Loading prepared loads for posting on Landstar
 @login_required
-def send_messages(request):
-    if request.method == "POST" and request.user.is_authenticated:
+def prepared_loads_for_posting(request):
+    if request.method == "GET":
+        pass
         
-        load_ids = request.POST.getlist('scraped_ids')
-        
-        # If there are no loads it redirects to the home page
-        if (len(load_ids) == 0 ):
-            return HttpResponseRedirect(reverse("index"))
-        
-        # If esc is pressed it stops the action 
-        cache.set("stop_action", False, None)        
-        listener = Listener(on_press=on_press)
-        listener.start()
-        
-        # Filtering only ids which will be processed for sending
-        load_ids_copy = load_ids.copy()
-        for load_id in load_ids_copy:
-            # Checking whether load exists in db
-            if not Load.objects.filter(id=load_id).exists():
-                messages.error(request, f"There is no scraped load with id {load_id}")
-                load_ids.remove(load_id)
-            
-        # Method for sending sms through the zoom
-        send_sms(request, load_ids, proba=True, palci=False)
     
-        listener.stop()
-    
-    return HttpResponseRedirect(reverse("index"))
-
-
 # Profile page
 @login_required
 def profile(request):
@@ -435,7 +474,6 @@ def no_page(request, everything_else):
     return render(request, "truckBot/noPage.html")
     
     
-# TRY EXCEPT IZBRISATI KADA SE BUDE APLIKACIJA BUILDALA U exe file
 def load_landstar_credentials(request, landstar_credentials_path):
     if landstar_credentials_path:
         try:

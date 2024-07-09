@@ -7,7 +7,7 @@
 }
 
 .show {
-    display: block;
+    display: inline-block;
 }
 
 .white {
@@ -47,6 +47,27 @@
     text-decoration: underline;
 }
 
-.load-user{
+.prepared-load-link {
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.select-all-txt {
+    font-size: 12px;
+    text-transform: capitalize;
+}
+
+.prepared-load-info,
+.checkbox-counter,
+.palci,
+.load-user {
+    font-size: 12px;
     color: #6c757d;
 }
+
+#checkbox-counter-post,
+#checkbox-counter-send {
+    font-weight: bold;
+}
+
+

@@ -17,6 +17,11 @@ class UserAdmin(UserAdmin):
       (('Important dates'), {'fields': ('last_login', 'date_joined')}),
   )
     
+class LaneLoadAdmin(admin.ModelAdmin):
+    list_display = ("origin", "pickup", "destination", "delivery", "price", "equipment", "posted", "user")
+    list_filter = ("posted", )
+    
+    
 class LoadAdmin(admin.ModelAdmin):
     list_display = ("id", "origin", "pickup", "destination", "delivery", "price", "finished", "user")
     search_fields = ("id", )
@@ -55,7 +60,7 @@ class LoadHistoryAdmin(admin.ModelAdmin):
 
 # Register your models here.
 admin.site.register(User, UserAdmin)
-admin.site.register(LaneLoad)
+admin.site.register(LaneLoad, LaneLoadAdmin)
 admin.site.register(Load, LoadAdmin)
 admin.site.register(Driver, DriverAdmin)
 admin.site.register(LoadHistory, LoadHistoryAdmin)
