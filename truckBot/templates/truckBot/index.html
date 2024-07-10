@@ -199,10 +199,10 @@
                 {% csrf_token %}
                 <ul class="scraped-ul">Scraped Loads:
                     {% for load_obj in loads %}
-                    <li class="ms-2 my-2">
+                    <li class="ms-2 my-2 palci">
                         <input type="checkbox" name="scraped_ids" value="{{ load_obj.load.id }}"
                             class="checkbox-sending me-2 ms-2">
-                        <b>{{ load_obj.load.id }}</b>
+                        <b id="load-id">{{ load_obj.load.id }}</b>
                         <a href="javascript:void(0);" class="ms-4 drivers-link"><span class="driver-links-text">Truck
                                 drivers</span><span class="driver-links-numbers">
                                 ({{ load_obj.informed_drivers }}/{{ load_obj.total_drivers }})</span>
@@ -238,7 +238,7 @@
                     </li>
                     {% endfor %}
 
-                    <input type="checkbox" id="select-all-sending" class="me-2 ms-3 mt-2"><span class="ms-1">Select
+                    <input type="checkbox" id="select-all-sending" class="me-2 ms-3 mt-2"><span class="ms-1 select-all-txt">Select
                         All </span> <span class="checkbox-counter hide">&#40;<span id="checkbox-counter-send"></span> selected&#41;</span>
 
                     <div class="d-grid col-4 mx-auto">
@@ -260,11 +260,44 @@
 
 
         <!-- 4. LOAD HISTORY -->
-        <button type="button" class="ms-4 btn btn-outline-secondary btn-lg" id="load-history-btn"
-            title="Informations about finished loads">Load History</button></a>
+        <button type="button" class="ms-4 btn btn-outline-secondary btn-lg" id="log-history-btn"
+            title="Informations about finished loads">Log History</button></a>
 
-        <div id="load-history" class="hide mt-2 ms-4" data-url="{% url 'load_history' %}" data-isadmin="{{ isAdmin }}">
-            <table class="table table-striped table-hover text-center ms-2">
+        <div id="log-history" class="hide mt-2 ms-4" data-isadmin="{{ isAdmin }}">
+            <ul class="nav nav-tabs mb-2">
+                <li class="nav-item">
+                    <a class="nav-link table-links" aria-current="page" href="javascript:void(0);" data-url="{% url 'posted_history' %}">Posted</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link table-links " aria-current="page" href="javascript:void(0);" data-url="{% url 'send_history' %}">Informed</a>
+                </li>
+
+
+            </ul>
+
+            <table class="hide table table-striped table-hover text-center ms-2" id="post-history">
+                <thead>
+                    <tr>
+                        <th scope="col"># <br></th>
+                        <th scope="col">Load<br></th>
+                        <th scope="col">Landstar id</th>
+                        <th scope="col">Log time <br></th>
+
+                        {% if isAdmin %}
+                        <th scope="col">User <br></th>
+                        {% endif %}
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                </tbody>
+
+            
+            </table>
+
+            <table class="hide table table-striped table-hover text-center ms-2" id="send-history">
                 <thead>
                     <tr>
                         <th scope="col"># <br></th>
@@ -278,11 +311,13 @@
                     </tr>
                 </thead>
 
-                <tbody id="load-history-table-body">
+                <tbody>
 
                 </tbody>
-
+ 
             </table>
+
+
         </div>
 
     </div>

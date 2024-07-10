@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
 
-from .models import User, Load, Driver, LoadHistory, LaneLoad
+from .models import User, Load, Driver, InformedHistory, LaneLoad, PostHistory
 
 class UserAdmin(UserAdmin):
     fieldsets = (
@@ -49,11 +49,16 @@ class DriverAdmin(admin.ModelAdmin):
     list_filter = (FinishedLoadsListFilter, )
     search_fields = ("load_id", )
 
-    
     def load_id(self, obj):
       return obj.load.id
   
-class LoadHistoryAdmin(admin.ModelAdmin):
+  
+class PostHistoryAdmin(admin.ModelAdmin):
+    list_display = ("load_description", "landstar_id", "date", "user")
+    search_fields = ("landstar_id", )
+  
+  
+class InformedHistoryAdmin(admin.ModelAdmin):
     list_display = ("load_id", "drivers_informed_count", "date", "user")
     search_fields = ("load_id", )
   
@@ -63,4 +68,5 @@ admin.site.register(User, UserAdmin)
 admin.site.register(LaneLoad, LaneLoadAdmin)
 admin.site.register(Load, LoadAdmin)
 admin.site.register(Driver, DriverAdmin)
-admin.site.register(LoadHistory, LoadHistoryAdmin)
+admin.site.register(PostHistory, PostHistoryAdmin)
+admin.site.register(InformedHistory, InformedHistoryAdmin)

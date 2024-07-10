@@ -10,7 +10,7 @@ from django.contrib import messages
 
 from pywinauto.application import Application
 
-from .models import Load, Driver, LoadHistory
+from .models import Load, Driver, InformedHistory
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'webapp.settings')
 django.setup()
@@ -72,8 +72,8 @@ def send_sms(request, load_ids, proba=False, palci=False):
                 # Load is finished, but not deleted from database
                 load.finished = True
                 load.save()
-                # Load history object is also created
-                LoadHistory.objects.create(load_id=load_id,
+                # Informed history object is also created
+                InformedHistory.objects.create(load_id=load_id,
                                           user=request.user,
                                           drivers_informed_count=len(truck_drivers))
                 # Every truck_drivers for this load is deleted from db

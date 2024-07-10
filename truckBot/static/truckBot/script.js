@@ -10,9 +10,9 @@ const closeAllAlertMessages = document.querySelector("#close-all-alert-messages-
 // Big buttons on home page
 const prepareLoadsBigButton = document.querySelector("#prepare-loads-btn");
 const postLoadsBigButton = document.querySelector("#post-loads-btn");
-const scrapeLoadBigButton = document.querySelector("#scrape-load-btn")
-const sendMessageBigButton = document.querySelector("#send-message-btn")
-const loadHistoryBigButton = document.querySelector("#load-history-btn")
+const scrapeLoadBigButton = document.querySelector("#scrape-load-btn");
+const sendMessageBigButton = document.querySelector("#send-message-btn");
+const logHistoryBigButton = document.querySelector("#log-history-btn");
 
 // Prepare Loads
 const prepareLoadsDiv = document.querySelector("#prepare-loads");
@@ -47,7 +47,6 @@ const selectAllForSendingMessages = document.querySelector("#select-all-sending"
 const driversLinks = document.querySelectorAll(".drivers-link");
 const driversInfo = document.querySelector(".drivers-info");
 const driversMessages = document.querySelectorAll(".drivers-info");
-const loadHistoryDiv = document.querySelector("#load-history");
 const loadMessageLinks = document.querySelectorAll(".load-msg-link");
 const loadMessageDivs = document.querySelectorAll(".load-msg-div");
 const editLoadMessagesButtons = document.querySelectorAll(".edit-load-msg-btn")
@@ -56,7 +55,10 @@ const saveMessageButtons = document.querySelectorAll("#send-message li .save-msg
 const checkboxCounterSend = document.querySelector("#checkbox-counter-send");
 
 // Log History
-const tableBody = document.querySelector("#load-history-table-body");
+const logHistoryDiv = document.querySelector("#log-history");
+const postTable = document.querySelector("#post-history");
+const sendTable = document.querySelector("#send-history");
+const tableLinks = document.querySelectorAll(".table-links ");
 
 
 // HOME PAGE
@@ -86,13 +88,13 @@ if (prepareLoadsBigButton) {
             activeButton(postLoadsBigButton, false);
             activeButton(scrapeLoadBigButton, false);
             activeButton(sendMessageBigButton, false);
-            activeButton(loadHistoryBigButton, false);
+            activeButton(logHistoryBigButton, false);
 
             showElement(prepareLoadsDiv);
             hideElement(postLoadsDiv);
             hideElement(scrapeDiv);
             hideElement(sendMessageDiv);
-            hideElement(loadHistoryDiv);
+            hideElement(logHistoryDiv);
             hideElement(radiusDistance);
         }
 
@@ -116,13 +118,13 @@ if (postLoadsBigButton) {
             activeButton(prepareLoadsBigButton, false);
             activeButton(scrapeLoadBigButton, false);
             activeButton(sendMessageBigButton, false);
-            activeButton(loadHistoryBigButton, false);
+            activeButton(logHistoryBigButton, false);
 
             showElement(postLoadsDiv);
             hideElement(prepareLoadsDiv);
             hideElement(scrapeDiv);
             hideElement(sendMessageDiv);
-            hideElement(loadHistoryDiv);
+            hideElement(logHistoryDiv);
             hideElement(radiusDistance);
         }
 
@@ -143,13 +145,13 @@ if (scrapeLoadBigButton) {
             activeButton(prepareLoadsBigButton, false);
             activeButton(postLoadsBigButton, false);
             activeButton(sendMessageBigButton, false);
-            activeButton(loadHistoryBigButton, false);
+            activeButton(logHistoryBigButton, false);
 
             showElement(scrapeDiv);
             hideElement(prepareLoadsDiv);
             hideElement(postLoadsDiv);
             hideElement(sendMessageDiv);
-            hideElement(loadHistoryDiv);
+            hideElement(logHistoryDiv);
             hideElement(radiusDistance);
         }
 
@@ -170,13 +172,13 @@ if (sendMessageBigButton) {
             activeButton(prepareLoadsBigButton, false);
             activeButton(postLoadsBigButton, false);
             activeButton(scrapeLoadBigButton, false);
-            activeButton(loadHistoryBigButton, false);
+            activeButton(logHistoryBigButton, false);
 
             showElement(sendMessageDiv);
             hideElement(prepareLoadsDiv);
             hideElement(postLoadsDiv);
             hideElement(scrapeDiv);
-            hideElement(loadHistoryDiv);
+            hideElement(logHistoryDiv);
         }
 
         else {
@@ -187,39 +189,30 @@ if (sendMessageBigButton) {
 }
 
 // Pressing Sending Message Button opens only that div and hide all others
-if (loadHistoryBigButton) {
+if (logHistoryBigButton) {
 
-    loadHistoryBigButton.addEventListener("click", function () {
+    logHistoryBigButton.addEventListener("click", function () {
 
-        if (isHidden(loadHistoryDiv)) {
-            activeButton(loadHistoryBigButton, true);
+        if (isHidden(logHistoryDiv)) {
+            activeButton(logHistoryBigButton, true);
             activeButton(prepareLoadsBigButton, false);
             activeButton(prepareLoadsBigButton, false);
             activeButton(scrapeLoadBigButton, false);
             activeButton(sendMessageBigButton, false);
 
-            showElement(loadHistoryDiv);
+            showElement(logHistoryDiv);
             hideElement(prepareLoadsDiv);
             hideElement(postLoadsDiv);
             hideElement(sendMessageDiv);
             hideElement(scrapeDiv);
 
-            // Fetching data calling API
-            const url = loadHistoryDiv.getAttribute("data-url");
-            const userIsAdmin = loadHistoryDiv.getAttribute("data-isadmin") === "True";
-
-            // Each time this button is clicked it needs to clear the data before fetching data
-            tableBody.innerHTML = "";
-
-            getDataAboutLoadHistory(url, userIsAdmin).then(() => {
-                // This code will run after the data has been fetched and the page has been updated
-                window.scrollBy({ top: 200, behavior: "smooth" });
-            });
-
+            // Clicking on first <a> element in order to load data for that link
+            logHistoryDiv.querySelector('.table-links').click();
         }
+
         else {
-            hideElement(loadHistoryDiv);
-            activeButton(loadHistoryBigButton, false);
+            hideElement(logHistoryDiv);
+            activeButton(logHistoryBigButton, false);
         }
     });
 }
@@ -288,10 +281,10 @@ if (selectAllForPosting) {
 
             if (selectAllForPosting.checked) {
                 checkboxCounterPost.innerHTML = checkboxesPosting.length;
-                showElement(checkboxCounterPost.parentElement);
+                showInlineElement(checkboxCounterPost.parentElement);
             }
             else {
-                hideElement(checkboxCounterPost.parentElement);
+                hideInlineElement(checkboxCounterPost.parentElement);
             }
         });
     });
@@ -316,7 +309,6 @@ if (postOrDeleteLoadsButton) {
 
     });
 }
-
 
 
 // 2.3) SCRAPING LOADS
@@ -379,14 +371,12 @@ if (selectAllForSendingMessages) {
             if (selectAllForSendingMessages.checked) {
                 showElement(zoomFootnote);
                 checkboxCounterSend.innerHTML = checkboxesSending.length;
-                showElement(checkboxCounterSend.parentElement);
+                showInlineElement(checkboxCounterSend.parentElement);
             }
             else {
                 hideElement(zoomFootnote);
-                hideElement(checkboxCounterSend.parentElement);
+                hideInlineElement(checkboxCounterSend.parentElement);
             }
-
-
         });
 
     });
@@ -537,6 +527,53 @@ if (saveMessageButtons) {
     });
 }
 
+// 2.5) Log History
+if (tableLinks) {
+
+    tableLinks.forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            if (!link.classList.contains("active")) {
+                // Going back and forth adding and removing active class
+                link.classList.add("active")
+
+                tableLinks.forEach(otherLink => {
+                    if (link !== otherLink) 
+                        otherLink.classList.remove("active");
+                });
+
+                // Fetching data calling API
+                const url = link.getAttribute("data-url");
+                const userIsAdmin = logHistoryDiv.getAttribute("data-isadmin") === "True";
+                const action = link.textContent;
+    
+                if (action === "Posted") {
+                    showElement(postTable);
+                    hideElement(sendTable);
+    
+                    getDataAboutLogHistory(url, userIsAdmin, postTable, action).then(() => {
+                        // This code will run after the data has been fetched and the page has been updated
+                        window.scrollBy({ top: 200, behavior: "smooth" });
+                    });
+                }
+                else if (action === "Informed") {
+                    hideElement(postTable);
+                    showElement(sendTable);
+    
+                    getDataAboutLogHistory(url, userIsAdmin, sendTable, action).then(() => {
+                        // This code will run after the data has been fetched and the page has been updated
+                        window.scrollBy({ top: 200, behavior: "smooth" });
+                    });
+                }
+
+            }
+
+        });
+    });
+
+}
+    
 
 // PROFILE PAGE
 // Edit button in profile page
@@ -585,6 +622,16 @@ function showElement(element) {
     element.classList.add("show");
 }
 
+function showInlineElement(element) {
+    element.classList.remove("hide");
+    element.classList.add("show-inline");
+}
+
+function hideInlineElement(element) {
+    element.classList.remove("show-inline");
+    element.classList.add("hide");
+}
+
 function isHidden(element) {
     return element.classList.contains("hide");
 }
@@ -617,7 +664,11 @@ function activeButton(button, needsToBeActive) {
 
 
 // Function for getting all load history from database
-function getDataAboutLoadHistory(url, userIsAdmin) {
+function getDataAboutLogHistory(url, userIsAdmin, table, action) {
+
+    tableBody = table.querySelector("tbody");
+    // Each time this button is clicked it needs to clear the data before fetching data
+    tableBody.innerHTML = "";
 
     return new Promise((resolve, reject) => {
         fetch(url, {
@@ -629,37 +680,11 @@ function getDataAboutLoadHistory(url, userIsAdmin) {
             .then(response => response.json())
             .then(data => {
 
-                data.forEach((log, index) => {
-                    const row = document.createElement("tr");
+                if (action === "Posted") 
+                    populateDataPostHistory(data, tableBody, userIsAdmin);
 
-                    const indexCell = document.createElement("th");
-                    indexCell.scope = "row";
-                    indexCell.textContent = index + 1;
-                    row.appendChild(indexCell);
-
-                    const loadIdCell = document.createElement("td");
-                    loadIdCell.textContent = log["load_id"];
-                    row.appendChild(loadIdCell);
-
-                    const driversCountCell = document.createElement("td");
-                    driversCountCell.textContent = log["count_drivers"];
-                    row.appendChild(driversCountCell);
-
-                    const dateCell = document.createElement("td");
-                    dateCell.textContent = log["date"];
-                    row.appendChild(dateCell);
-
-                    if (userIsAdmin) {
-                        const usernameCell = document.createElement("td");
-                        usernameCell.textContent = log["username"];
-                        usernameCell.style.color = "#6c757d";
-                        row.appendChild(usernameCell);
-                    }
-
-
-                    tableBody.appendChild(row);
-                    resolve();
-                });
+                else if (action === "Informed") 
+                    populateDataInformedHistory(data, tableBody, userIsAdmin);
 
             })
             .catch(error => {
@@ -668,6 +693,75 @@ function getDataAboutLoadHistory(url, userIsAdmin) {
             });
     });
 }
+
+
+function populateDataPostHistory(data, tableBody, userIsAdmin) {
+    console.log(data);
+
+    data.forEach((log, index) => {
+        const row = document.createElement("tr");
+
+        const indexCell = document.createElement("th");
+        indexCell.scope = "row";
+        indexCell.textContent = index + 1;
+        row.appendChild(indexCell);
+
+        const loadDescription = document.createElement("td");
+        loadDescription.textContent = log["load_description"];
+        row.appendChild(loadDescription);
+
+        const landstar_id = document.createElement("td");
+        landstar_id.innerHTML = '<b>' + log["landstar_id"] + '</b>';
+        row.appendChild(landstar_id);
+
+        const dateCell = document.createElement("td");
+        dateCell.textContent = log["date"];
+        row.appendChild(dateCell);
+
+        if (userIsAdmin) {
+            const usernameCell = document.createElement("td");
+            usernameCell.textContent = log["username"];
+            usernameCell.style.color = "#6c757d";
+            row.appendChild(usernameCell);
+        }
+
+        tableBody.appendChild(row);
+    });
+}
+
+function populateDataInformedHistory(data, tableBody, userIsAdmin) {
+    console.log(data);
+    data.forEach((log, index) => {
+        const row = document.createElement("tr");
+
+        const indexCell = document.createElement("th");
+        indexCell.scope = "row";
+        indexCell.textContent = index + 1;
+        row.appendChild(indexCell);
+
+        const loadIdCell = document.createElement("td");
+        loadIdCell.textContent = log["load_id"];
+        row.appendChild(loadIdCell);
+
+        const driversCountCell = document.createElement("td");
+        driversCountCell.textContent = log["count_drivers"];
+        row.appendChild(driversCountCell);
+
+        const dateCell = document.createElement("td");
+        dateCell.textContent = log["date"];
+        row.appendChild(dateCell);
+
+        if (userIsAdmin) {
+            const usernameCell = document.createElement("td");
+            usernameCell.textContent = log["username"];
+            usernameCell.style.color = "#6c757d";
+            row.appendChild(usernameCell);
+        }
+
+        tableBody.appendChild(row);
+    });
+}
+
 
 // Function for saving the edited load message to the database
 function saveLoadMessage(message, url, saveButton) {
@@ -752,7 +846,7 @@ function handleCheckBoxes(checkboxes, selectAllCheckbox, checkBoxCounter, submit
             if (atLeastOneCheckboxIsChecked) {
 
                 checkBoxCounter.innerHTML = counter;
-                showElement(checkBoxCounter.parentElement)
+                showInlineElement(checkBoxCounter.parentElement)
 
                 // If is for Sending message part
                 if (submitButton === sendZoomButton) {

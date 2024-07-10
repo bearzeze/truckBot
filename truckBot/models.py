@@ -34,9 +34,13 @@ class LaneLoad(models.Model):
     equipment = models.CharField(max_length=50)
     price = models.CharField(max_length=50)
     posted = models.BooleanField(default=False)
+    landstar_id = models.IntegerField(null=True, unique=True)
     
     def __str__(self):
         return f"{self.origin} -> {self.destination} | Rate: ${self.price}"
+    
+    def history(self):
+        return f"{','.join(self.origin.split(',')[:2])} -> {','.join(self.destination.split(',')[:2])}"
     
     class Meta:
         unique_together = ('origin', 'destination', 'pickup', 'delivery', 'miles', 'weight')    
@@ -59,7 +63,7 @@ class Load(models.Model):
 
     def __str__(self):
         return f"{self.id}: {self.origin} -> {self.destination}"
-
+    
     def save(self, *args, **kwargs):
         # If there is no message created (object is created for the first time)
         if not self.message:
@@ -84,12 +88,32 @@ class Driver(models.Model):
     
     def __str__(self):
         return f"{self.name} {self.phone_number} {self.sms_sent} {self.load.id}"
-    
-    
+ 
+ 
+class PostHistory(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="post_history")
+    load_description = models.CharField(max_length=60)
+    landstar_id = models.IntegerField(unique=True)
+    date = models.DateTimeField(editable=False)
+
+    def save(self, *args, **kwargs):
+        if not self.id:
+            self.date = timezone.localtime(timezone.now())
+            
+        super().save(*args, **kwargs)
+        
+    def __str__(self):
+        return self.load_description
+
+
+    def formatted_date(self):
+        return self.date.strftime("%d.%m.%Y %H:%M")
+   
+   
 # Drivers informed about load posted on Landstar, through the Zoom
-class LoadHistory(models.Model):
+class InformedHistory(models.Model):
     load_id = models.IntegerField(db_index=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="loads_history")
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="informed_history")
     date = models.DateTimeField(editable=False)
     drivers_informed_count = models.IntegerField(default=0)
     
@@ -104,3 +128,5 @@ class LoadHistory(models.Model):
     
     def formatted_date(self):
         return self.date.strftime("%d.%m.%Y %H:%M")
+    
+

@@ -53,7 +53,7 @@ def scrape_navisphere(request, soup):
     
     loads_saved = 0
     
-    POSSIBLE_EQUIPMENT_TYPES = ["VAN","REFER", "FLAT"]
+    POSSIBLE_EQUIPMENT_TYPES = ["VAN","REFR", "FLAT"]
     
     for index, data in enumerate(lane_loads):
         origin = data.find(class_="js-load-origin")
@@ -70,7 +70,7 @@ def scrape_navisphere(request, soup):
         miles = requirments.find(class_="js-load-distance").find("span").text.split(" ")[0].replace(",","")
         weight = requirments.find(class_="js-load-weight").find("span").text.split(" ")[0].replace(",","")
         equipments = requirments.find(class_="js-load-equipment-type").find_all("span")
-        types = [type_.upper() for type_ in equipments[0].text.replace("Reefer", "Refer").replace("Flatbed", "Flat").split(", ")]
+        types = [type_.upper() for type_ in equipments[0].text.replace("Reefer", "Refr").replace("Flatbed", "Flat").split(", ")]
         length = int(equipments[1].text[0:2]) #Two numbers are enough for the length (48, 53, ...)
         
         
@@ -100,14 +100,14 @@ def scrape_navisphere(request, soup):
         # Saving load into database, which is prepared for posting on landstar
         try:
             load = LaneLoad(user = request.user,
-                                    origin = origin_location.replace(", ", ","),
-                                    destination = destination_location.replace(", ", ","),
-                                    pickup = pickup_date,
-                                    delivery = delivery_date,
-                                    miles = miles,
-                                    weight = weight,
-                                    equipment = types,
-                                    price = price)
+                            origin = origin_location.replace(", ", ","),
+                            destination = destination_location.replace(", ", ","),
+                            pickup = pickup_date,
+                            delivery = delivery_date,
+                            miles = miles,
+                            weight = weight,
+                            equipment = types,
+                            price = price)
             load.save()
             
         except IntegrityError:

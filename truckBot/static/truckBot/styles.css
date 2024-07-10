@@ -7,7 +7,11 @@
 }
 
 .show {
-    display: inline-block;
+    display: block;
+}
+
+.show-inline {
+    display: inline;
 }
 
 .white {
@@ -70,4 +74,12 @@
     font-weight: bold;
 }
 
+#log-history table {
+    font-size: 13px;
+    min-width: 100%;
+}
+
+#load-id {
+    color: black;
+}
 

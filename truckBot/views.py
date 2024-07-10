@@ -18,8 +18,8 @@ if platform.system() == "Windows":
 
 from .web_automation import scrape_trucks, posting_loads_landstar
 from .prepare import preparing_loads
-from .models import User, LoadHistory, Load, LaneLoad
-from .serializers import LoadHistorySerializer
+from .models import User, InformedHistory, Load, LaneLoad, PostHistory
+from .serializers import InformedHistorySerializer, PostHistorySerializer
 
 
 @login_required
@@ -77,7 +77,7 @@ def post_loads(request):
         load_ids = request.POST.getlist("prepared_load_ids")
         
         headless = not request.user.is_superuser
-        posting_loads_landstar(request, load_ids, headless)
+        posting_loads_landstar(request, load_ids, headless=headless, max_tabs=3)
         
         cache.set('is_scraping', False, None)
         cache.set('abort_scraping', False, None)
@@ -122,11 +122,10 @@ def scrape(request):
         
         load_ids_copy = load_ids.copy()
         
-        
         # Checking first and if load_id is already processed/scraped it will be removed from the list:
         for load_id in load_ids_copy:
             # If this load is in Log History you cannot scrape it again
-            load = LoadHistory.objects.filter(load_id=load_id)
+            load = InformedHistory.objects.filter(load_id=load_id)
             if load.exists():
                 messages.warning(request, f"Load with {load_id} id had been already processed by user '{load[0].user.username}'")
                 load_ids.remove(load_id)
@@ -151,13 +150,13 @@ def scrape(request):
             scrape_trucks(request, load_ids, radius_distance, headless)
                                 
         except Exception as e:
+            print(e)
             return HttpResponseRedirect(reverse("index"))
             
         cache.set('is_scraping', False, None)
         cache.set('abort_scraping', False, None)
 
     return HttpResponseRedirect(reverse("index"))
-
 
 
 # Sending messages to the driver using Zoom app
@@ -192,7 +191,6 @@ def send_messages(request):
     return HttpResponseRedirect(reverse("index"))
 
 
-
 # API methods
 # Aborting the scraping process by user
 @login_required
@@ -213,7 +211,7 @@ def set_abort_flag(request):
         return JsonResponse({'status': 'error'})
 
 
-# opening/clearing notepad textual file
+# Opening/clearing notepad textual file
 @login_required
 def open_txt_file(request, company):
     if request.method == 'GET' and (request.user.is_superuser or (request.user.is_authenticated and request.user.posting_allowed)):
@@ -268,20 +266,34 @@ def change_load_message(request, load_id):
             return JsonResponse({"error": "Message cannot be empty."}, status=400)
   
 
-# Geting all the load history through the Serializer
+# Geting all the Post history through the Serializer
 @login_required
-def load_history(request):
+def posted_history(request):
     if request.method == "GET" and request.user.is_authenticated:
         # Only admin can see history from every user
         if request.user.is_superuser:
-            history = LoadHistory.objects.all().order_by("-date")
+            history = PostHistory.objects.all().order_by("-date")
         else:
-            history = LoadHistory.objects.filter(user=request.user).order_by("-date")
+            history = PostHistory.objects.filter(user=request.user).order_by("-date")
             
-        serializer = LoadHistorySerializer(history, many=True)
+        serializer = PostHistorySerializer(history, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+
+# Geting all the Informed history through the Serializer
+@login_required
+def send_history(request):
+    if request.method == "GET" and request.user.is_authenticated:
+        # Only admin can see history from every user
+        if request.user.is_superuser:
+            history = InformedHistory.objects.all().order_by("-date")
+        else:
+            history = InformedHistory.objects.filter(user=request.user).order_by("-date")
+            
+        serializer = InformedHistorySerializer(history, many=True)
         return JsonResponse(serializer.data, safe=False)
             
-
+    
 # Loading prepared loads for posting on Landstar
 @login_required
 def prepared_loads_for_posting(request):
