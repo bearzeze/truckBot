@@ -10,7 +10,7 @@ class UserAdmin(UserAdmin):
       
       (('Personal info'), {'fields': ('first_name', 'last_name', 'email', 'zoom_exe_path',
                                       'zoom_phone_numb', 'landstar_firstname', 'landstar_lastname',
-                                      'landstar_credentials_path', 'posting_allowed', 'banned')}),
+                                      'landstar_credentials_path', 'posting_allowed', 'banned', 'headless', 'timedelta')}),
       
       (('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')}),
       

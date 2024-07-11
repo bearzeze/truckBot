@@ -37,9 +37,7 @@ def scrape_trucks(request, load_ids, radius, headless=True):
         
         first_iter = load_id == first_id
         last_iter = load_id == last_id
-        
-        print(load_id)
-    
+            
         try:
             # Login only at first iteration
             if first_iter:
@@ -113,7 +111,7 @@ def posting_loads_landstar(request, load_ids, max_tabs=1, headless=True):
         if landstar.check_for_aborting():
             return 
         
-        time.sleep(3)
+        time.sleep(3 + request.user.timedelta)
         
         landstar.posting_loads(loads, max_tabs)
         
@@ -181,7 +179,7 @@ class LandstarAutomation:
         self.driver.execute_script(f"arguments[0].value = {radius}", distance_radius)
 
         # time for visual checking
-        time.sleep(2)
+        time.sleep(2 + self.request.user.timedelta)
 
         # Search for available trucks
         search_btn = self.driver.find_element(By.ID, "BtnSearch")
@@ -192,7 +190,7 @@ class LandstarAutomation:
             # It is continuation of previous method
             element = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, 'SearchResultsGrid')))
 
-            time.sleep(3)
+            time.sleep(3 + self.request.user.timedelta)
 
             # Scrape info for the truck drivers message and save in database as Driver objects
             soup = BeautifulSoup(self.driver.page_source, "html.parser")
@@ -224,7 +222,7 @@ class LandstarAutomation:
         weight_row = WebDriverWait(self.driver, 5).until(
             EC.presence_of_element_located((By.ID, "ctl00_ctl00_SiteMasterContent_PageContent_dgCommodities_ctl00__0")))
 
-        time.sleep(2)
+        time.sleep(2 + self.request.user.timedelta)
         soup = BeautifulSoup(self.driver.page_source, "html.parser")
         data = soup.find(id="ctl00_ctl00_SiteMasterContent_PageContent_dgCommodities_ctl00__0")
         weight = data.find_all("td")[6].text
@@ -365,7 +363,7 @@ class LandstarAutomation:
                     new_load = self.driver.find_element(By.ID, 'ctl00_ctl00_SiteMasterContent_NavigationBar1_rgNew_rbNewAvailableLoad')
                     new_load.click()
                     
-                    time.sleep(1)
+                    time.sleep(1 + self.request.user.timedelta)
                     
                     if self.check_for_aborting():
                         return
@@ -428,14 +426,14 @@ class LandstarAutomation:
                         equipment_list[i].click()
                         equipment_list[i].send_keys(load_equipment[i])
                     
-                    time.sleep(1)
+                    time.sleep(1 + self.request.user.timedelta)
                     
                     if self.check_for_aborting():
                         return
                     
                     post_button = self.driver.find_element(By.ID, 'ctl00_ctl00_SiteMasterContent_NavigationBar1_rgCommands_rbSubmit_Item')
                     post_button.click()
-                    time.sleep(2)
+                    time.sleep(2 + self.request.user.timedelta)
                     
                     load_id = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, 'ctl00_ctl00_SiteMasterContent_PageContent_confirmationLink')))
                     load_id = load_id.text
@@ -455,7 +453,7 @@ class LandstarAutomation:
                     messages.error(self.request, f"Load '{load}' was not posted due to an error: {e}")
                 
             
-            time.sleep(1)
+            time.sleep(1 + self.request.user.timedelta)
         
         
 

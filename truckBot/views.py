@@ -63,7 +63,7 @@ def prepare_loads(request, company):
     # company_id = 1 -> Navisphere.com ...
     if request.method == "POST":
         
-        headless = not request.user.is_superuser
+        headless = request.user.headless
             
         preparing_loads(request, company, headless)
         
@@ -146,7 +146,7 @@ def scrape(request):
             messages.warning(request, 'Scraping aborted!')
             
         try:
-            headless = not request.user.is_superuser
+            headless = request.user.headless
             scrape_trucks(request, load_ids, radius_distance, headless)
                                 
         except Exception as e:

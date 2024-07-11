@@ -27,7 +27,7 @@ def send_sms(request, load_ids, proba=False, palci=False):
     
     zoom_window = zoom_app.window(title_re=r".*Zoom.*")
     
-    time.sleep(3)
+    time.sleep(3 + request.user.timedelta)
     
     last_id = load_ids[-1]
     
@@ -61,7 +61,7 @@ def send_sms(request, load_ids, proba=False, palci=False):
                     return
 
                 if not driver.sms_sent:
-                    result = sending_zoom_messages(zoom_window, driver, idx, messages_zoom, proba, palci)
+                    result = sending_zoom_messages(request, zoom_window, driver, idx, messages_zoom, proba, palci)
                     
                     if result == "stop":
                         stop_action(zoom_app, request)
@@ -92,7 +92,7 @@ def send_sms(request, load_ids, proba=False, palci=False):
                 return
 
 
-def sending_zoom_messages(zoom_window, driver, idx, messages_zoom, proba, palci):
+def sending_zoom_messages(request, zoom_window, driver, idx, messages_zoom, proba, palci):
     new_sms = zoom_window.child_window(title="New SMS", control_type="Button",
                                             found_index=0).wrapper_object()
     new_sms.click_input()
@@ -116,7 +116,7 @@ def sending_zoom_messages(zoom_window, driver, idx, messages_zoom, proba, palci)
 
     # First iteration
     if idx == 0:
-        time.sleep(1)
+        time.sleep(1 + request.user.timedelta)
     
     text.type_keys("^a{BACKSPACE}")
     
@@ -136,7 +136,7 @@ def sending_zoom_messages(zoom_window, driver, idx, messages_zoom, proba, palci)
         send_message.click_input()
         driver.sms_sent = True
         driver.save()
-        time.sleep(0.5)
+        time.sleep(0.5  + request.user.timedelta)
     else:
         text.type_keys("^a{BACKSPACE}")
 
@@ -157,11 +157,8 @@ def creating_message_versions(request, load):
 
 def write_control_identifiers_file(zoom_window, name):
     with open(f"./control_identifiers_{name}.txt", "w") as file:
-        print("UŠOO")
         # Redirect standard output to the file
         sys.stdout = file
         zoom_window.print_control_identifiers()
         # Reset standard output
         sys.stdout = sys.__stdout__
-        print("IZAŠOO")
-        time.sleep(5)

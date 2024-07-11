@@ -11,6 +11,9 @@ class User(AbstractUser):
     landstar_credentials_path = models.CharField(max_length=250, blank=True)
     posting_allowed = models.BooleanField(default=True)
     banned = models.BooleanField(default=False)
+    headless = models.BooleanField(default=True)
+    timedelta = models.IntegerField(default=0)
+    
     
     # Versions of messages that will be created
     def load_offer_str(self):
