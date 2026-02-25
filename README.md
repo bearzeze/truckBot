@@ -1,6 +1,6 @@
 # **TruckBot Automation Web App**
 
-### Fully functional app for the scraping data about loads and informing available drivers
+### Fully functional app for the posting loads on the website and afterwards scraping data about loads and informing available drivers about it
 
 ## **Distinctiveness and Complexity**
 
@@ -40,13 +40,15 @@ The backend consists of a Django project and one Django app called â€œtruckBotâ€
 
 * *admin.py* - This file registers the models so that administrator can easily access the data in the database.
 
-* *serializers.py* - In this file, serialization of the LogHistory model is done to obtain JSON data smoothly.
+* *serializers.py* - In this file, serialization of the models is done to obtain JSON data smoothly.
 
 * *views.py* - This file contains the core structure of the web app, with over 350 lines of code.
 
 The automation process for scraping and sending messages is defined in the following Python files located in the Django app:
 
-* *scrape.py* - This file provides headless scraping of the truck logistic website where user needs to be logged in. Scraping is done based on the load id. As a result it gathers data into database about load and all the drivers that are nearby the load origin.
+* *web_automation.py* - This file provides headless scraping of the truck logistic website where user needs to be logged in. Scraping is done based on the load id. As a result it gathers data into database about load and all the drivers that are nearby the load origin.
+* Also there is an function where selenium was used in order to post such a load onto this website. Information for certain load is gathered from various different websites and posted on main website. Now this load will get its own id, and based on that id it can proceed to gathering
+* more date about truck drivers in nearby location.
 
 * *zoom.py* - This file provides way of opening Zoom on local machine using User fields, and based on the data from the Load and Driver model, to construct the message and inform the drivers about the load.
 
