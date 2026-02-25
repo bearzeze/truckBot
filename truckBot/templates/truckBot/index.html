@@ -172,8 +172,8 @@
                 <a href="javascript:void(0);" id="radius-distance-link" style="display: block;">Distance Radius</a>
                 <select name="radius-distance" id="radius-distance" class="hide mt-2 mb-2">
                     <option value="50">50</option>
-                    <option value="100">100</option>
-                    <option value="150" selected>150</option>
+                    <option value="100" selected>100</option>
+                    <option value="150">150</option>
                     <option value="200">200</option>
                 </select>
                 <label for="load_ids" class="form-label mt-2">Insert load id (or ids separated by commas):</label>
@@ -265,16 +265,18 @@
 
         <div id="log-history" class="hide mt-2 ms-4" data-isadmin="{{ isAdmin }}">
             <ul class="nav nav-tabs mb-2">
+
+                {% if postAllowed %}
                 <li class="nav-item">
                     <a class="nav-link table-links" aria-current="page" href="javascript:void(0);" data-url="{% url 'posted_history' %}">Posted</a>
                 </li>
+                {% endif %}
                 
                 <li class="nav-item">
                     <a class="nav-link table-links " aria-current="page" href="javascript:void(0);" data-url="{% url 'send_history' %}">Informed</a>
                 </li>
-
-
             </ul>
+            {% if postAllowed %}
 
             <table class="hide table table-striped table-hover text-center ms-2" id="post-history">
                 <thead>
@@ -293,9 +295,10 @@
                 <tbody>
 
                 </tbody>
-
-            
             </table>
+
+            {% endif %}
+
 
             <table class="hide table table-striped table-hover text-center ms-2" id="send-history">
                 <thead>

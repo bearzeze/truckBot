@@ -61,7 +61,7 @@ def index(request):
 @login_required
 def prepare_loads(request, company):
     # company_id = 1 -> Navisphere.com ...
-    if request.method == "POST":
+    if request.method == "POST" and request.user.is_authenticated and request.user.posting_allowed:
         
         headless = request.user.headless
             
@@ -73,7 +73,7 @@ def prepare_loads(request, company):
 # Method for posting loads
 @login_required
 def post_loads(request):
-    if request.method == "POST" and request.user.is_authenticated:
+    if request.method == "POST" and request.user.is_authenticated and request.user.posting_allowed:
         load_ids = request.POST.getlist("prepared_load_ids")
         
         headless = not request.user.is_superuser
@@ -88,7 +88,7 @@ def post_loads(request):
 # Method for deleting loads
 @login_required
 def delete_loads(request):
-    if request.method == "POST" and request.user.is_authenticated:
+    if request.method == "POST" and request.user.is_authenticated and request.user.posting_allowed:
         load_ids = request.POST.getlist("prepared_load_ids")
         
         loads = LaneLoad.objects.filter(id__in=load_ids) 
@@ -103,7 +103,7 @@ def delete_loads(request):
 # Method for scraping the website in order to get information about loads and available drivers
 @login_required
 def scrape(request):
-    if request.method == "POST" and request.user.is_authenticated:
+    if request.method == "POST" and request.user.is_authenticated and (not request.user.banned):
         
         radius_distance = request.POST.get("radius-distance");
         
@@ -162,7 +162,7 @@ def scrape(request):
 # Sending messages to the driver using Zoom app
 @login_required
 def send_messages(request):
-    if request.method == "POST" and request.user.is_authenticated:
+    if request.method == "POST" and request.user.is_authenticated and (not request.user.banned):
         
         load_ids = request.POST.getlist('scraped_ids')
         
@@ -195,7 +195,7 @@ def send_messages(request):
 # Aborting the scraping process by user
 @login_required
 def set_scraping_flag(request):
-    if request.method == 'POST' and request.user.is_authenticated:
+    if request.method == 'POST' and request.user.is_authenticated and (not request.user.banned):
         cache.set('is_scraping', True, None)
         return JsonResponse({'status': 'success'})
     else:
@@ -204,7 +204,7 @@ def set_scraping_flag(request):
     
 @login_required
 def set_abort_flag(request):
-    if request.method == 'POST' and request.user.is_authenticated:
+    if request.method == 'POST' and request.user.is_authenticated and (not request.user.banned):
         cache.set('abort_scraping', True, None)
         return JsonResponse({'status': 'success'})
     else:
@@ -269,7 +269,7 @@ def change_load_message(request, load_id):
 # Geting all the Post history through the Serializer
 @login_required
 def posted_history(request):
-    if request.method == "GET" and request.user.is_authenticated:
+    if request.method == "GET" and request.user.is_authenticated :
         # Only admin can see history from every user
         if request.user.is_superuser:
             history = PostHistory.objects.all().order_by("-date")

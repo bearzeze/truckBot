@@ -77,7 +77,6 @@
 #log-history table {
     font-size: 13px;
     min-width: 100%;
-    display: flex;
 }
 
 #load-id {

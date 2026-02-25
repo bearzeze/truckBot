@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+truckBotEnv/
+venv/
+.env
+
+# Django
+db.sqlite3
+media/
+staticfiles/
+
+# Build / Distribution
+build/
+dist/
+*.spec
+
+# Drivers
+chromedriver.exe
+
+# IDE
+.idea/
+.vscode/
+
+# OS
+Thumbs.db
+.DS_Store

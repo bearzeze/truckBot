@@ -549,6 +549,7 @@ if (tableLinks) {
                 const action = link.textContent;
     
                 if (action === "Posted") {
+                    
                     showElement(postTable);
                     hideElement(sendTable);
     
@@ -558,8 +559,8 @@ if (tableLinks) {
                     });
                 }
                 else if (action === "Informed") {
-                    hideElement(postTable);
                     showElement(sendTable);
+                    hideElement(postTable);
     
                     getDataAboutLogHistory(url, userIsAdmin, sendTable, action).then(() => {
                         // This code will run after the data has been fetched and the page has been updated
